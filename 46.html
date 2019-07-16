@@ -20,7 +20,7 @@
     <div id="main">
     <div id="content" class="ticket">
       <h1 id="trac-ticket-title">
-          <a href="/trac/software/ticket/46">Ticket #46</a>
+          <a href="46.html">Ticket #46</a>
           <span class="status">(closed enhancement: moved)</span>
       </h1>
       <div id="ticket">
@@ -99,7 +99,7 @@
     </h3>
     <div class="searchable">
       <p>
-Going along with the idea that VisBio should lean on Bio-Formats more thoroughly (ticket <a class="closed ticket" href="/trac/software/ticket/35" title="enhancement: More intelligent usage of Bio-Formats (closed: moved)">#35</a>), VisBio's thumbnailing logic should be mostly removed and delegated to Bio-Formats with its <tt>IFormatReader.openThumbImage</tt>, <tt>IFormatReader.getThumbSizeX</tt> and <tt>IFormatReader.getThumbSizeY</tt> methods. Though Bio-Formats may need to allow configuration of thumbnail size (it currently does not do so), it would probably be easier than VisBio's current scheme.
+Going along with the idea that VisBio should lean on Bio-Formats more thoroughly (ticket <a class="closed ticket" href="35.html" title="enhancement: More intelligent usage of Bio-Formats (closed: moved)">#35</a>), VisBio's thumbnailing logic should be mostly removed and delegated to Bio-Formats with its <tt>IFormatReader.openThumbImage</tt>, <tt>IFormatReader.getThumbSizeX</tt> and <tt>IFormatReader.getThumbSizeY</tt> methods. Though Bio-Formats may need to allow configuration of thumbnail size (it currently does not do so), it would probably be easier than VisBio's current scheme.
 </p>
 <p>
 VisBio would still need to support creating thumbnails from full-resolution data, for derivative transforms whose thumbnails cannot be "stolen" or adapted from those of the parent object, but VisBio can lean on the Bio-Formats <tt>ImageTools</tt> utility class to do so.

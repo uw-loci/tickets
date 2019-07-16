@@ -20,7 +20,7 @@
     <div id="main">
     <div id="content" class="ticket">
       <h1 id="trac-ticket-title">
-          <a href="/trac/software/ticket/33">Ticket #33</a>
+          <a href="33.html">Ticket #33</a>
           <span class="status">(closed defect: fixed)</span>
       </h1>
       <div id="ticket">
@@ -102,13 +102,13 @@
 Since switching VisBio over to the ImageFlatField logic, 16-bit images do not display properly.
 </p>
 <p>
-It is not totally clear what is going on, but the problem seems to be an incompatibility between 16-bit <tt>BufferedImage</tt> objects and VisAD displays. Whether it is Java3D-specific, or also affects Java2D, is not yet tested due to other VisBio Java2D bugs (see ticket <a class="closed ticket" href="/trac/software/ticket/32" title="defect: Java2D support is broken (closed: wontfix)">#32</a>).
+It is not totally clear what is going on, but the problem seems to be an incompatibility between 16-bit <tt>BufferedImage</tt> objects and VisAD displays. Whether it is Java3D-specific, or also affects Java2D, is not yet tested due to other VisBio Java2D bugs (see ticket <a class="closed ticket" href="32.html" title="defect: Java2D support is broken (closed: wontfix)">#32</a>).
 </p>
 <p>
 VisAD needs some retooling to work as efficiently as possible with 8-bit data, especially in certain configurations, in conjunction with Java3D texturing by reference. Various data configurations should be transformed as few times as possible to avoid excessive CPU usage, and 16-bit data is no exception.
 </p>
 <p>
-More substantial improvements to VisBio's core logic would probably make this bug obsolete (see tickets <a class="closed ticket" href="/trac/software/ticket/34" title="enhancement: Better ImageFlatField support within VisAD (closed: moved)">#34</a> and <a class="closed ticket" href="/trac/software/ticket/35" title="enhancement: More intelligent usage of Bio-Formats (closed: moved)">#35</a> for more details).
+More substantial improvements to VisBio's core logic would probably make this bug obsolete (see tickets <a class="closed ticket" href="34.html" title="enhancement: Better ImageFlatField support within VisAD (closed: moved)">#34</a> and <a class="closed ticket" href="35.html" title="enhancement: More intelligent usage of Bio-Formats (closed: moved)">#35</a> for more details).
 </p>
 
     </div>

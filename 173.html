@@ -20,7 +20,7 @@
     <div id="main">
     <div id="content" class="ticket">
       <h1 id="trac-ticket-title">
-          <a href="/trac/software/ticket/173">Ticket #173</a>
+          <a href="173.html">Ticket #173</a>
           <span class="status">(closed task: wontfix)</span>
       </h1>
       <div id="ticket">
@@ -102,7 +102,7 @@ In some cases, there are multiple readers that can ostensibly support a given fi
 It would be nice if there were a way for a reader to throw an exception, something like <tt>UnimplementedException</tt> which extends <tt>FormatException</tt>, indicating that it has successfully parsed the file, found nothing wrong, but encountered a feature or aspect of the format that it can't deal with. This type of exception would indicate to ImageReader that it should "fail through" to the next matching reader, rather than die completely.
 </p>
 <p>
-This feature should be used in many cases where multiple readers handle different features of the same file format. In particular, as we implement readers that delegate to third-party libraries such as JAI Image I/O (<a class="closed ticket" href="/trac/software/ticket/172" title="task: Better usage of JAI Image I/O Tools (closed: fixed)">#172</a>) or Sanselan (<a class="closed ticket" href="/trac/software/ticket/174" title="task: Investigate usage of Sanselan image library (closed: fixed)">#174</a>), we want to try our own implementations first, but fall back to the multi-format external readers last.
+This feature should be used in many cases where multiple readers handle different features of the same file format. In particular, as we implement readers that delegate to third-party libraries such as JAI Image I/O (<a class="closed ticket" href="172.html" title="task: Better usage of JAI Image I/O Tools (closed: fixed)">#172</a>) or Sanselan (<a class="closed ticket" href="174.html" title="task: Investigate usage of Sanselan image library (closed: fixed)">#174</a>), we want to try our own implementations first, but fall back to the multi-format external readers last.
 </p>
 <p>
 In some cases there may be a performance hit to this approach, so we should exercise caution in how widely we deploy it by evaluating each case individually.
@@ -144,7 +144,7 @@ In some cases there may be a performance hit to this approach, so we should exer
 We have moved away from using "multi-format" readers in favor of embedding multiple approaches within each format's top-level reader. For example, <tt>QTReader</tt> takes care of calling <tt>LegacyQTReader</tt> as appropriate, so <tt>LegacyQTReader</tt> itself is not on the <tt>readers.txt</tt> list.
 </p>
 <p>
-We do have both <tt>LegacyND2Reader</tt> and <tt>ND2Reader</tt> on the list, which will need to change in order to support configurable switching between ND2 modes (see ticket <a class="closed ticket" href="/trac/software/ticket/263" title="task: Bio-Formats configuration dialog (closed: fixed)">#263</a>).
+We do have both <tt>LegacyND2Reader</tt> and <tt>ND2Reader</tt> on the list, which will need to change in order to support configurable switching between ND2 modes (see ticket <a class="closed ticket" href="263.html" title="task: Bio-Formats configuration dialog (closed: fixed)">#263</a>).
 </p>
 <p>
 We also have <tt>TiffReader</tt>, which could conceivably be used as a fallback reader any time a TIFF-specific reader tries but fails to read a particular dataset. But this functionality is hardly necessary (the user could just open the file using ImageJ's built-in TIFF support, after all).

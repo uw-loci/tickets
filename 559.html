@@ -20,7 +20,7 @@
     <div id="main">
     <div id="content" class="ticket">
       <h1 id="trac-ticket-title">
-          <a href="/trac/software/ticket/559">Ticket #559</a>
+          <a href="559.html">Ticket #559</a>
           <span class="status">(closed defect: fixed)</span>
       </h1>
       <div id="ticket">
@@ -143,10 +143,10 @@ File is at <tt>zeiss-lsm/dan/2_1mm_pt1.lsm</tt>.
 Pushing this to 5.0 - it's actually a rather tricky issue.
 </p>
 <p>
-Originally, we dealt with XZ and XT scans as proposed above - the Y dimension would be set to 1, and the Z or T dimension would be set to whatever is stored in the file.  However, this resulted in displayed images that were 1 pixel high, which is typically not what vendor software displays.  A lot of people complained that their images looked wrong, and so with <a class="closed ticket" href="/trac/software/ticket/333" title="task: Decide how to handle XZ and XT scans (closed: fixed)">#333</a> we made the executive decision to handle XZ and XT scans based on how they should be displayed.
+Originally, we dealt with XZ and XT scans as proposed above - the Y dimension would be set to 1, and the Z or T dimension would be set to whatever is stored in the file.  However, this resulted in displayed images that were 1 pixel high, which is typically not what vendor software displays.  A lot of people complained that their images looked wrong, and so with <a class="closed ticket" href="333.html" title="task: Decide how to handle XZ and XT scans (closed: fixed)">#333</a> we made the executive decision to handle XZ and XT scans based on how they should be displayed.
 </p>
 <p>
-Obviously, though, that's not quite right.  The current roadblock (and it's not a small one) is that the entire stack of OME software - from the OME-XML schema all the way up through Bio-Formats to OMERO - assumes that the first two dimensions in a dataset are XY, and so any image returned by Bio-Formats will be an XY image.  This falls under the big umbrella of N-Dim support (see <a class="closed ticket" href="/trac/software/ticket/398" title="enhancement: Better support for N-dimensional data (closed: fixed)">#398</a>, <a class="ext-link" href="http://ome-xml.org/intertrac/112" title="112 in OME-XML Trac"><span class="icon"> </span>ome-xml:112</a>, <a class="ext-link" href="http://trac.openmicroscopy.org.uk/omero/wiki/WorkPlan/NDimensionalData"><span class="icon"> </span>NDimensionalData</a>).
+Obviously, though, that's not quite right.  The current roadblock (and it's not a small one) is that the entire stack of OME software - from the OME-XML schema all the way up through Bio-Formats to OMERO - assumes that the first two dimensions in a dataset are XY, and so any image returned by Bio-Formats will be an XY image.  This falls under the big umbrella of N-Dim support (see <a class="closed ticket" href="398.html" title="enhancement: Better support for N-dimensional data (closed: fixed)">#398</a>, <a class="ext-link" href="http://ome-xml.org/intertrac/112" title="112 in OME-XML Trac"><span class="icon"> </span>ome-xml:112</a>, <a class="ext-link" href="http://trac.openmicroscopy.org.uk/omero/wiki/WorkPlan/NDimensionalData"><span class="icon"> </span>NDimensionalData</a>).
 </p>
 <p>
 The idea is that eventually our modelling of dimensions will be more flexible, so that any two dimensions can be the first two dimensions, and then returned images use the first two dimensions (whatever they may be) as the width and height.  We would, then, offer the option of viewing (for instance) an X = 1024 x T = 3000 XT scan as either 3000 1024 x 1 images or 1 1024 x 3000 image.

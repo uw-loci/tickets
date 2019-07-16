@@ -20,7 +20,7 @@
     <div id="main">
     <div id="content" class="ticket">
       <h1 id="trac-ticket-title">
-          <a href="/trac/software/ticket/556">Ticket #556</a>
+          <a href="556.html">Ticket #556</a>
           <span class="status">(closed defect: fixed)</span>
       </h1>
       <div id="ticket">
@@ -120,7 +120,7 @@ When producing an output OME-XML block, the OME-TIFF reader should inject a Meta
     <div class="comment searchable">
       
       <p>
-(In <a class="changeset" href="/trac/software/changeset/6978" title="OMETiffReader now populates its' MetadataStore in such as way as to ...">[6978]</a>) OMETiffReader now populates its' MetadataStore in such as way as to produce valid OME-XML (hopefully).  BinData elements are not populated; instead, a MetadataOnly element is inserted under any Pixels that do not have at least one TiffData.  See <a class="closed ticket" href="/trac/software/ticket/556" title="defect: OME-TIFF reader should use MetadataOnly rather than BinData (closed: fixed)">#556</a>.
+(In <a class="changeset" href="/trac/software/changeset/6978" title="OMETiffReader now populates its' MetadataStore in such as way as to ...">[6978]</a>) OMETiffReader now populates its' MetadataStore in such as way as to produce valid OME-XML (hopefully).  BinData elements are not populated; instead, a MetadataOnly element is inserted under any Pixels that do not have at least one TiffData.  See <a class="closed ticket" href="556.html" title="defect: OME-TIFF reader should use MetadataOnly rather than BinData (closed: fixed)">#556</a>.
 </p>
 <p>
 The only problem with this is that OMETiffReader.getMetadataStore() no longer returns a MetadataStore that can be used with an IFormatWriter (assuming, of course, that an IMetadata was passed to setMetadataStore).  The current solution is a new OMETiffWriter API method: 'MetadataStore getMetadataStoreForConversion()'.
@@ -171,7 +171,7 @@ I'm fairly certain that this was fixed in <a class="changeset" href="/trac/softw
     <div class="comment searchable">
       
       <p>
-(In <a class="changeset" href="/trac/software/changeset/7126" title="Reversed usage of OMETiffReader's getMetadataStoreForDisplay() and ...">[7126]</a>) Reversed usage of OMETiffReader's getMetadataStoreForDisplay() and getMetadataStoreForConversion(); getMetadataStore() is now equivalent to getMetadataStoreForConversion().  See <a class="closed ticket" href="/trac/software/ticket/556" title="defect: OME-TIFF reader should use MetadataOnly rather than BinData (closed: fixed)">#556</a>.
+(In <a class="changeset" href="/trac/software/changeset/7126" title="Reversed usage of OMETiffReader's getMetadataStoreForDisplay() and ...">[7126]</a>) Reversed usage of OMETiffReader's getMetadataStoreForDisplay() and getMetadataStoreForConversion(); getMetadataStore() is now equivalent to getMetadataStoreForConversion().  See <a class="closed ticket" href="556.html" title="defect: OME-TIFF reader should use MetadataOnly rather than BinData (closed: fixed)">#556</a>.
 </p>
 
     </div>
