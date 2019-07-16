@@ -1,0 +1,309 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  
+  
+
+  
+  <!-- See: http://trac.edgewall.org/wiki/TracInterfaceCustomization -->
+
+
+  <head>
+    <title>
+      #34 (Better ImageFlatField support within VisAD)
+     – LOCI Software
+    </title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <link rel="search" href="/trac/software/search" />
+        <link rel="prev" href="/trac/software/ticket/33" title="Ticket #33" />
+        <link rel="last" href="/trac/software/ticket/822" title="Ticket #822" />
+        <link rel="help" href="/trac/software/wiki/TracGuide" />
+        <link rel="alternate" href="/trac/software/ticket/34?format=csv" type="text/csv" class="csv" title="Comma-delimited Text" /><link rel="alternate" href="/trac/software/ticket/34?format=tab" type="text/tab-separated-values" class="tab" title="Tab-delimited Text" /><link rel="alternate" href="/trac/software/ticket/34?format=rss" type="application/rss+xml" class="rss" title="RSS Feed" />
+        <link rel="next" href="/trac/software/ticket/35" title="Ticket #35" />
+        <link rel="start" href="/trac/software/wiki" />
+        <link rel="stylesheet" href="/trac/software/chrome/common/css/trac.css" type="text/css" /><link rel="stylesheet" href="/trac/software/chrome/common/css/ticket.css" type="text/css" />
+        <link rel="first" href="/trac/software/ticket/1" title="Ticket #1" />
+        <link rel="shortcut icon" href="/trac/software/chrome/common/trac.ico" type="image/x-icon" />
+        <link rel="icon" href="/trac/software/chrome/common/trac.ico" type="image/x-icon" />
+      <link type="application/opensearchdescription+xml" rel="search" href="/trac/software/search/opensearch" title="Search LOCI Software" />
+    <script type="text/javascript">
+      var auto_preview_timeout=2.0;
+      var form_token="8df70b3d48b0b78c72af55aa";
+    </script>
+    <script type="text/javascript" src="/trac/software/chrome/common/js/jquery.js"></script><script type="text/javascript" src="/trac/software/chrome/common/js/babel.js"></script><script type="text/javascript" src="/trac/software/chrome/common/js/trac.js"></script><script type="text/javascript" src="/trac/software/chrome/common/js/search.js"></script><script type="text/javascript" src="/trac/software/chrome/common/js/folding.js"></script><script type="text/javascript" src="/trac/software/chrome/common/js/wikitoolbar.js"></script><script type="text/javascript" src="/trac/software/chrome/common/js/resizer.js"></script><script type="text/javascript" src="/trac/software/chrome/common/js/auto_preview.js"></script>
+    <!--[if lt IE 7]>
+    <script type="text/javascript" src="/trac/software/chrome/common/js/ie_pre7_hacks.js"></script>
+    <![endif]-->
+    <script type="text/javascript">
+      jQuery(document).ready(function($) {
+        $("div.description").find("h1,h2,h3,h4,h5,h6").addAnchor(_("Link to this section"));
+        $(".foldable").enableFolding(false, true);
+        var args = {realm: "ticket", id: 34, escape_newlines: 0}
+        $("#comment").autoPreview("/trac/software/wiki_render", args, function(textarea, text, rendered) {
+            $("#ticketchange div.comment").html(rendered);
+            if (rendered)
+              $("#ticketchange").show();
+            else if ($("#ticketchange ul.changes").length == 0)
+              $("#ticketchange").hide();
+        });
+        $("#trac-comment-editor textarea").autoPreview("/trac/software/wiki_render", args,
+                                                       function(textarea, text, rendered) {
+          var comment = $("#trac-comment-editor").next("div.comment");
+          comment.html(rendered);
+          if (rendered)
+            comment.show();
+          else
+            comment.hide();
+        });
+        $("#modify").parent().toggleClass("collapsed");
+        $(".trac-topnav a").click(function() { $("#modify").parent().removeClass("collapsed"); });
+        /* only enable control elements for the currently selected action */
+        var actions = $("#action input[name='action']");
+        function updateActionFields() {
+          actions.each(function () {
+            $(this).siblings().find("*[id]").enable($(this).checked());
+            $(this).siblings().filter("*[id]").enable($(this).checked());
+          });
+        }
+        actions.click(updateActionFields);
+        updateActionFields();
+      });
+    </script>
+    <link rel="stylesheet" type="text/css" href="/trac/software/chrome/site/style.css" />
+  </head>
+  <body>
+    <div id="banner">
+      <div id="header">
+        <a id="logo" href="http://loci.wisc.edu/"><img src="http://loci.wisc.edu/loci-logo.png" alt="LOCI" height="98" width="300" /></a>
+      </div>
+      <form id="search" action="/trac/software/search" method="get">
+        <div>
+          <label for="proj-search">Search:</label>
+          <input type="text" id="proj-search" name="q" size="18" value="" />
+          <input type="submit" value="Search" />
+        </div>
+      </form>
+      <div id="metanav" class="nav">
+    <ul>
+      <li class="first"><a href="/trac/software/login">Login</a></li><li><a href="/trac/software/wiki/TracGuide">Help/Guide</a></li><li><a href="/trac/software/about">About Trac</a></li><li><a href="/trac/software/prefs">Preferences</a></li><li class="last"><a href="/trac/software/reset_password">Forgot your password?</a></li>
+    </ul>
+  </div>
+    </div>
+    <div id="mainnav" class="nav">
+    <ul>
+      <li class="first"><a href="/trac/software/wiki">Wiki</a></li><li><a href="/trac/software/timeline">Timeline</a></li><li><a href="/trac/software/roadmap">Roadmap</a></li><li><a href="/trac/software/browser">Browse Source</a></li><li class="active"><a href="/trac/software/report">View Tickets</a></li><li class="last"><a href="/trac/software/search">Search</a></li>
+    </ul>
+  </div>
+    <div id="main">
+      <div id="ctxtnav" class="nav">
+        <h2>Context Navigation</h2>
+          <ul>
+              <li class="first"><span>&larr; <a class="prev" href="/trac/software/ticket/33" title="Ticket #33">Previous Ticket</a></span></li><li class="last"><span><a class="next" href="/trac/software/ticket/35" title="Ticket #35">Next Ticket</a> &rarr;</span></li>
+          </ul>
+        <hr />
+      </div>
+    <div id="content" class="ticket">
+      <h1 id="trac-ticket-title">
+          <a href="/trac/software/ticket/34">Ticket #34</a>
+          <span class="status">(closed enhancement: moved)</span>
+      </h1>
+      <div id="ticket">
+  <div class="date">
+    <p>Opened <a class="timeline" href="/trac/software/timeline?from=2007-03-19T11%3A01%3A11-05%3A00&amp;precision=second" title="2007-03-19T11:01:11-05:00 in Timeline">12 years</a> ago</p>
+    <p>Last modified <a class="timeline" href="/trac/software/timeline?from=2014-01-09T13%3A12%3A55-06%3A00&amp;precision=second" title="2014-01-09T13:12:55-06:00 in Timeline">6 years</a> ago</p>
+  </div>
+  <h2 class="summary searchable">Better ImageFlatField support within VisAD</h2>
+  <table class="properties">
+    <tr>
+      <th id="h_reporter">Reported by:</th>
+      <td headers="h_reporter" class="searchable">
+        <a href="/trac/software/query?status=!closed&amp;reporter=curtis">curtis</a>
+      </td>
+      <th id="h_owner">Owned by:</th>
+      <td headers="h_owner">
+        <a href="/trac/software/query?status=!closed&amp;owner=curtis">curtis</a>
+      </td>
+    </tr>
+    <tr>
+        <th id="h_priority">
+          Priority:
+        </th>
+        <td headers="h_priority">
+              <a href="/trac/software/query?status=!closed&amp;priority=blocker">blocker</a>
+        </td>
+        <th id="h_milestone">
+          Milestone:
+        </th>
+        <td headers="h_milestone">
+              <a class="closed milestone" href="/trac/software/milestone/visbio4.0">visbio4.0</a>
+        </td>
+    </tr><tr>
+        <th id="h_component">
+          Component:
+        </th>
+        <td headers="h_component">
+              <a href="/trac/software/query?status=!closed&amp;component=visbio">visbio</a>
+        </td>
+        <th id="h_severity">
+          Severity:
+        </th>
+        <td headers="h_severity">
+              <a href="/trac/software/query?status=!closed&amp;severity=serious">serious</a>
+        </td>
+    </tr><tr>
+        <th id="h_keywords">
+          Keywords:
+        </th>
+        <td headers="h_keywords" class="searchable">
+        </td>
+        <th id="h_cc">
+          Cc:
+        </th>
+        <td headers="h_cc" class="searchable">
+        </td>
+    </tr><tr>
+        <th id="h_blockedby">
+          Blocked By:
+        </th>
+        <td headers="h_blockedby">
+        </td>
+        <th id="h_blocking">
+          Blocking:
+        </th>
+        <td headers="h_blocking">
+        </td>
+    </tr>
+  </table>
+  <div class="description">
+    <h3 id="comment:description">
+      Description
+      <span class="lastmod" title="2014-01-09 19:12:55.085278+00:00">
+        (last modified by curtis)
+        (<a href="/trac/software/ticket/34?action=diff&amp;version=3">diff</a>)
+      </span>
+    </h3>
+    <div class="searchable">
+      <p>
+VisBio is using VisAD's <tt>ImageFlatField</tt> class, which was added to support <tt>FlatField</tt> objects backed with <tt>BufferedImage</tt> objects, for a couple of reasons:
+</p>
+<ul><li>Java3D supports texturing by reference using a particular type of <tt>BufferedImage</tt>. Enabling this support within VisAD whenever possible would improve animation performance when using successive <tt>setData</tt> calls (which is what VisBio does).
+</li><li>Bio-Formats can return BufferedImage objects with its <tt>IFormatReader.openImage(String, int)</tt> method. This API was chosen partially due to its compatibility with the texturing by reference scheme, but also because <tt>BufferedImage</tt> is a Java standard: it encapsulates all the requisite image details such as image width and height, bit depth, and underlying data array organization; and it can be easily painted to the screen.
+</li></ul><p>
+One drawback to <tt>BufferedImage</tt> is that some types cannot be painted properly to the screen. For example, a <tt>BufferedImage</tt> containing floating point data must be normalized to [0, 1], or an exception is thrown during the paint operation. However, this drawback is easily avoided in the case of <tt>ImageFlatField</tt>, since it only hands off the <tt>BufferedImage</tt> directly if it meets certain prerequisites (i.e., if the <tt>BufferedImage</tt> is suitable for texturing by reference or otherwise appropriate for direct usage by the display engine).
+</p>
+<p>
+In cases where the <tt>BufferedImage</tt> is not appropriate for direct usage, it must be converted to an image that is. In these cases, the number of color channels may change (typically from 1 to 3, since the texturing-by-reference-compatible <tt>BufferedImage</tt> is 3-byte RGB in structure). VisAD needs to be smart enough to know this change can occur, and deal with it internally.
+</p>
+
+    </div>
+  </div>
+</div>
+          
+
+        <div>
+          <h2 class="foldable">Change History</h2>
+          <div id="changelog">
+              <div class="change" id="trac-change-1">
+                <h3 class="change">
+                  <span class="threading">
+                    <span id="comment:1" class="cnum">
+      <a href="#comment:1">comment:1</a>
+    </span>
+                  </span>
+                  Changed <a class="timeline" href="/trac/software/timeline?from=2007-03-19T11%3A02%3A02-05%3A00&amp;precision=second" title="2007-03-19T11:02:02-05:00 in Timeline">12 years</a> ago by curtis
+                </h3>
+                
+  <ul class="changes">
+    <li>
+      <strong>Description</strong>
+        modified (<a href="/trac/software/ticket/34?action=diff&amp;version=1">diff</a>)
+    </li>
+  </ul>
+    <div class="comment searchable">
+      
+      
+    </div>
+
+              </div>
+              <div class="change" id="trac-change-2">
+                <h3 class="change">
+                  <span class="threading">
+                    <span id="comment:2" class="cnum">
+      <a href="#comment:2">comment:2</a>
+    </span>
+                  </span>
+                  Changed <a class="timeline" href="/trac/software/timeline?from=2007-03-19T13%3A18%3A48-05%3A00&amp;precision=second" title="2007-03-19T13:18:48-05:00 in Timeline">12 years</a> ago by curtis
+                </h3>
+                
+  <ul class="changes">
+    <li>
+      <strong>Milestone</strong>
+        set to <em>visbio4.0</em>
+    </li>
+  </ul>
+    <div class="comment searchable">
+      
+      
+    </div>
+
+              </div>
+              <div class="change" id="trac-change-3">
+                <h3 class="change">
+                  <span class="threading">
+                    <span id="comment:3" class="cnum">
+      <a href="#comment:3">comment:3</a>
+    </span>
+                  </span>
+                  Changed <a class="timeline" href="/trac/software/timeline?from=2014-01-09T13%3A12%3A55-06%3A00&amp;precision=second" title="2014-01-09T13:12:55-06:00 in Timeline">6 years</a> ago by curtis
+                </h3>
+                
+  <ul class="changes">
+    <li>
+      <strong>Status</strong>
+        changed from <em>new</em> to <em>closed</em>
+    </li><li>
+      <strong>Resolution</strong>
+        set to <em>moved</em>
+    </li><li>
+      <strong>Description</strong>
+        modified (<a href="/trac/software/ticket/34?action=diff&amp;version=3">diff</a>)
+    </li><li>
+      <strong>Severity</strong>
+        set to <em>serious</em>
+    </li>
+  </ul>
+    <div class="comment searchable">
+      
+      <p>
+See <a class="ext-link" href="https://github.com/uw-loci/visbio/issues/5"><span class="icon"> </span>https://github.com/uw-loci/visbio/issues/5</a>
+</p>
+
+    </div>
+
+              </div>
+          </div>
+        </div>
+      <div id="help"><strong>Note:</strong> See
+        <a href="/trac/software/wiki/TracTickets">TracTickets</a> for help on using
+        tickets.</div>
+    </div>
+    <div id="altlinks">
+      <h3>Download in other formats:</h3>
+      <ul>
+        <li class="first">
+          <a rel="nofollow" href="/trac/software/ticket/34?format=csv" class="csv">Comma-delimited Text</a>
+        </li><li>
+          <a rel="nofollow" href="/trac/software/ticket/34?format=tab" class="tab">Tab-delimited Text</a>
+        </li><li class="last">
+          <a rel="nofollow" href="/trac/software/ticket/34?format=rss" class="rss">RSS Feed</a>
+        </li>
+      </ul>
+    </div>
+    </div>
+    <div id="footer" lang="en" xml:lang="en"><hr />
+      <a id="tracpowered" href="http://trac.edgewall.org/"><img src="/trac/software/chrome/common/trac_logo_mini.png" height="30" width="107" alt="Trac Powered" /></a>
+      <p class="left">Powered by <a href="/trac/software/about"><strong>Trac 0.12.2</strong></a><br />
+        By <a href="http://www.edgewall.org/">Edgewall Software</a>.</p>
+      <p class="right">Visit the LOCI software web site at<br /><a href="http://loci.wisc.edu/software/">http://loci.wisc.edu/software/</a></p>
+    </div>
+  </body>
+</html>

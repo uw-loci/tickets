@@ -1,0 +1,511 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  
+  
+
+  
+  <!-- See: http://trac.edgewall.org/wiki/TracInterfaceCustomization -->
+
+
+  <head>
+    <title>
+      #117 (Eliminate invalid characters in generated OME-XML)
+     – LOCI Software
+    </title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <link rel="search" href="/trac/software/search" />
+        <link rel="prev" href="/trac/software/ticket/116" title="Ticket #116" />
+        <link rel="last" href="/trac/software/ticket/822" title="Ticket #822" />
+        <link rel="help" href="/trac/software/wiki/TracGuide" />
+        <link rel="alternate" href="/trac/software/ticket/117?format=csv" type="text/csv" class="csv" title="Comma-delimited Text" /><link rel="alternate" href="/trac/software/ticket/117?format=tab" type="text/tab-separated-values" class="tab" title="Tab-delimited Text" /><link rel="alternate" href="/trac/software/ticket/117?format=rss" type="application/rss+xml" class="rss" title="RSS Feed" />
+        <link rel="next" href="/trac/software/ticket/118" title="Ticket #118" />
+        <link rel="start" href="/trac/software/wiki" />
+        <link rel="stylesheet" href="/trac/software/chrome/common/css/trac.css" type="text/css" /><link rel="stylesheet" href="/trac/software/chrome/common/css/ticket.css" type="text/css" />
+        <link rel="first" href="/trac/software/ticket/1" title="Ticket #1" />
+        <link rel="shortcut icon" href="/trac/software/chrome/common/trac.ico" type="image/x-icon" />
+        <link rel="icon" href="/trac/software/chrome/common/trac.ico" type="image/x-icon" />
+      <link type="application/opensearchdescription+xml" rel="search" href="/trac/software/search/opensearch" title="Search LOCI Software" />
+    <script type="text/javascript">
+      var auto_preview_timeout=2.0;
+      var form_token="42d513c937d32725d1a1c437";
+    </script>
+    <script type="text/javascript" src="/trac/software/chrome/common/js/jquery.js"></script><script type="text/javascript" src="/trac/software/chrome/common/js/babel.js"></script><script type="text/javascript" src="/trac/software/chrome/common/js/trac.js"></script><script type="text/javascript" src="/trac/software/chrome/common/js/search.js"></script><script type="text/javascript" src="/trac/software/chrome/common/js/folding.js"></script><script type="text/javascript" src="/trac/software/chrome/common/js/wikitoolbar.js"></script><script type="text/javascript" src="/trac/software/chrome/common/js/resizer.js"></script><script type="text/javascript" src="/trac/software/chrome/common/js/auto_preview.js"></script>
+    <!--[if lt IE 7]>
+    <script type="text/javascript" src="/trac/software/chrome/common/js/ie_pre7_hacks.js"></script>
+    <![endif]-->
+    <script type="text/javascript">
+      jQuery(document).ready(function($) {
+        $("div.description").find("h1,h2,h3,h4,h5,h6").addAnchor(_("Link to this section"));
+        $(".foldable").enableFolding(false, true);
+        var args = {realm: "ticket", id: 117, escape_newlines: 0}
+        $("#comment").autoPreview("/trac/software/wiki_render", args, function(textarea, text, rendered) {
+            $("#ticketchange div.comment").html(rendered);
+            if (rendered)
+              $("#ticketchange").show();
+            else if ($("#ticketchange ul.changes").length == 0)
+              $("#ticketchange").hide();
+        });
+        $("#trac-comment-editor textarea").autoPreview("/trac/software/wiki_render", args,
+                                                       function(textarea, text, rendered) {
+          var comment = $("#trac-comment-editor").next("div.comment");
+          comment.html(rendered);
+          if (rendered)
+            comment.show();
+          else
+            comment.hide();
+        });
+        $("#modify").parent().toggleClass("collapsed");
+        $(".trac-topnav a").click(function() { $("#modify").parent().removeClass("collapsed"); });
+        /* only enable control elements for the currently selected action */
+        var actions = $("#action input[name='action']");
+        function updateActionFields() {
+          actions.each(function () {
+            $(this).siblings().find("*[id]").enable($(this).checked());
+            $(this).siblings().filter("*[id]").enable($(this).checked());
+          });
+        }
+        actions.click(updateActionFields);
+        updateActionFields();
+      });
+    </script>
+    <link rel="stylesheet" type="text/css" href="/trac/software/chrome/site/style.css" />
+  </head>
+  <body>
+    <div id="banner">
+      <div id="header">
+        <a id="logo" href="http://loci.wisc.edu/"><img src="http://loci.wisc.edu/loci-logo.png" alt="LOCI" height="98" width="300" /></a>
+      </div>
+      <form id="search" action="/trac/software/search" method="get">
+        <div>
+          <label for="proj-search">Search:</label>
+          <input type="text" id="proj-search" name="q" size="18" value="" />
+          <input type="submit" value="Search" />
+        </div>
+      </form>
+      <div id="metanav" class="nav">
+    <ul>
+      <li class="first"><a href="/trac/software/login">Login</a></li><li><a href="/trac/software/wiki/TracGuide">Help/Guide</a></li><li><a href="/trac/software/about">About Trac</a></li><li><a href="/trac/software/prefs">Preferences</a></li><li class="last"><a href="/trac/software/reset_password">Forgot your password?</a></li>
+    </ul>
+  </div>
+    </div>
+    <div id="mainnav" class="nav">
+    <ul>
+      <li class="first"><a href="/trac/software/wiki">Wiki</a></li><li><a href="/trac/software/timeline">Timeline</a></li><li><a href="/trac/software/roadmap">Roadmap</a></li><li><a href="/trac/software/browser">Browse Source</a></li><li class="active"><a href="/trac/software/report">View Tickets</a></li><li class="last"><a href="/trac/software/search">Search</a></li>
+    </ul>
+  </div>
+    <div id="main">
+      <div id="ctxtnav" class="nav">
+        <h2>Context Navigation</h2>
+          <ul>
+              <li class="first"><span>&larr; <a class="prev" href="/trac/software/ticket/116" title="Ticket #116">Previous Ticket</a></span></li><li class="last"><span><a class="next" href="/trac/software/ticket/118" title="Ticket #118">Next Ticket</a> &rarr;</span></li>
+          </ul>
+        <hr />
+      </div>
+    <div id="content" class="ticket">
+      <h1 id="trac-ticket-title">
+          <a href="/trac/software/ticket/117">Ticket #117</a>
+          <span class="status">(closed defect: fixed)</span>
+      </h1>
+      <div id="ticket">
+  <div class="date">
+    <p>Opened <a class="timeline" href="/trac/software/timeline?from=2007-04-20T13%3A18%3A31-05%3A00&amp;precision=second" title="2007-04-20T13:18:31-05:00 in Timeline">12 years</a> ago</p>
+    <p>Last modified <a class="timeline" href="/trac/software/timeline?from=2007-04-24T10%3A21%3A08-05%3A00&amp;precision=second" title="2007-04-24T10:21:08-05:00 in Timeline">12 years</a> ago</p>
+  </div>
+  <h2 class="summary searchable">Eliminate invalid characters in generated OME-XML</h2>
+  <table class="properties">
+    <tr>
+      <th id="h_reporter">Reported by:</th>
+      <td headers="h_reporter" class="searchable">
+        <a href="/trac/software/query?status=!closed&amp;reporter=melissa">melissa</a>
+      </td>
+      <th id="h_owner">Owned by:</th>
+      <td headers="h_owner">
+        <a href="/trac/software/query?status=!closed&amp;owner=melissa">melissa</a>
+      </td>
+    </tr>
+    <tr>
+        <th id="h_priority">
+          Priority:
+        </th>
+        <td headers="h_priority">
+              <a href="/trac/software/query?status=!closed&amp;priority=major">major</a>
+        </td>
+        <th id="h_milestone">
+          Milestone:
+        </th>
+        <td headers="h_milestone">
+              <a class="missing milestone"></a>
+        </td>
+    </tr><tr>
+        <th id="h_component">
+          Component:
+        </th>
+        <td headers="h_component">
+              <a href="/trac/software/query?status=!closed&amp;component=bio-formats">bio-formats</a>
+        </td>
+        <th id="h_severity">
+          Severity:
+        </th>
+        <td headers="h_severity">
+              <a href="/trac/software/query?status=!closed&amp;severity"></a>
+        </td>
+    </tr><tr>
+        <th id="h_keywords">
+          Keywords:
+        </th>
+        <td headers="h_keywords" class="searchable">
+        </td>
+        <th id="h_cc">
+          Cc:
+        </th>
+        <td headers="h_cc" class="searchable">
+        </td>
+    </tr><tr>
+        <th id="h_blockedby">
+          Blocked By:
+        </th>
+        <td headers="h_blockedby">
+        </td>
+        <th id="h_blocking">
+          Blocking:
+        </th>
+        <td headers="h_blocking">
+        </td>
+    </tr>
+  </table>
+  <div class="description">
+    <h3 id="comment:description">
+      Description
+    </h3>
+    <div class="searchable">
+      <p>
+The OME-XML generated by Bio-Formats sometimes contains invalid characters.  This can be tested by running "inf -omexml &lt;file&gt;" - if there are invalid characters, and exception will be thrown, and the XML will not be printed.  For example, "inf -omexml data/fluoview/brian/DBTRG 2X 1a-1.tif" produces the following:
+</p>
+<p>
+ERROR:  'Character reference "&amp;#19" is an invalid XML character.'
+ERROR:  'com.sun.org.apache.xml.internal.utils.WrappedRuntimeException: Character reference "&amp;#19" is an invalid XML character.'
+javax.xml.transform.TransformerException: javax.xml.transform.TransformerException: com.sun.org.apache.xml.internal.utils.WrappedRuntimeException: Character reference "&amp;#19" is an invalid XML character.
+</p>
+<blockquote>
+<p>
+at com.sun.org.apache.xalan.internal.xsltc.trax.TransformerImpl.transform(TransformerImpl.java:654)
+at com.sun.org.apache.xalan.internal.xsltc.trax.TransformerImpl.transform(TransformerImpl.java:281)
+at org.openmicroscopy.xml.DOMUtil.transform(DOMUtil.java:94)
+at org.openmicroscopy.xml.OMENode.getOMEDocument(OMENode.java:268)
+at org.openmicroscopy.xml.OMENode.writeOME(OMENode.java:182)
+at loci.formats.ome.OMEXMLMetadataStore.dumpXML(OMEXMLMetadataStore.java:88)
+at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+at java.lang.reflect.Method.invoke(Method.java:585)
+at loci.formats.FormatTools.testRead(FormatTools.java:573)
+at loci.formats.ImageReader.testRead(ImageReader.java:412)
+at loci.formats.ImageReader.main(ImageReader.java:472)
+</p>
+</blockquote>
+<p>
+Caused by: javax.xml.transform.TransformerException: com.sun.org.apache.xml.internal.utils.WrappedRuntimeException: Character reference "&amp;#19" is an invalid XML character.
+</p>
+<blockquote>
+<p>
+at com.sun.org.apache.xalan.internal.xsltc.trax.TransformerImpl.getDOM(TransformerImpl.java:496)
+at com.sun.org.apache.xalan.internal.xsltc.trax.TransformerImpl.transform(TransformerImpl.java:644)
+... 12 more
+</p>
+</blockquote>
+<p>
+Caused by: com.sun.org.apache.xml.internal.utils.WrappedRuntimeException: Character reference "&amp;#19" is an invalid XML character.
+</p>
+<blockquote>
+<p>
+at com.sun.org.apache.xalan.internal.xsltc.dom.XSLTCDTMManager.getDTM(XSLTCDTMManager.java:393)
+at com.sun.org.apache.xalan.internal.xsltc.dom.XSLTCDTMManager.getDTM(XSLTCDTMManager.java:228)
+at com.sun.org.apache.xalan.internal.xsltc.trax.TransformerImpl.getDOM(TransformerImpl.java:474)
+... 13 more
+</p>
+</blockquote>
+<hr />
+<p>
+javax.xml.transform.TransformerException: com.sun.org.apache.xml.internal.utils.WrappedRuntimeException: Character reference "&amp;#19" is an invalid XML character.
+</p>
+<blockquote>
+<p>
+at com.sun.org.apache.xalan.internal.xsltc.trax.TransformerImpl.getDOM(TransformerImpl.java:496)
+at com.sun.org.apache.xalan.internal.xsltc.trax.TransformerImpl.transform(TransformerImpl.java:644)
+at com.sun.org.apache.xalan.internal.xsltc.trax.TransformerImpl.transform(TransformerImpl.java:281)
+at org.openmicroscopy.xml.DOMUtil.transform(DOMUtil.java:94)
+at org.openmicroscopy.xml.OMENode.getOMEDocument(OMENode.java:268)
+at org.openmicroscopy.xml.OMENode.writeOME(OMENode.java:182)
+at loci.formats.ome.OMEXMLMetadataStore.dumpXML(OMEXMLMetadataStore.java:88)
+at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+at java.lang.reflect.Method.invoke(Method.java:585)
+at loci.formats.FormatTools.testRead(FormatTools.java:573)
+at loci.formats.ImageReader.testRead(ImageReader.java:412)
+at loci.formats.ImageReader.main(ImageReader.java:472)
+</p>
+</blockquote>
+<p>
+Caused by: com.sun.org.apache.xml.internal.utils.WrappedRuntimeException: Character reference "&amp;#19" is an invalid XML character.
+</p>
+<blockquote>
+<p>
+at com.sun.org.apache.xalan.internal.xsltc.dom.XSLTCDTMManager.getDTM(XSLTCDTMManager.java:393)
+at com.sun.org.apache.xalan.internal.xsltc.dom.XSLTCDTMManager.getDTM(XSLTCDTMManager.java:228)
+at com.sun.org.apache.xalan.internal.xsltc.trax.TransformerImpl.getDOM(TransformerImpl.java:474)
+... 13 more
+</p>
+</blockquote>
+<hr />
+<p>
+com.sun.org.apache.xml.internal.utils.WrappedRuntimeException: Character reference "&amp;#19" is an invalid XML character.
+</p>
+<blockquote>
+<p>
+at com.sun.org.apache.xalan.internal.xsltc.dom.XSLTCDTMManager.getDTM(XSLTCDTMManager.java:393)
+at com.sun.org.apache.xalan.internal.xsltc.dom.XSLTCDTMManager.getDTM(XSLTCDTMManager.java:228)
+at com.sun.org.apache.xalan.internal.xsltc.trax.TransformerImpl.getDOM(TransformerImpl.java:474)
+at com.sun.org.apache.xalan.internal.xsltc.trax.TransformerImpl.transform(TransformerImpl.java:644)
+at com.sun.org.apache.xalan.internal.xsltc.trax.TransformerImpl.transform(TransformerImpl.java:281)
+at org.openmicroscopy.xml.DOMUtil.transform(DOMUtil.java:94)
+at org.openmicroscopy.xml.OMENode.getOMEDocument(OMENode.java:268)
+at org.openmicroscopy.xml.OMENode.writeOME(OMENode.java:182)
+at loci.formats.ome.OMEXMLMetadataStore.dumpXML(OMEXMLMetadataStore.java:88)
+at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+at java.lang.reflect.Method.invoke(Method.java:585)
+at loci.formats.FormatTools.testRead(FormatTools.java:573)
+at loci.formats.ImageReader.testRead(ImageReader.java:412)
+at loci.formats.ImageReader.main(ImageReader.java:472)
+</p>
+</blockquote>
+<hr />
+<p>
+org.xml.sax.SAXParseException: Character reference "&amp;#19" is an invalid XML character.
+</p>
+<blockquote>
+<p>
+at com.sun.org.apache.xerces.internal.util.ErrorHandlerWrapper.createSAXParseException(ErrorHandlerWrapper.java:236)
+at com.sun.org.apache.xerces.internal.util.ErrorHandlerWrapper.fatalError(ErrorHandlerWrapper.java:215)
+at com.sun.org.apache.xerces.internal.impl.XMLErrorReporter.reportError(XMLErrorReporter.java:386)
+at com.sun.org.apache.xerces.internal.impl.XMLErrorReporter.reportError(XMLErrorReporter.java:316)
+at com.sun.org.apache.xerces.internal.impl.XMLScanner.reportFatalError(XMLScanner.java:1438)
+at com.sun.org.apache.xerces.internal.impl.XMLScanner.scanCharReferenceValue(XMLScanner.java:1304)
+at com.sun.org.apache.xerces.internal.impl.XMLScanner.scanAttributeValue(XMLScanner.java:838)
+at com.sun.org.apache.xerces.internal.impl.XMLNSDocumentScannerImpl.scanAttribute(XMLNSDocumentScannerImpl.java:578)
+at com.sun.org.apache.xerces.internal.impl.XMLNSDocumentScannerImpl.scanStartElement(XMLNSDocumentScannerImpl.java:222)
+at com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl$FragmentContentDispatcher.dispatch(XMLDocumentFragmentScannerImpl.java:1693)
+at com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl.scanDocument(XMLDocumentFragmentScannerImpl.java:368)
+at com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(XML11Configuration.java:834)
+at com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(XML11Configuration.java:764)
+at com.sun.org.apache.xerces.internal.parsers.XMLParser.parse(XMLParser.java:148)
+at com.sun.org.apache.xerces.internal.parsers.AbstractSAXParser.parse(AbstractSAXParser.java:1242)
+at com.sun.org.apache.xalan.internal.xsltc.dom.XSLTCDTMManager.getDTM(XSLTCDTMManager.java:387)
+at com.sun.org.apache.xalan.internal.xsltc.dom.XSLTCDTMManager.getDTM(XSLTCDTMManager.java:228)
+at com.sun.org.apache.xalan.internal.xsltc.trax.TransformerImpl.getDOM(TransformerImpl.java:474)
+at com.sun.org.apache.xalan.internal.xsltc.trax.TransformerImpl.transform(TransformerImpl.java:644)
+at com.sun.org.apache.xalan.internal.xsltc.trax.TransformerImpl.transform(TransformerImpl.java:281)
+at org.openmicroscopy.xml.DOMUtil.transform(DOMUtil.java:94)
+at org.openmicroscopy.xml.OMENode.getOMEDocument(OMENode.java:268)
+at org.openmicroscopy.xml.OMENode.writeOME(OMENode.java:182)
+at loci.formats.ome.OMEXMLMetadataStore.dumpXML(OMEXMLMetadataStore.java:88)
+at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+at java.lang.reflect.Method.invoke(Method.java:585)
+at loci.formats.FormatTools.testRead(FormatTools.java:573)
+at loci.formats.ImageReader.testRead(ImageReader.java:412)
+at loci.formats.ImageReader.main(ImageReader.java:472)
+</p>
+</blockquote>
+<hr />
+<p>
+com.sun.org.apache.xml.internal.utils.WrappedRuntimeException: Character reference "&amp;#19" is an invalid XML character.
+</p>
+<blockquote>
+<p>
+at com.sun.org.apache.xalan.internal.xsltc.dom.XSLTCDTMManager.getDTM(XSLTCDTMManager.java:393)
+at com.sun.org.apache.xalan.internal.xsltc.dom.XSLTCDTMManager.getDTM(XSLTCDTMManager.java:228)
+at com.sun.org.apache.xalan.internal.xsltc.trax.TransformerImpl.getDOM(TransformerImpl.java:474)
+at com.sun.org.apache.xalan.internal.xsltc.trax.TransformerImpl.transform(TransformerImpl.java:644)
+at com.sun.org.apache.xalan.internal.xsltc.trax.TransformerImpl.transform(TransformerImpl.java:281)
+at org.openmicroscopy.xml.DOMUtil.transform(DOMUtil.java:94)
+at org.openmicroscopy.xml.OMENode.getOMEDocument(OMENode.java:268)
+at org.openmicroscopy.xml.OMENode.writeOME(OMENode.java:182)
+at loci.formats.ome.OMEXMLMetadataStore.dumpXML(OMEXMLMetadataStore.java:88)
+at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+at java.lang.reflect.Method.invoke(Method.java:585)
+at loci.formats.FormatTools.testRead(FormatTools.java:573)
+at loci.formats.ImageReader.testRead(ImageReader.java:412)
+at loci.formats.ImageReader.main(ImageReader.java:472)
+</p>
+</blockquote>
+<hr />
+<p>
+org.xml.sax.SAXParseException: Character reference "&amp;#19" is an invalid XML character.
+</p>
+<blockquote>
+<p>
+at com.sun.org.apache.xerces.internal.util.ErrorHandlerWrapper.createSAXParseException(ErrorHandlerWrapper.java:236)
+at com.sun.org.apache.xerces.internal.util.ErrorHandlerWrapper.fatalError(ErrorHandlerWrapper.java:215)
+at com.sun.org.apache.xerces.internal.impl.XMLErrorReporter.reportError(XMLErrorReporter.java:386)
+at com.sun.org.apache.xerces.internal.impl.XMLErrorReporter.reportError(XMLErrorReporter.java:316)
+at com.sun.org.apache.xerces.internal.impl.XMLScanner.reportFatalError(XMLScanner.java:1438)
+at com.sun.org.apache.xerces.internal.impl.XMLScanner.scanCharReferenceValue(XMLScanner.java:1304)
+at com.sun.org.apache.xerces.internal.impl.XMLScanner.scanAttributeValue(XMLScanner.java:838)
+at com.sun.org.apache.xerces.internal.impl.XMLNSDocumentScannerImpl.scanAttribute(XMLNSDocumentScannerImpl.java:578)
+at com.sun.org.apache.xerces.internal.impl.XMLNSDocumentScannerImpl.scanStartElement(XMLNSDocumentScannerImpl.java:222)
+at com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl$FragmentContentDispatcher.dispatch(XMLDocumentFragmentScannerImpl.java:1693)
+at com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl.scanDocument(XMLDocumentFragmentScannerImpl.java:368)
+at com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(XML11Configuration.java:834)
+at com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(XML11Configuration.java:764)
+at com.sun.org.apache.xerces.internal.parsers.XMLParser.parse(XMLParser.java:148)
+at com.sun.org.apache.xerces.internal.parsers.AbstractSAXParser.parse(AbstractSAXParser.java:1242)
+at com.sun.org.apache.xalan.internal.xsltc.dom.XSLTCDTMManager.getDTM(XSLTCDTMManager.java:387)
+at com.sun.org.apache.xalan.internal.xsltc.dom.XSLTCDTMManager.getDTM(XSLTCDTMManager.java:228)
+at com.sun.org.apache.xalan.internal.xsltc.trax.TransformerImpl.getDOM(TransformerImpl.java:474)
+at com.sun.org.apache.xalan.internal.xsltc.trax.TransformerImpl.transform(TransformerImpl.java:644)
+at com.sun.org.apache.xalan.internal.xsltc.trax.TransformerImpl.transform(TransformerImpl.java:281)
+at org.openmicroscopy.xml.DOMUtil.transform(DOMUtil.java:94)
+at org.openmicroscopy.xml.OMENode.getOMEDocument(OMENode.java:268)
+at org.openmicroscopy.xml.OMENode.writeOME(OMENode.java:182)
+at loci.formats.ome.OMEXMLMetadataStore.dumpXML(OMEXMLMetadataStore.java:88)
+at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+at java.lang.reflect.Method.invoke(Method.java:585)
+at loci.formats.FormatTools.testRead(FormatTools.java:573)
+at loci.formats.ImageReader.testRead(ImageReader.java:412)
+at loci.formats.ImageReader.main(ImageReader.java:472)
+</p>
+</blockquote>
+<p>
+java.lang.NullPointerException
+</p>
+<blockquote>
+<p>
+at java.util.StringTokenizer.&lt;init&gt;(StringTokenizer.java:182)
+at loci.formats.FormatTools.indentXML(FormatTools.java:889)
+at loci.formats.FormatTools.indentXML(FormatTools.java:883)
+at loci.formats.FormatTools.testRead(FormatTools.java:574)
+at loci.formats.ImageReader.testRead(ImageReader.java:412)
+at loci.formats.ImageReader.main(ImageReader.java:472)
+</p>
+</blockquote>
+
+    </div>
+  </div>
+</div>
+          
+    <div id="attachments">
+        <h2 class="foldable">Attachments</h2>
+        <div>
+          <dl class="attachments">
+              <dt>
+    <a href="/trac/software/attachment/ticket/117/DOMUtil.java" title="View attachment">DOMUtil.java</a>
+      <a href="/trac/software/raw-attachment/ticket/117/DOMUtil.java" class="trac-rawlink" title="Download"><img src="/trac/software/chrome/common/download.png" alt="Download" /></a>
+       (<span title="14316 bytes">14.0 KB</span>) -
+      added by <em>melissa</em> <a class="timeline" href="/trac/software/timeline?from=2007-04-24T10%3A07%3A56-05%3A00&amp;precision=second" title="2007-04-24T10:07:56-05:00 in Timeline">12 years</a> ago.
+  </dt>
+          </dl>
+          
+        </div>
+    </div>
+
+        <div>
+          <h2 class="foldable">Change History</h2>
+          <div id="changelog">
+              <div class="change">
+                <h3 class="change">
+                  Changed <a class="timeline" href="/trac/software/timeline?from=2007-04-24T10%3A07%3A56-05%3A00&amp;precision=second" title="2007-04-24T10:07:56-05:00 in Timeline">12 years</a> ago by melissa
+                </h3>
+                
+  <ul class="changes">
+    <li>
+      <strong>attachment</strong>
+        <a href="/trac/software/attachment/ticket/117/DOMUtil.java"><em>DOMUtil.java</em></a>
+          <a href="/trac/software/raw-attachment/ticket/117/DOMUtil.java" title="Download" class="trac-rawlink"><img src="/trac/software/chrome/common/download.png" alt="Download" /></a>
+          added
+    </li>
+  </ul>
+    <div class="comment searchable">
+      
+      
+    </div>
+
+              </div>
+              <div class="change" id="trac-change-1">
+                <h3 class="change">
+                  <span class="threading">
+                    <span id="comment:1" class="cnum">
+      <a href="#comment:1">comment:1</a>
+    </span>
+                  </span>
+                  Changed <a class="timeline" href="/trac/software/timeline?from=2007-04-24T10%3A09%3A16-05%3A00&amp;precision=second" title="2007-04-24T10:09:16-05:00 in Timeline">12 years</a> ago by melissa
+                </h3>
+                
+    <div class="comment searchable">
+      
+      <p>
+The attached version of org.openmicroscopy.xml.DOMUtil fixes this issue.
+</p>
+
+    </div>
+
+              </div>
+              <div class="change" id="trac-change-2">
+                <h3 class="change">
+                  <span class="threading">
+                    <span id="comment:2" class="cnum">
+      <a href="#comment:2">comment:2</a>
+    </span>
+                  </span>
+                  Changed <a class="timeline" href="/trac/software/timeline?from=2007-04-24T10%3A21%3A08-05%3A00&amp;precision=second" title="2007-04-24T10:21:08-05:00 in Timeline">12 years</a> ago by melissa
+                </h3>
+                
+  <ul class="changes">
+    <li>
+      <strong>Status</strong>
+        changed from <em>new</em> to <em>closed</em>
+    </li><li>
+      <strong>Resolution</strong>
+        set to <em>fixed</em>
+    </li>
+  </ul>
+    <div class="comment searchable">
+      
+      
+    </div>
+
+              </div>
+          </div>
+        </div>
+      <div id="help"><strong>Note:</strong> See
+        <a href="/trac/software/wiki/TracTickets">TracTickets</a> for help on using
+        tickets.</div>
+    </div>
+    <div id="altlinks">
+      <h3>Download in other formats:</h3>
+      <ul>
+        <li class="first">
+          <a rel="nofollow" href="/trac/software/ticket/117?format=csv" class="csv">Comma-delimited Text</a>
+        </li><li>
+          <a rel="nofollow" href="/trac/software/ticket/117?format=tab" class="tab">Tab-delimited Text</a>
+        </li><li class="last">
+          <a rel="nofollow" href="/trac/software/ticket/117?format=rss" class="rss">RSS Feed</a>
+        </li>
+      </ul>
+    </div>
+    </div>
+    <div id="footer" lang="en" xml:lang="en"><hr />
+      <a id="tracpowered" href="http://trac.edgewall.org/"><img src="/trac/software/chrome/common/trac_logo_mini.png" height="30" width="107" alt="Trac Powered" /></a>
+      <p class="left">Powered by <a href="/trac/software/about"><strong>Trac 0.12.2</strong></a><br />
+        By <a href="http://www.edgewall.org/">Edgewall Software</a>.</p>
+      <p class="right">Visit the LOCI software web site at<br /><a href="http://loci.wisc.edu/software/">http://loci.wisc.edu/software/</a></p>
+    </div>
+  </body>
+</html>

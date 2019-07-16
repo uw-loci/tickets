@@ -1,0 +1,497 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  
+  
+
+  
+  <!-- See: http://trac.edgewall.org/wiki/TracInterfaceCustomization -->
+
+
+  <head>
+    <title>
+      #103 (Exception when removing display)
+     – LOCI Software
+    </title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <link rel="search" href="/trac/software/search" />
+        <link rel="prev" href="/trac/software/ticket/102" title="Ticket #102" />
+        <link rel="last" href="/trac/software/ticket/822" title="Ticket #822" />
+        <link rel="help" href="/trac/software/wiki/TracGuide" />
+        <link rel="alternate" href="/trac/software/ticket/103?format=csv" type="text/csv" class="csv" title="Comma-delimited Text" /><link rel="alternate" href="/trac/software/ticket/103?format=tab" type="text/tab-separated-values" class="tab" title="Tab-delimited Text" /><link rel="alternate" href="/trac/software/ticket/103?format=rss" type="application/rss+xml" class="rss" title="RSS Feed" />
+        <link rel="next" href="/trac/software/ticket/104" title="Ticket #104" />
+        <link rel="start" href="/trac/software/wiki" />
+        <link rel="stylesheet" href="/trac/software/chrome/common/css/trac.css" type="text/css" /><link rel="stylesheet" href="/trac/software/chrome/common/css/ticket.css" type="text/css" />
+        <link rel="first" href="/trac/software/ticket/1" title="Ticket #1" />
+        <link rel="shortcut icon" href="/trac/software/chrome/common/trac.ico" type="image/x-icon" />
+        <link rel="icon" href="/trac/software/chrome/common/trac.ico" type="image/x-icon" />
+      <link type="application/opensearchdescription+xml" rel="search" href="/trac/software/search/opensearch" title="Search LOCI Software" />
+    <script type="text/javascript">
+      var auto_preview_timeout=2.0;
+      var form_token="6313d7a18eefdad938789ec0";
+    </script>
+    <script type="text/javascript" src="/trac/software/chrome/common/js/jquery.js"></script><script type="text/javascript" src="/trac/software/chrome/common/js/babel.js"></script><script type="text/javascript" src="/trac/software/chrome/common/js/trac.js"></script><script type="text/javascript" src="/trac/software/chrome/common/js/search.js"></script><script type="text/javascript" src="/trac/software/chrome/common/js/folding.js"></script><script type="text/javascript" src="/trac/software/chrome/common/js/wikitoolbar.js"></script><script type="text/javascript" src="/trac/software/chrome/common/js/resizer.js"></script><script type="text/javascript" src="/trac/software/chrome/common/js/auto_preview.js"></script>
+    <!--[if lt IE 7]>
+    <script type="text/javascript" src="/trac/software/chrome/common/js/ie_pre7_hacks.js"></script>
+    <![endif]-->
+    <script type="text/javascript">
+      jQuery(document).ready(function($) {
+        $("div.description").find("h1,h2,h3,h4,h5,h6").addAnchor(_("Link to this section"));
+        $(".foldable").enableFolding(false, true);
+        var args = {realm: "ticket", id: 103, escape_newlines: 0}
+        $("#comment").autoPreview("/trac/software/wiki_render", args, function(textarea, text, rendered) {
+            $("#ticketchange div.comment").html(rendered);
+            if (rendered)
+              $("#ticketchange").show();
+            else if ($("#ticketchange ul.changes").length == 0)
+              $("#ticketchange").hide();
+        });
+        $("#trac-comment-editor textarea").autoPreview("/trac/software/wiki_render", args,
+                                                       function(textarea, text, rendered) {
+          var comment = $("#trac-comment-editor").next("div.comment");
+          comment.html(rendered);
+          if (rendered)
+            comment.show();
+          else
+            comment.hide();
+        });
+        $("#modify").parent().toggleClass("collapsed");
+        $(".trac-topnav a").click(function() { $("#modify").parent().removeClass("collapsed"); });
+        /* only enable control elements for the currently selected action */
+        var actions = $("#action input[name='action']");
+        function updateActionFields() {
+          actions.each(function () {
+            $(this).siblings().find("*[id]").enable($(this).checked());
+            $(this).siblings().filter("*[id]").enable($(this).checked());
+          });
+        }
+        actions.click(updateActionFields);
+        updateActionFields();
+      });
+    </script>
+    <link rel="stylesheet" type="text/css" href="/trac/software/chrome/site/style.css" />
+  </head>
+  <body>
+    <div id="banner">
+      <div id="header">
+        <a id="logo" href="http://loci.wisc.edu/"><img src="http://loci.wisc.edu/loci-logo.png" alt="LOCI" height="98" width="300" /></a>
+      </div>
+      <form id="search" action="/trac/software/search" method="get">
+        <div>
+          <label for="proj-search">Search:</label>
+          <input type="text" id="proj-search" name="q" size="18" value="" />
+          <input type="submit" value="Search" />
+        </div>
+      </form>
+      <div id="metanav" class="nav">
+    <ul>
+      <li class="first"><a href="/trac/software/login">Login</a></li><li><a href="/trac/software/wiki/TracGuide">Help/Guide</a></li><li><a href="/trac/software/about">About Trac</a></li><li><a href="/trac/software/prefs">Preferences</a></li><li class="last"><a href="/trac/software/reset_password">Forgot your password?</a></li>
+    </ul>
+  </div>
+    </div>
+    <div id="mainnav" class="nav">
+    <ul>
+      <li class="first"><a href="/trac/software/wiki">Wiki</a></li><li><a href="/trac/software/timeline">Timeline</a></li><li><a href="/trac/software/roadmap">Roadmap</a></li><li><a href="/trac/software/browser">Browse Source</a></li><li class="active"><a href="/trac/software/report">View Tickets</a></li><li class="last"><a href="/trac/software/search">Search</a></li>
+    </ul>
+  </div>
+    <div id="main">
+      <div id="ctxtnav" class="nav">
+        <h2>Context Navigation</h2>
+          <ul>
+              <li class="first"><span>&larr; <a class="prev" href="/trac/software/ticket/102" title="Ticket #102">Previous Ticket</a></span></li><li class="last"><span><a class="next" href="/trac/software/ticket/104" title="Ticket #104">Next Ticket</a> &rarr;</span></li>
+          </ul>
+        <hr />
+      </div>
+    <div id="content" class="ticket">
+      <h1 id="trac-ticket-title">
+          <a href="/trac/software/ticket/103">Ticket #103</a>
+          <span class="status">(closed defect: moved)</span>
+      </h1>
+      <div id="ticket">
+  <div class="date">
+    <p>Opened <a class="timeline" href="/trac/software/timeline?from=2007-04-10T14%3A44%3A59-05%3A00&amp;precision=second" title="2007-04-10T14:44:59-05:00 in Timeline">12 years</a> ago</p>
+    <p>Last modified <a class="timeline" href="/trac/software/timeline?from=2014-01-09T13%3A13%3A09-06%3A00&amp;precision=second" title="2014-01-09T13:13:09-06:00 in Timeline">6 years</a> ago</p>
+  </div>
+  <h2 class="summary searchable">Exception when removing display</h2>
+  <table class="properties">
+    <tr>
+      <th id="h_reporter">Reported by:</th>
+      <td headers="h_reporter" class="searchable">
+        <a href="/trac/software/query?status=!closed&amp;reporter=sorber">sorber</a>
+      </td>
+      <th id="h_owner">Owned by:</th>
+      <td headers="h_owner">
+        <a href="/trac/software/query?status=!closed&amp;owner=curtis">curtis</a>
+      </td>
+    </tr>
+    <tr>
+        <th id="h_priority">
+          Priority:
+        </th>
+        <td headers="h_priority">
+              <a href="/trac/software/query?status=!closed&amp;priority=minor">minor</a>
+        </td>
+        <th id="h_milestone">
+          Milestone:
+        </th>
+        <td headers="h_milestone">
+              <a class="closed milestone" href="/trac/software/milestone/visbio3.50">visbio3.50</a>
+        </td>
+    </tr><tr>
+        <th id="h_component">
+          Component:
+        </th>
+        <td headers="h_component">
+              <a href="/trac/software/query?status=!closed&amp;component=visbio">visbio</a>
+        </td>
+        <th id="h_severity">
+          Severity:
+        </th>
+        <td headers="h_severity">
+              <a href="/trac/software/query?status=!closed&amp;severity=serious">serious</a>
+        </td>
+    </tr><tr>
+        <th id="h_keywords">
+          Keywords:
+        </th>
+        <td headers="h_keywords" class="searchable">
+              <a href="/trac/software/query?status=!closed&amp;keywords=~exception">exception</a> <a href="/trac/software/query?status=!closed&amp;keywords=~visad">visad</a>
+        </td>
+        <th id="h_cc">
+          Cc:
+        </th>
+        <td headers="h_cc" class="searchable">
+        </td>
+    </tr><tr>
+        <th id="h_blockedby">
+          Blocked By:
+        </th>
+        <td headers="h_blockedby">
+        </td>
+        <th id="h_blocking">
+          Blocking:
+        </th>
+        <td headers="h_blocking">
+        </td>
+    </tr>
+  </table>
+  <div class="description">
+    <h3 id="comment:description">
+      Description
+      <span class="lastmod" title="2014-01-09 19:13:09.263411+00:00">
+        (last modified by curtis)
+        (<a href="/trac/software/ticket/103?action=diff&amp;version=6">diff</a>)
+      </span>
+    </h3>
+    <div class="searchable">
+      <pre class="wiki">java.lang.NullPointerException
+        at visad.DisplayImpl.doAction(DisplayImpl.java:1755)
+        at visad.ActionImpl.run(ActionImpl.java:364)
+        at visad.util.ThreadPool$ThreadMinnow.run(ThreadPool.java:95)
+</pre><p>
+(just 3 lines)
+</p>
+<p>
+To generate this exception:
+</p>
+<ul><li> Add the sdub dataset
+</li><li> Add a 2D or 3D display
+</li><li> Remove the sdub dataset
+</li><li> Remove the display
+</li></ul>
+    </div>
+  </div>
+</div>
+          
+
+        <div>
+          <h2 class="foldable">Change History</h2>
+          <div id="changelog">
+              <div class="change" id="trac-change-1">
+                <h3 class="change">
+                  <span class="threading">
+                    <span id="comment:1" class="cnum">
+      <a href="#comment:1">comment:1</a>
+    </span>
+                  </span>
+                  Changed <a class="timeline" href="/trac/software/timeline?from=2007-04-10T16%3A22%3A49-05%3A00&amp;precision=second" title="2007-04-10T16:22:49-05:00 in Timeline">12 years</a> ago by curtis
+                </h3>
+                
+  <ul class="changes">
+    <li>
+      <strong>Priority</strong>
+        changed from <em>major</em> to <em>minor</em>
+    </li><li>
+      <strong>Status</strong>
+        changed from <em>new</em> to <em>assigned</em>
+    </li>
+  </ul>
+    <div class="comment searchable">
+      
+      <p>
+I duplicated this problem by removing the display first (i.e., NOT removing the sdub dataset). And repeated adds and removals of sdub with various displays yielded:
+</p>
+<pre class="wiki">Exception in thread "AWT-EventQueue-0" java.lang.RuntimeException: Assertion failure: java.lang.reflect.InvocationTargetException
+	at visad.java3d.UniverseBuilderJ3D.destroy(UniverseBuilderJ3D.java:124)
+	at visad.java3d.DisplayPanelJ3D.destroy(DisplayPanelJ3D.java:79)
+	at visad.java3d.VisADCanvasJ3D.stop(VisADCanvasJ3D.java:415)
+	at visad.java3d.DisplayRendererJ3D.destroy(DisplayRendererJ3D.java:157)
+	at visad.java3d.DefaultDisplayRendererJ3D.destroy(DefaultDisplayRendererJ3D.java:99)
+	at visad.java3d.DisplayImplJ3D.destroy(DisplayImplJ3D.java:719)
+	at loci.visbio.view.DisplayWindow.discard(DisplayWindow.java:394)
+	at loci.visbio.view.DisplayControls.removeDisplay(DisplayControls.java:157)
+	at loci.visbio.view.DisplayManager.removeDisplay(DisplayManager.java:130)
+	at loci.visbio.view.DisplayControls.actionPerformed(DisplayControls.java:189)
+	at javax.swing.AbstractButton.fireActionPerformed(AbstractButton.java:1995)
+	at javax.swing.AbstractButton$Handler.actionPerformed(AbstractButton.java:2318)
+	at javax.swing.DefaultButtonModel.fireActionPerformed(DefaultButtonModel.java:387)
+	at javax.swing.DefaultButtonModel.setPressed(DefaultButtonModel.java:242)
+	at javax.swing.plaf.basic.BasicButtonListener.mouseReleased(BasicButtonListener.java:236)
+	at java.awt.AWTEventMulticaster.mouseReleased(AWTEventMulticaster.java:272)
+	at java.awt.Component.processMouseEvent(Component.java:6038)
+	at javax.swing.JComponent.processMouseEvent(JComponent.java:3260)
+	at java.awt.Component.processEvent(Component.java:5803)
+	at java.awt.Container.processEvent(Container.java:2058)
+	at java.awt.Component.dispatchEventImpl(Component.java:4410)
+	at java.awt.Container.dispatchEventImpl(Container.java:2116)
+	at java.awt.Component.dispatchEvent(Component.java:4240)
+	at java.awt.LightweightDispatcher.retargetMouseEvent(Container.java:4322)
+	at java.awt.LightweightDispatcher.processMouseEvent(Container.java:3986)
+	at java.awt.LightweightDispatcher.dispatchEvent(Container.java:3916)
+	at java.awt.Container.dispatchEventImpl(Container.java:2102)
+	at java.awt.Window.dispatchEventImpl(Window.java:2429)
+	at java.awt.Component.dispatchEvent(Component.java:4240)
+	at java.awt.EventQueue.dispatchEvent(EventQueue.java:599)
+	at java.awt.EventDispatchThread.pumpOneEventForFilters(EventDispatchThread.java:273)
+	at java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:183)
+	at java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:173)
+	at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:168)
+	at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:160)
+	at java.awt.EventDispatchThread.run(EventDispatchThread.java:121)
+loci.formats.ReflectException: Cannot execute method: renderField
+	at loci.formats.ReflectedUniverse.exec(ReflectedUniverse.java:253)
+	at loci.visbio.util.DisplayUtil.redrawMessages(DisplayUtil.java:465)
+	at loci.visbio.view.TransformLink.doMessages(TransformLink.java:623)
+	at loci.visbio.view.TransformLink.setMessage(TransformLink.java:187)
+	at loci.visbio.view.StackLink.computeData(StackLink.java:559)
+	at loci.visbio.view.TransformLink.run(TransformLink.java:322)
+	at java.lang.Thread.run(Thread.java:619)
+Caused by: java.lang.reflect.InvocationTargetException
+	at sun.reflect.GeneratedMethodAccessor27.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at loci.formats.ReflectedUniverse.exec(ReflectedUniverse.java:249)
+	... 6 more
+Caused by: java.lang.NullPointerException
+	at visad.java3d.VisADCanvasJ3D.renderField(VisADCanvasJ3D.java:257)
+	... 10 more
+</pre>
+    </div>
+
+              </div>
+              <div class="change" id="trac-change-2">
+                <h3 class="change">
+                  <span class="threading">
+                    <span id="comment:2" class="cnum">
+      <a href="#comment:2">comment:2</a>
+    </span>
+                  </span>
+                  Changed <a class="timeline" href="/trac/software/timeline?from=2007-04-10T16%3A23%3A35-05%3A00&amp;precision=second" title="2007-04-10T16:23:35-05:00 in Timeline">12 years</a> ago by curtis
+                </h3>
+                
+  <ul class="changes">
+    <li>
+      <strong>Summary</strong>
+        changed from <em>Exception when removing display after removing associated data objects</em> to <em>Exception when removing display</em>
+    </li>
+  </ul>
+    <div class="comment searchable">
+      
+      
+    </div>
+
+              </div>
+              <div class="change" id="trac-change-3">
+                <h3 class="change">
+                  <span class="threading">
+                    <span id="comment:3" class="cnum">
+      <a href="#comment:3">comment:3</a>
+    </span>
+                  </span>
+                  Changed <a class="timeline" href="/trac/software/timeline?from=2007-08-01T16%3A15%3A32-05%3A00&amp;precision=second" title="2007-08-01T16:15:32-05:00 in Timeline">12 years</a> ago by curtis
+                </h3>
+                
+  <ul class="changes">
+    <li>
+      <strong>Milestone</strong>
+        set to <em>visbio3.5</em>
+    </li>
+  </ul>
+    <div class="comment searchable">
+      
+      <p>
+Here is a stack trace with the latest version of VisBio:
+</p>
+<pre class="wiki">Exception in thread "AWT-EventQueue-0" java.lang.RuntimeException: Assertion failure
+  at visad.java3d.UniverseBuilderJ3D.destroy(UniverseBuilderJ3D.java:124)
+  at visad.java3d.DisplayPanelJ3D.destroy(DisplayPanelJ3D.java:79)
+  at visad.java3d.VisADCanvasJ3D.stop(VisADCanvasJ3D.java:415)
+  at visad.java3d.DisplayRendererJ3D.destroy(DisplayRendererJ3D.java:157)
+  at visad.java3d.TwoDDisplayRendererJ3D.destroy(TwoDDisplayRendererJ3D.java:84)
+  at visad.java3d.DisplayImplJ3D.destroy(DisplayImplJ3D.java:719)
+  at loci.visbio.view.DisplayWindow.discard(DisplayWindow.java:402)
+  at loci.visbio.view.DisplayControls.removeDisplay(DisplayControls.java:163)
+  at loci.visbio.view.DisplayManager.removeDisplay(DisplayManager.java:136)
+  at loci.visbio.view.DisplayControls.actionPerformed(DisplayControls.java:195)
+  at javax.swing.AbstractButton.fireActionPerformed(AbstractButton.java:1995)
+  at javax.swing.AbstractButton$Handler.actionPerformed(AbstractButton.java:2318)
+  at javax.swing.DefaultButtonModel.fireActionPerformed(DefaultButtonModel.java:387)
+  at javax.swing.DefaultButtonModel.setPressed(DefaultButtonModel.java:242)
+  at javax.swing.plaf.basic.BasicButtonListener.mouseReleased(BasicButtonListener.java:236)
+  at java.awt.AWTEventMulticaster.mouseReleased(AWTEventMulticaster.java:272)
+  at java.awt.Component.processMouseEvent(Component.java:6038)
+  at javax.swing.JComponent.processMouseEvent(JComponent.java:3260)
+  at java.awt.Component.processEvent(Component.java:5803)
+  at java.awt.Container.processEvent(Container.java:2058)
+  at java.awt.Component.dispatchEventImpl(Component.java:4410)
+  at java.awt.Container.dispatchEventImpl(Container.java:2116)
+  at java.awt.Component.dispatchEvent(Component.java:4240)
+  at java.awt.LightweightDispatcher.retargetMouseEvent(Container.java:4322)
+  at java.awt.LightweightDispatcher.processMouseEvent(Container.java:3986)
+  at java.awt.LightweightDispatcher.dispatchEvent(Container.java:3916)
+  at java.awt.Container.dispatchEventImpl(Container.java:2102)
+  at java.awt.Window.dispatchEventImpl(Window.java:2429)
+  at java.awt.Component.dispatchEvent(Component.java:4240)
+  at java.awt.EventQueue.dispatchEvent(EventQueue.java:599)
+  at java.awt.EventDispatchThread.pumpOneEventForFilters(EventDispatchThread.java:273)
+  at java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:183)
+  at java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:173)
+  at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:168)
+  at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:160)
+  at java.awt.EventDispatchThread.run(EventDispatchThread.java:121)
+Caused by: java.lang.reflect.InvocationTargetException
+  at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+  at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+  at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+  at java.lang.reflect.Method.invoke(Method.java:597)
+  at visad.java3d.UniverseBuilderJ3D.destroy(UniverseBuilderJ3D.java:121)
+  ... 35 more
+Caused by: java.lang.NullPointerException
+  at javax.media.j3d.NodeRetained.clearLive(NodeRetained.java:718)
+  at javax.media.j3d.GroupRetained.clearLive(GroupRetained.java:2630)
+  at javax.media.j3d.GroupRetained.clearLive(GroupRetained.java:2678)
+  at javax.media.j3d.Locale.doRemoveBranchGraph(Locale.java:332)
+  at javax.media.j3d.Locale.removeFromUniverse(Locale.java:301)
+  at javax.media.j3d.VirtualUniverse.removeAllLocales(VirtualUniverse.java:336)
+  ... 40 more
+</pre>
+    </div>
+
+              </div>
+              <div class="change" id="trac-change-4">
+                <h3 class="change">
+                  <span class="threading">
+                    <span id="comment:4" class="cnum">
+      <a href="#comment:4">comment:4</a>
+    </span>
+                  </span>
+                  Changed <a class="timeline" href="/trac/software/timeline?from=2008-07-09T13%3A11%3A02-05%3A00&amp;precision=second" title="2008-07-09T13:11:02-05:00 in Timeline">11 years</a> ago by curtis
+                </h3>
+                
+  <ul class="changes">
+    <li>
+      <strong>Status</strong>
+        changed from <em>assigned</em> to <em>new</em>
+    </li><li>
+      <strong>Description</strong>
+        modified (<a href="/trac/software/ticket/103?action=diff&amp;version=4">diff</a>)
+    </li><li>
+      <strong>Severity</strong>
+        set to <em>fatal</em>
+    </li>
+  </ul>
+    <div class="comment searchable">
+      
+      
+    </div>
+
+              </div>
+              <div class="change" id="trac-change-5">
+                <h3 class="change">
+                  <span class="threading">
+                    <span id="comment:5" class="cnum">
+      <a href="#comment:5">comment:5</a>
+    </span>
+                  </span>
+                  Changed <a class="timeline" href="/trac/software/timeline?from=2008-07-09T13%3A11%3A22-05%3A00&amp;precision=second" title="2008-07-09T13:11:22-05:00 in Timeline">11 years</a> ago by curtis
+                </h3>
+                
+  <ul class="changes">
+    <li>
+      <strong>Severity</strong>
+        changed from <em>fatal</em> to <em>serious</em>
+    </li>
+  </ul>
+    <div class="comment searchable">
+      
+      
+    </div>
+
+              </div>
+              <div class="change" id="trac-change-6">
+                <h3 class="change">
+                  <span class="threading">
+                    <span id="comment:6" class="cnum">
+      <a href="#comment:6">comment:6</a>
+    </span>
+                  </span>
+                  Changed <a class="timeline" href="/trac/software/timeline?from=2014-01-09T13%3A13%3A09-06%3A00&amp;precision=second" title="2014-01-09T13:13:09-06:00 in Timeline">6 years</a> ago by curtis
+                </h3>
+                
+  <ul class="changes">
+    <li>
+      <strong>Status</strong>
+        changed from <em>new</em> to <em>closed</em>
+    </li><li>
+      <strong>Resolution</strong>
+        set to <em>moved</em>
+    </li><li>
+      <strong>Description</strong>
+        modified (<a href="/trac/software/ticket/103?action=diff&amp;version=6">diff</a>)
+    </li>
+  </ul>
+    <div class="comment searchable">
+      
+      <p>
+See <a class="ext-link" href="https://github.com/uw-loci/visbio/issues/19"><span class="icon"> </span>https://github.com/uw-loci/visbio/issues/19</a>
+</p>
+
+    </div>
+
+              </div>
+          </div>
+        </div>
+      <div id="help"><strong>Note:</strong> See
+        <a href="/trac/software/wiki/TracTickets">TracTickets</a> for help on using
+        tickets.</div>
+    </div>
+    <div id="altlinks">
+      <h3>Download in other formats:</h3>
+      <ul>
+        <li class="first">
+          <a rel="nofollow" href="/trac/software/ticket/103?format=csv" class="csv">Comma-delimited Text</a>
+        </li><li>
+          <a rel="nofollow" href="/trac/software/ticket/103?format=tab" class="tab">Tab-delimited Text</a>
+        </li><li class="last">
+          <a rel="nofollow" href="/trac/software/ticket/103?format=rss" class="rss">RSS Feed</a>
+        </li>
+      </ul>
+    </div>
+    </div>
+    <div id="footer" lang="en" xml:lang="en"><hr />
+      <a id="tracpowered" href="http://trac.edgewall.org/"><img src="/trac/software/chrome/common/trac_logo_mini.png" height="30" width="107" alt="Trac Powered" /></a>
+      <p class="left">Powered by <a href="/trac/software/about"><strong>Trac 0.12.2</strong></a><br />
+        By <a href="http://www.edgewall.org/">Edgewall Software</a>.</p>
+      <p class="right">Visit the LOCI software web site at<br /><a href="http://loci.wisc.edu/software/">http://loci.wisc.edu/software/</a></p>
+    </div>
+  </body>
+</html>

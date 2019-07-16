@@ -1,0 +1,405 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  
+  
+
+  
+  <!-- See: http://trac.edgewall.org/wiki/TracInterfaceCustomization -->
+
+
+  <head>
+    <title>
+      #354 (Bio-Formats writers should use the loci.common I/O classes)
+     – LOCI Software
+    </title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <link rel="search" href="/trac/software/search" />
+        <link rel="prev" href="/trac/software/ticket/353" title="Ticket #353" />
+        <link rel="last" href="/trac/software/ticket/822" title="Ticket #822" />
+        <link rel="help" href="/trac/software/wiki/TracGuide" />
+        <link rel="alternate" href="/trac/software/ticket/354?format=csv" type="text/csv" class="csv" title="Comma-delimited Text" /><link rel="alternate" href="/trac/software/ticket/354?format=tab" type="text/tab-separated-values" class="tab" title="Tab-delimited Text" /><link rel="alternate" href="/trac/software/ticket/354?format=rss" type="application/rss+xml" class="rss" title="RSS Feed" />
+        <link rel="next" href="/trac/software/ticket/355" title="Ticket #355" />
+        <link rel="start" href="/trac/software/wiki" />
+        <link rel="stylesheet" href="/trac/software/chrome/common/css/trac.css" type="text/css" /><link rel="stylesheet" href="/trac/software/chrome/common/css/ticket.css" type="text/css" />
+        <link rel="first" href="/trac/software/ticket/1" title="Ticket #1" />
+        <link rel="shortcut icon" href="/trac/software/chrome/common/trac.ico" type="image/x-icon" />
+        <link rel="icon" href="/trac/software/chrome/common/trac.ico" type="image/x-icon" />
+      <link type="application/opensearchdescription+xml" rel="search" href="/trac/software/search/opensearch" title="Search LOCI Software" />
+    <script type="text/javascript">
+      var auto_preview_timeout=2.0;
+      var form_token="6c1409e4a2451d2136e2fd4e";
+    </script>
+    <script type="text/javascript" src="/trac/software/chrome/common/js/jquery.js"></script><script type="text/javascript" src="/trac/software/chrome/common/js/babel.js"></script><script type="text/javascript" src="/trac/software/chrome/common/js/trac.js"></script><script type="text/javascript" src="/trac/software/chrome/common/js/search.js"></script><script type="text/javascript" src="/trac/software/chrome/common/js/folding.js"></script><script type="text/javascript" src="/trac/software/chrome/common/js/wikitoolbar.js"></script><script type="text/javascript" src="/trac/software/chrome/common/js/resizer.js"></script><script type="text/javascript" src="/trac/software/chrome/common/js/auto_preview.js"></script>
+    <!--[if lt IE 7]>
+    <script type="text/javascript" src="/trac/software/chrome/common/js/ie_pre7_hacks.js"></script>
+    <![endif]-->
+    <script type="text/javascript">
+      jQuery(document).ready(function($) {
+        $("div.description").find("h1,h2,h3,h4,h5,h6").addAnchor(_("Link to this section"));
+        $(".foldable").enableFolding(false, true);
+        var args = {realm: "ticket", id: 354, escape_newlines: 0}
+        $("#comment").autoPreview("/trac/software/wiki_render", args, function(textarea, text, rendered) {
+            $("#ticketchange div.comment").html(rendered);
+            if (rendered)
+              $("#ticketchange").show();
+            else if ($("#ticketchange ul.changes").length == 0)
+              $("#ticketchange").hide();
+        });
+        $("#trac-comment-editor textarea").autoPreview("/trac/software/wiki_render", args,
+                                                       function(textarea, text, rendered) {
+          var comment = $("#trac-comment-editor").next("div.comment");
+          comment.html(rendered);
+          if (rendered)
+            comment.show();
+          else
+            comment.hide();
+        });
+        $("#modify").parent().toggleClass("collapsed");
+        $(".trac-topnav a").click(function() { $("#modify").parent().removeClass("collapsed"); });
+        /* only enable control elements for the currently selected action */
+        var actions = $("#action input[name='action']");
+        function updateActionFields() {
+          actions.each(function () {
+            $(this).siblings().find("*[id]").enable($(this).checked());
+            $(this).siblings().filter("*[id]").enable($(this).checked());
+          });
+        }
+        actions.click(updateActionFields);
+        updateActionFields();
+      });
+    </script>
+    <link rel="stylesheet" type="text/css" href="/trac/software/chrome/site/style.css" />
+  </head>
+  <body>
+    <div id="banner">
+      <div id="header">
+        <a id="logo" href="http://loci.wisc.edu/"><img src="http://loci.wisc.edu/loci-logo.png" alt="LOCI" height="98" width="300" /></a>
+      </div>
+      <form id="search" action="/trac/software/search" method="get">
+        <div>
+          <label for="proj-search">Search:</label>
+          <input type="text" id="proj-search" name="q" size="18" value="" />
+          <input type="submit" value="Search" />
+        </div>
+      </form>
+      <div id="metanav" class="nav">
+    <ul>
+      <li class="first"><a href="/trac/software/login">Login</a></li><li><a href="/trac/software/wiki/TracGuide">Help/Guide</a></li><li><a href="/trac/software/about">About Trac</a></li><li><a href="/trac/software/prefs">Preferences</a></li><li class="last"><a href="/trac/software/reset_password">Forgot your password?</a></li>
+    </ul>
+  </div>
+    </div>
+    <div id="mainnav" class="nav">
+    <ul>
+      <li class="first"><a href="/trac/software/wiki">Wiki</a></li><li><a href="/trac/software/timeline">Timeline</a></li><li><a href="/trac/software/roadmap">Roadmap</a></li><li><a href="/trac/software/browser">Browse Source</a></li><li class="active"><a href="/trac/software/report">View Tickets</a></li><li class="last"><a href="/trac/software/search">Search</a></li>
+    </ul>
+  </div>
+    <div id="main">
+      <div id="ctxtnav" class="nav">
+        <h2>Context Navigation</h2>
+          <ul>
+              <li class="first"><span>&larr; <a class="prev" href="/trac/software/ticket/353" title="Ticket #353">Previous Ticket</a></span></li><li class="last"><span><a class="next" href="/trac/software/ticket/355" title="Ticket #355">Next Ticket</a> &rarr;</span></li>
+          </ul>
+        <hr />
+      </div>
+    <div id="content" class="ticket">
+      <h1 id="trac-ticket-title">
+          <a href="/trac/software/ticket/354">Ticket #354</a>
+          <span class="status">(closed enhancement: fixed)</span>
+      </h1>
+      <div id="ticket">
+  <div class="date">
+    <p>Opened <a class="timeline" href="/trac/software/timeline?from=2009-02-06T16%3A37%3A30-06%3A00&amp;precision=second" title="2009-02-06T16:37:30-06:00 in Timeline">10 years</a> ago</p>
+    <p>Last modified <a class="timeline" href="/trac/software/timeline?from=2009-03-16T11%3A34%3A23-05%3A00&amp;precision=second" title="2009-03-16T11:34:23-05:00 in Timeline">10 years</a> ago</p>
+  </div>
+  <h2 class="summary searchable">Bio-Formats writers should use the loci.common I/O classes</h2>
+  <table class="properties">
+    <tr>
+      <th id="h_reporter">Reported by:</th>
+      <td headers="h_reporter" class="searchable">
+        <a href="/trac/software/query?status=!closed&amp;reporter=curtis">curtis</a>
+      </td>
+      <th id="h_owner">Owned by:</th>
+      <td headers="h_owner">
+        <a href="/trac/software/query?status=!closed&amp;owner=melissa">melissa</a>
+      </td>
+    </tr>
+    <tr>
+        <th id="h_priority">
+          Priority:
+        </th>
+        <td headers="h_priority">
+              <a href="/trac/software/query?status=!closed&amp;priority=minor">minor</a>
+        </td>
+        <th id="h_milestone">
+          Milestone:
+        </th>
+        <td headers="h_milestone">
+              <a class="closed milestone" href="/trac/software/milestone/bio-formats-4.1">bio-formats-4.1</a>
+        </td>
+    </tr><tr>
+        <th id="h_component">
+          Component:
+        </th>
+        <td headers="h_component">
+              <a href="/trac/software/query?status=!closed&amp;component=bio-formats">bio-formats</a>
+        </td>
+        <th id="h_severity">
+          Severity:
+        </th>
+        <td headers="h_severity">
+              <a href="/trac/software/query?status=!closed&amp;severity=serious">serious</a>
+        </td>
+    </tr><tr>
+        <th id="h_keywords">
+          Keywords:
+        </th>
+        <td headers="h_keywords" class="searchable">
+        </td>
+        <th id="h_cc">
+          Cc:
+        </th>
+        <td headers="h_cc" class="searchable">
+              spl@…
+        </td>
+    </tr><tr>
+        <th id="h_blockedby">
+          Blocked By:
+        </th>
+        <td headers="h_blockedby">
+        </td>
+        <th id="h_blocking">
+          Blocking:
+        </th>
+        <td headers="h_blocking">
+        </td>
+    </tr>
+  </table>
+  <div class="description">
+    <h3 id="comment:description">
+      Description
+    </h3>
+    <div class="searchable">
+      <p>
+Many of the writer subclasses in loci.formats.out were written before we standardized our I/O with <tt>loci.common.IRandomAccess</tt>. Instead of using <tt>java.io.RandomAccessFile</tt> and <tt>java.io.File</tt>, the writers should uniformly use <tt>loci.common.RAFile</tt> and <tt>loci.common.Location</tt>.
+</p>
+<p>
+See:
+</p>
+<ul><li><a class="source" href="/trac/software/browser/trunk/components/bio-formats/src/loci/formats/out">source:trunk/components/bio-formats/src/loci/formats/out</a>
+</li><li><a class="source" href="/trac/software/browser/trunk/components/common/src/loci/common">source:trunk/components/common/src/loci/common</a>
+</li></ul>
+    </div>
+  </div>
+</div>
+          
+
+        <div>
+          <h2 class="foldable">Change History</h2>
+          <div id="changelog">
+              <div class="change" id="trac-change-1">
+                <h3 class="change">
+                  <span class="threading">
+                    <span id="comment:1" class="cnum">
+      <a href="#comment:1">comment:1</a>
+    </span>
+                  </span>
+                  Changed <a class="timeline" href="/trac/software/timeline?from=2009-02-06T16%3A37%3A55-06%3A00&amp;precision=second" title="2009-02-06T16:37:55-06:00 in Timeline">10 years</a> ago by curtis
+                </h3>
+                
+  <ul class="changes">
+    <li>
+      <strong>Cc</strong>
+        <em>spl@…</em> added
+    </li>
+  </ul>
+    <div class="comment searchable">
+      
+      
+    </div>
+
+              </div>
+              <div class="change" id="trac-change-2">
+                <h3 class="change">
+                  <span class="threading">
+                    <span id="comment:2" class="cnum">
+      <a href="#comment:2">comment:2</a>
+    </span>
+                  </span>
+                  Changed <a class="timeline" href="/trac/software/timeline?from=2009-02-06T16%3A42%3A37-06%3A00&amp;precision=second" title="2009-02-06T16:42:37-06:00 in Timeline">10 years</a> ago by curtis
+                </h3>
+                
+    <div class="comment searchable">
+      
+      <p>
+This functionality will allow applications to more easily write image data to non-file destinations, such as output streams, by providing an alternative subclass of <tt>loci.common.IRandomAccess</tt>.
+</p>
+<p>
+For example, an <tt>RAOutputStream</tt> class could (trivially) implement all of the <tt>java.io.DataOutput</tt> methods while throwing an "unsupported" exception for the <tt>java.io.DataInput</tt> and random access (i.e., <tt>seek</tt>) methods. Then any writer that uses only the allowed method calls would be easily streamable using an <tt>RAOutputStream</tt> with <tt>loci.common.Location.mapFile(String, IRandomAccess)</tt>.
+</p>
+<p>
+For another theoretical example, see:
+<a class="source" href="/trac/software/browser/trunk/utils/ReadWriteInMemory.java">source:trunk/utils/ReadWriteInMemory.java</a>
+</p>
+
+    </div>
+
+              </div>
+              <div class="change" id="trac-change-3">
+                <h3 class="change">
+                  <span class="threading">
+                    <span id="comment:3" class="cnum">
+      <a href="#comment:3">comment:3</a>
+    </span>
+                  </span>
+                  Changed <a class="timeline" href="/trac/software/timeline?from=2009-02-06T16%3A53%3A56-06%3A00&amp;precision=second" title="2009-02-06T16:53:56-06:00 in Timeline">10 years</a> ago by curtis
+                </h3>
+                
+    <div class="comment searchable">
+      
+      <p>
+One other change would be useful to facilitate this support. Currently, <tt>loci.common.RandomAccessStream</tt> has logic to decide which type of <tt>IRandomAccess</tt> object to create from the id string. This logic should be refactored into a <tt>loci.common.Location.getHandle(String)</tt> method or similar that returns an <tt>IRandomAccess</tt> object. This method would take care of the work of checking <tt>getMappedId</tt>, <tt>getMappedFile</tt> and string formatting (e.g., using <tt>RAUrl</tt> if the string starts with "http:"). Then, both <tt>RandomAccessStream</tt> and the format writers could call <tt>Location.getHandle(String)</tt> to easily leverage the mapping functionality.
+</p>
+
+    </div>
+
+              </div>
+              <div class="change" id="trac-change-4">
+                <h3 class="change">
+                  <span class="threading">
+                    <span id="comment:4" class="cnum">
+      <a href="#comment:4">comment:4</a>
+    </span>
+                  </span>
+                  Changed <a class="timeline" href="/trac/software/timeline?from=2009-02-06T18%3A04%3A48-06%3A00&amp;precision=second" title="2009-02-06T18:04:48-06:00 in Timeline">10 years</a> ago by melissa
+                </h3>
+                
+  <ul class="changes">
+    <li>
+      <strong>Milestone</strong>
+        set to <em>bio-formats-4.1.0</em>
+    </li>
+  </ul>
+    <div class="comment searchable">
+      
+      
+    </div>
+
+              </div>
+              <div class="change" id="trac-change-5">
+                <h3 class="change">
+                  <span class="threading">
+                    <span id="comment:5" class="cnum">
+      <a href="#comment:5">comment:5</a>
+    </span>
+                  </span>
+                  Changed <a class="timeline" href="/trac/software/timeline?from=2009-03-10T11%3A25%3A41-05%3A00&amp;precision=second" title="2009-03-10T11:25:41-05:00 in Timeline">10 years</a> ago by melissa
+                </h3>
+                
+    <div class="comment searchable">
+      
+      <p>
+See <a class="changeset" href="/trac/software/changeset/4900" title="Added getHandle(String) method to Location, which returns an ...">r4900</a>; Location.getHandle(String) was added, and most format writers were modified to use an IRandomAccess instead of a RandomAccessFile.
+</p>
+
+    </div>
+
+              </div>
+              <div class="change" id="trac-change-6">
+                <h3 class="change">
+                  <span class="threading">
+                    <span id="comment:6" class="cnum">
+      <a href="#comment:6">comment:6</a>
+    </span>
+                  </span>
+                  Changed <a class="timeline" href="/trac/software/timeline?from=2009-03-13T14%3A14%3A21-05%3A00&amp;precision=second" title="2009-03-13T14:14:21-05:00 in Timeline">10 years</a> ago by melissa
+                </h3>
+                
+    <div class="comment searchable">
+      
+      <p>
+As of <a class="changeset" href="/trac/software/changeset/4913" title="Added loci.common.RandomAccessOutputStream (analogous to ...">r4913</a>, all writers except for loci.formats.out.LegacyQTWriter use loci.common.RandomAccessOutputStream to write files.  As far as I know, QT Java only allows movies to be written to a file on disk, so it's probably not feasible to have LegacyQTWriter use RandomAccessOutputStream.
+</p>
+
+    </div>
+
+              </div>
+              <div class="change" id="trac-change-7">
+                <h3 class="change">
+                  <span class="threading">
+                    <span id="comment:7" class="cnum">
+      <a href="#comment:7">comment:7</a>
+    </span>
+                  </span>
+                  Changed <a class="timeline" href="/trac/software/timeline?from=2009-03-13T15%3A31%3A55-05%3A00&amp;precision=second" title="2009-03-13T15:31:55-05:00 in Timeline">10 years</a> ago by curtis
+                </h3>
+                
+    <div class="comment searchable">
+      
+      <p>
+In my opinion, this ticket will be solved once the commented out code at the bottom of <a class="source" href="/trac/software/browser/trunk/utils/ReadWriteInMemory.java">source:trunk/utils/ReadWriteInMemory.java</a> works as expected, even if it does not work with LegacyQTWriter, as long as unsupported formats throw a <tt>FormatException</tt>, <tt>IllegalStateException</tt> or something similar.
+</p>
+
+    </div>
+
+              </div>
+              <div class="change" id="trac-change-8">
+                <h3 class="change">
+                  <span class="threading">
+                    <span id="comment:8" class="cnum">
+      <a href="#comment:8">comment:8</a>
+    </span>
+                  </span>
+                  Changed <a class="timeline" href="/trac/software/timeline?from=2009-03-16T11%3A34%3A23-05%3A00&amp;precision=second" title="2009-03-16T11:34:23-05:00 in Timeline">10 years</a> ago by melissa
+                </h3>
+                
+  <ul class="changes">
+    <li>
+      <strong>Status</strong>
+        changed from <em>new</em> to <em>closed</em>
+    </li><li>
+      <strong>Resolution</strong>
+        set to <em>fixed</em>
+    </li>
+  </ul>
+    <div class="comment searchable">
+      
+      <p>
+(In <a class="changeset" href="/trac/software/changeset/4919" title="* Changed TiffTools.overwriteIFDValue to accept a String filename instead ...">[4919]</a>) * Changed TiffTools.overwriteIFDValue to accept a String filename instead of a RandomAccessFile.
+</p>
+<ul><li>Updated loci.ome.editor.MetadataPane to use TiffTools.overwriteComment(String, String) instead of TiffTools.overwriteIFDValue.
+</li><li>Updated ReadWriteInMemory utility to take advantage of the loci.common.RABytes fixes in <a class="changeset" href="/trac/software/changeset/4917" title="Fixed several problems with writing to an RABytes.
+">r4917</a>.
+</li></ul><p>
+Reading from/writing to files in memory should work now.  Closes <a class="closed ticket" href="/trac/software/ticket/354" title="enhancement: Bio-Formats writers should use the loci.common I/O classes (closed: fixed)">#354</a>.
+</p>
+
+    </div>
+
+              </div>
+          </div>
+        </div>
+      <div id="help"><strong>Note:</strong> See
+        <a href="/trac/software/wiki/TracTickets">TracTickets</a> for help on using
+        tickets.</div>
+    </div>
+    <div id="altlinks">
+      <h3>Download in other formats:</h3>
+      <ul>
+        <li class="first">
+          <a rel="nofollow" href="/trac/software/ticket/354?format=csv" class="csv">Comma-delimited Text</a>
+        </li><li>
+          <a rel="nofollow" href="/trac/software/ticket/354?format=tab" class="tab">Tab-delimited Text</a>
+        </li><li class="last">
+          <a rel="nofollow" href="/trac/software/ticket/354?format=rss" class="rss">RSS Feed</a>
+        </li>
+      </ul>
+    </div>
+    </div>
+    <div id="footer" lang="en" xml:lang="en"><hr />
+      <a id="tracpowered" href="http://trac.edgewall.org/"><img src="/trac/software/chrome/common/trac_logo_mini.png" height="30" width="107" alt="Trac Powered" /></a>
+      <p class="left">Powered by <a href="/trac/software/about"><strong>Trac 0.12.2</strong></a><br />
+        By <a href="http://www.edgewall.org/">Edgewall Software</a>.</p>
+      <p class="right">Visit the LOCI software web site at<br /><a href="http://loci.wisc.edu/software/">http://loci.wisc.edu/software/</a></p>
+    </div>
+  </body>
+</html>

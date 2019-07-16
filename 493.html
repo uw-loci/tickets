@@ -1,0 +1,393 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  
+  
+
+  
+  <!-- See: http://trac.edgewall.org/wiki/TracInterfaceCustomization -->
+
+
+  <head>
+    <title>
+      #493 (Series beyond 456 do not appear in ImageJ plugin)
+     – LOCI Software
+    </title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <link rel="search" href="/trac/software/search" />
+        <link rel="prev" href="/trac/software/ticket/492" title="Ticket #492" />
+        <link rel="last" href="/trac/software/ticket/822" title="Ticket #822" />
+        <link rel="help" href="/trac/software/wiki/TracGuide" />
+        <link rel="alternate" href="/trac/software/ticket/493?format=csv" type="text/csv" class="csv" title="Comma-delimited Text" /><link rel="alternate" href="/trac/software/ticket/493?format=tab" type="text/tab-separated-values" class="tab" title="Tab-delimited Text" /><link rel="alternate" href="/trac/software/ticket/493?format=rss" type="application/rss+xml" class="rss" title="RSS Feed" />
+        <link rel="next" href="/trac/software/ticket/494" title="Ticket #494" />
+        <link rel="start" href="/trac/software/wiki" />
+        <link rel="stylesheet" href="/trac/software/chrome/common/css/trac.css" type="text/css" /><link rel="stylesheet" href="/trac/software/chrome/common/css/ticket.css" type="text/css" />
+        <link rel="first" href="/trac/software/ticket/1" title="Ticket #1" />
+        <link rel="shortcut icon" href="/trac/software/chrome/common/trac.ico" type="image/x-icon" />
+        <link rel="icon" href="/trac/software/chrome/common/trac.ico" type="image/x-icon" />
+      <link type="application/opensearchdescription+xml" rel="search" href="/trac/software/search/opensearch" title="Search LOCI Software" />
+    <script type="text/javascript">
+      var auto_preview_timeout=2.0;
+      var form_token="165c18e85dd44ba447f682d7";
+    </script>
+    <script type="text/javascript" src="/trac/software/chrome/common/js/jquery.js"></script><script type="text/javascript" src="/trac/software/chrome/common/js/babel.js"></script><script type="text/javascript" src="/trac/software/chrome/common/js/trac.js"></script><script type="text/javascript" src="/trac/software/chrome/common/js/search.js"></script><script type="text/javascript" src="/trac/software/chrome/common/js/folding.js"></script><script type="text/javascript" src="/trac/software/chrome/common/js/wikitoolbar.js"></script><script type="text/javascript" src="/trac/software/chrome/common/js/resizer.js"></script><script type="text/javascript" src="/trac/software/chrome/common/js/auto_preview.js"></script>
+    <!--[if lt IE 7]>
+    <script type="text/javascript" src="/trac/software/chrome/common/js/ie_pre7_hacks.js"></script>
+    <![endif]-->
+    <script type="text/javascript">
+      jQuery(document).ready(function($) {
+        $("div.description").find("h1,h2,h3,h4,h5,h6").addAnchor(_("Link to this section"));
+        $(".foldable").enableFolding(false, true);
+        var args = {realm: "ticket", id: 493, escape_newlines: 0}
+        $("#comment").autoPreview("/trac/software/wiki_render", args, function(textarea, text, rendered) {
+            $("#ticketchange div.comment").html(rendered);
+            if (rendered)
+              $("#ticketchange").show();
+            else if ($("#ticketchange ul.changes").length == 0)
+              $("#ticketchange").hide();
+        });
+        $("#trac-comment-editor textarea").autoPreview("/trac/software/wiki_render", args,
+                                                       function(textarea, text, rendered) {
+          var comment = $("#trac-comment-editor").next("div.comment");
+          comment.html(rendered);
+          if (rendered)
+            comment.show();
+          else
+            comment.hide();
+        });
+        $("#modify").parent().toggleClass("collapsed");
+        $(".trac-topnav a").click(function() { $("#modify").parent().removeClass("collapsed"); });
+        /* only enable control elements for the currently selected action */
+        var actions = $("#action input[name='action']");
+        function updateActionFields() {
+          actions.each(function () {
+            $(this).siblings().find("*[id]").enable($(this).checked());
+            $(this).siblings().filter("*[id]").enable($(this).checked());
+          });
+        }
+        actions.click(updateActionFields);
+        updateActionFields();
+      });
+    </script>
+    <link rel="stylesheet" type="text/css" href="/trac/software/chrome/site/style.css" />
+  </head>
+  <body>
+    <div id="banner">
+      <div id="header">
+        <a id="logo" href="http://loci.wisc.edu/"><img src="http://loci.wisc.edu/loci-logo.png" alt="LOCI" height="98" width="300" /></a>
+      </div>
+      <form id="search" action="/trac/software/search" method="get">
+        <div>
+          <label for="proj-search">Search:</label>
+          <input type="text" id="proj-search" name="q" size="18" value="" />
+          <input type="submit" value="Search" />
+        </div>
+      </form>
+      <div id="metanav" class="nav">
+    <ul>
+      <li class="first"><a href="/trac/software/login">Login</a></li><li><a href="/trac/software/wiki/TracGuide">Help/Guide</a></li><li><a href="/trac/software/about">About Trac</a></li><li><a href="/trac/software/prefs">Preferences</a></li><li class="last"><a href="/trac/software/reset_password">Forgot your password?</a></li>
+    </ul>
+  </div>
+    </div>
+    <div id="mainnav" class="nav">
+    <ul>
+      <li class="first"><a href="/trac/software/wiki">Wiki</a></li><li><a href="/trac/software/timeline">Timeline</a></li><li><a href="/trac/software/roadmap">Roadmap</a></li><li><a href="/trac/software/browser">Browse Source</a></li><li class="active"><a href="/trac/software/report">View Tickets</a></li><li class="last"><a href="/trac/software/search">Search</a></li>
+    </ul>
+  </div>
+    <div id="main">
+      <div id="ctxtnav" class="nav">
+        <h2>Context Navigation</h2>
+          <ul>
+              <li class="first"><span>&larr; <a class="prev" href="/trac/software/ticket/492" title="Ticket #492">Previous Ticket</a></span></li><li class="last"><span><a class="next" href="/trac/software/ticket/494" title="Ticket #494">Next Ticket</a> &rarr;</span></li>
+          </ul>
+        <hr />
+      </div>
+    <div id="content" class="ticket">
+      <h1 id="trac-ticket-title">
+          <a href="/trac/software/ticket/493">Ticket #493</a>
+          <span class="status">(closed defect: fixed)</span>
+      </h1>
+      <div id="ticket">
+  <div class="date">
+    <p>Opened <a class="timeline" href="/trac/software/timeline?from=2010-05-20T10%3A28%3A33-05%3A00&amp;precision=second" title="2010-05-20T10:28:33-05:00 in Timeline">9 years</a> ago</p>
+    <p>Last modified <a class="timeline" href="/trac/software/timeline?from=2010-07-13T16%3A57%3A53-05%3A00&amp;precision=second" title="2010-07-13T16:57:53-05:00 in Timeline">9 years</a> ago</p>
+  </div>
+  <h2 class="summary searchable">Series beyond 456 do not appear in ImageJ plugin</h2>
+  <table class="properties">
+    <tr>
+      <th id="h_reporter">Reported by:</th>
+      <td headers="h_reporter" class="searchable">
+        <a href="/trac/software/query?status=!closed&amp;reporter=melissa">melissa</a>
+      </td>
+      <th id="h_owner">Owned by:</th>
+      <td headers="h_owner">
+        <a href="/trac/software/query?status=!closed&amp;owner=curtis">curtis</a>
+      </td>
+    </tr>
+    <tr>
+        <th id="h_priority">
+          Priority:
+        </th>
+        <td headers="h_priority">
+              <a href="/trac/software/query?status=!closed&amp;priority=critical">critical</a>
+        </td>
+        <th id="h_milestone">
+          Milestone:
+        </th>
+        <td headers="h_milestone">
+              <a class="closed milestone" href="/trac/software/milestone/bio-formats-4.2">bio-formats-4.2</a>
+        </td>
+    </tr><tr>
+        <th id="h_component">
+          Component:
+        </th>
+        <td headers="h_component">
+              <a href="/trac/software/query?status=!closed&amp;component=plugins">plugins</a>
+        </td>
+        <th id="h_severity">
+          Severity:
+        </th>
+        <td headers="h_severity">
+              <a href="/trac/software/query?status=!closed&amp;severity=serious">serious</a>
+        </td>
+    </tr><tr>
+        <th id="h_keywords">
+          Keywords:
+        </th>
+        <td headers="h_keywords" class="searchable">
+        </td>
+        <th id="h_cc">
+          Cc:
+        </th>
+        <td headers="h_cc" class="searchable">
+              ruben.munoz@…
+        </td>
+    </tr><tr>
+        <th id="h_blockedby">
+          Blocked By:
+        </th>
+        <td headers="h_blockedby">
+        </td>
+        <th id="h_blocking">
+          Blocking:
+        </th>
+        <td headers="h_blocking">
+        </td>
+    </tr>
+  </table>
+  <div class="description">
+    <h3 id="comment:description">
+      Description
+      <span class="lastmod" title="2010-06-03 20:25:23+00:00">
+        (last modified by curtis)
+        (<a href="/trac/software/ticket/493?action=diff&amp;version=3">diff</a>)
+      </span>
+    </h3>
+    <div class="searchable">
+      <p>
+When opening data/fake/curtis/520series&amp;series=520&amp;sizeX=96&amp;sizeY=48.fake, the series dialog appears as expected but series beyond 456 are not displayed in the dialog.
+</p>
+<p>
+The display option was "Hyperstack", and the only option checked was "Autoscale".
+</p>
+
+    </div>
+  </div>
+</div>
+          
+
+        <div>
+          <h2 class="foldable">Change History</h2>
+          <div id="changelog">
+              <div class="change" id="trac-change-1">
+                <h3 class="change">
+                  <span class="threading">
+                    <span id="comment:1" class="cnum">
+      <a href="#comment:1">comment:1</a>
+    </span>
+                  </span>
+                  Changed <a class="timeline" href="/trac/software/timeline?from=2010-06-02T15%3A21%3A31-05%3A00&amp;precision=second" title="2010-06-02T15:21:31-05:00 in Timeline">9 years</a> ago by curtis
+                </h3>
+                
+  <ul class="changes">
+    <li>
+      <strong>Status</strong>
+        changed from <em>new</em> to <em>assigned</em>
+    </li>
+  </ul>
+    <div class="comment searchable">
+      
+      <p>
+This works on my system with the 520series fake dataset. Melissa, is it still broken for you? If so, what is your OS and Java version?
+</p>
+
+    </div>
+
+              </div>
+              <div class="change" id="trac-change-2">
+                <h3 class="change">
+                  <span class="threading">
+                    <span id="comment:2" class="cnum">
+      <a href="#comment:2">comment:2</a>
+    </span>
+                  </span>
+                  Changed <a class="timeline" href="/trac/software/timeline?from=2010-06-02T19%3A20%3A33-05%3A00&amp;precision=second" title="2010-06-02T19:20:33-05:00 in Timeline">9 years</a> ago by melissa
+                </h3>
+                
+    <div class="comment searchable">
+      
+      <p>
+Yes, it's still broken for me with trunk <a class="changeset" href="/trac/software/changeset/6450" title="Better indexed color logic; still broken in various cases though.
+">r6450</a>.
+</p>
+<p>
+OS: Ubuntu 9.10<br />
+ImageJ version: 1.43u
+</p>
+<pre class="wiki">$ java -version
+java version "1.6.0_20"
+Java(TM) SE Runtime Environment (build 1.6.0_20-b02)
+Java HotSpot(TM) Server VM (build 16.3-b01, mixed mode)
+</pre>
+    </div>
+
+              </div>
+              <div class="change" id="trac-change-3">
+                <h3 class="change">
+                  <span class="threading">
+                    <span id="comment:3" class="cnum">
+      <a href="#comment:3">comment:3</a>
+    </span>
+                  </span>
+                  Changed <a class="timeline" href="/trac/software/timeline?from=2010-06-03T15%3A25%3A23-05%3A00&amp;precision=second" title="2010-06-03T15:25:23-05:00 in Timeline">9 years</a> ago by curtis
+                </h3>
+                
+  <ul class="changes">
+    <li>
+      <strong>Description</strong>
+        modified (<a href="/trac/software/ticket/493?action=diff&amp;version=3">diff</a>)
+    </li>
+  </ul>
+    <div class="comment searchable">
+      
+      <p>
+Seems to be Linux-specific. I was able to duplicate your problem on Ubuntu 9.10, at least. It also does not seem to be an issue with the layout manager. I tried switching from GridLayout to FormLayout for the masterPanel, and it made no difference.
+</p>
+<p>
+However, on my system, the series beyond 233 disappear, not 456. It may be an issue with the number of total pixels vertically in a ScrollPane, or something strange with the interaction with the GenericDialog's GridBagLayout.
+</p>
+<p>
+Unless you have any further insight into this problem immediately, we may want to push to 4.2.1, because it will probably not be a quick fix.
+</p>
+
+    </div>
+
+              </div>
+              <div class="change" id="trac-change-4">
+                <h3 class="change">
+                  <span class="threading">
+                    <span id="comment:4" class="cnum">
+      <a href="#comment:4">comment:4</a>
+    </span>
+                  </span>
+                  Changed <a class="timeline" href="/trac/software/timeline?from=2010-06-03T16%3A09%3A56-05%3A00&amp;precision=second" title="2010-06-03T16:09:56-05:00 in Timeline">9 years</a> ago by curtis
+                </h3>
+                
+  <ul class="changes">
+    <li>
+      <strong>Status</strong>
+        changed from <em>assigned</em> to <em>closed</em>
+    </li><li>
+      <strong>Resolution</strong>
+        set to <em>fixed</em>
+    </li>
+  </ul>
+    <div class="comment searchable">
+      
+      <p>
+In <a class="changeset" href="/trac/software/changeset/6466" title="Fix some problems with the series chooser.
+If there are more than 200 ...">r6466</a>, I changed the code to suppress the thumbnails if more than 200 series, showing only checkboxes. I also fixed a bug when seriesCount % 256 == 0, and switched over to FormLayout from GridLayout, since I observed an exception relating to GridLayout on some systems.
+</p>
+<p>
+There is a remaining problem when seriesCount gets extremely large. On my Ubuntu 9.10 box, seriesCount much beyond 1200 stalled; e.g., with seriesCount=10000, my system stalled with 100% CPU for longer than I was willing to wait for the dialog, busy doing some native X flush operation. Similarly on Mac OS X 10.6, seriesCount=3000 popped up reasonably fast, but seriesCount=5000 did not appear after many seconds of waiting.
+</p>
+<p>
+We may want to implement an alternative GUI for seriesCount&gt;1000. Perhaps the user could simply type in the desired series numbers as a comma-separated list, using dashes to indicate ranges.
+</p>
+
+    </div>
+
+              </div>
+              <div class="change" id="trac-change-5">
+                <h3 class="change">
+                  <span class="threading">
+                    <span id="comment:5" class="cnum">
+      <a href="#comment:5">comment:5</a>
+    </span>
+                  </span>
+                  Changed <a class="timeline" href="/trac/software/timeline?from=2010-07-09T12%3A55%3A02-05%3A00&amp;precision=second" title="2010-07-09T12:55:02-05:00 in Timeline">9 years</a> ago by melissa
+                </h3>
+                
+  <ul class="changes">
+    <li>
+      <strong>Milestone</strong>
+        <em>bio-formats-4.2</em> deleted
+    </li>
+  </ul>
+    <div class="comment searchable">
+      
+      <p>
+Milestone bio-formats-4.2 deleted
+</p>
+
+    </div>
+
+              </div>
+              <div class="change" id="trac-change-6">
+                <h3 class="change">
+                  <span class="threading">
+                    <span id="comment:6" class="cnum">
+      <a href="#comment:6">comment:6</a>
+    </span>
+                  </span>
+                  Changed <a class="timeline" href="/trac/software/timeline?from=2010-07-13T16%3A57%3A53-05%3A00&amp;precision=second" title="2010-07-13T16:57:53-05:00 in Timeline">9 years</a> ago by melissa
+                </h3>
+                
+  <ul class="changes">
+    <li>
+      <strong>Milestone</strong>
+        set to <em>bio-formats-4.2</em>
+    </li>
+  </ul>
+    <div class="comment searchable">
+      
+      
+    </div>
+
+              </div>
+          </div>
+        </div>
+      <div id="help"><strong>Note:</strong> See
+        <a href="/trac/software/wiki/TracTickets">TracTickets</a> for help on using
+        tickets.</div>
+    </div>
+    <div id="altlinks">
+      <h3>Download in other formats:</h3>
+      <ul>
+        <li class="first">
+          <a rel="nofollow" href="/trac/software/ticket/493?format=csv" class="csv">Comma-delimited Text</a>
+        </li><li>
+          <a rel="nofollow" href="/trac/software/ticket/493?format=tab" class="tab">Tab-delimited Text</a>
+        </li><li class="last">
+          <a rel="nofollow" href="/trac/software/ticket/493?format=rss" class="rss">RSS Feed</a>
+        </li>
+      </ul>
+    </div>
+    </div>
+    <div id="footer" lang="en" xml:lang="en"><hr />
+      <a id="tracpowered" href="http://trac.edgewall.org/"><img src="/trac/software/chrome/common/trac_logo_mini.png" height="30" width="107" alt="Trac Powered" /></a>
+      <p class="left">Powered by <a href="/trac/software/about"><strong>Trac 0.12.2</strong></a><br />
+        By <a href="http://www.edgewall.org/">Edgewall Software</a>.</p>
+      <p class="right">Visit the LOCI software web site at<br /><a href="http://loci.wisc.edu/software/">http://loci.wisc.edu/software/</a></p>
+    </div>
+  </body>
+</html>

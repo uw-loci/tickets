@@ -1,0 +1,365 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  
+  
+
+  
+  <!-- See: http://trac.edgewall.org/wiki/TracInterfaceCustomization -->
+
+
+  <head>
+    <title>
+      #273 (Some readers do not have sane file type checking)
+     – LOCI Software
+    </title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <link rel="search" href="/trac/software/search" />
+        <link rel="prev" href="/trac/software/ticket/272" title="Ticket #272" />
+        <link rel="last" href="/trac/software/ticket/822" title="Ticket #822" />
+        <link rel="help" href="/trac/software/wiki/TracGuide" />
+        <link rel="alternate" href="/trac/software/ticket/273?format=csv" type="text/csv" class="csv" title="Comma-delimited Text" /><link rel="alternate" href="/trac/software/ticket/273?format=tab" type="text/tab-separated-values" class="tab" title="Tab-delimited Text" /><link rel="alternate" href="/trac/software/ticket/273?format=rss" type="application/rss+xml" class="rss" title="RSS Feed" />
+        <link rel="next" href="/trac/software/ticket/274" title="Ticket #274" />
+        <link rel="start" href="/trac/software/wiki" />
+        <link rel="stylesheet" href="/trac/software/chrome/common/css/trac.css" type="text/css" /><link rel="stylesheet" href="/trac/software/chrome/common/css/ticket.css" type="text/css" />
+        <link rel="first" href="/trac/software/ticket/1" title="Ticket #1" />
+        <link rel="shortcut icon" href="/trac/software/chrome/common/trac.ico" type="image/x-icon" />
+        <link rel="icon" href="/trac/software/chrome/common/trac.ico" type="image/x-icon" />
+      <link type="application/opensearchdescription+xml" rel="search" href="/trac/software/search/opensearch" title="Search LOCI Software" />
+    <script type="text/javascript">
+      var auto_preview_timeout=2.0;
+      var form_token="6f98fe569ebadd344b2a9509";
+    </script>
+    <script type="text/javascript" src="/trac/software/chrome/common/js/jquery.js"></script><script type="text/javascript" src="/trac/software/chrome/common/js/babel.js"></script><script type="text/javascript" src="/trac/software/chrome/common/js/trac.js"></script><script type="text/javascript" src="/trac/software/chrome/common/js/search.js"></script><script type="text/javascript" src="/trac/software/chrome/common/js/folding.js"></script><script type="text/javascript" src="/trac/software/chrome/common/js/wikitoolbar.js"></script><script type="text/javascript" src="/trac/software/chrome/common/js/resizer.js"></script><script type="text/javascript" src="/trac/software/chrome/common/js/auto_preview.js"></script>
+    <!--[if lt IE 7]>
+    <script type="text/javascript" src="/trac/software/chrome/common/js/ie_pre7_hacks.js"></script>
+    <![endif]-->
+    <script type="text/javascript">
+      jQuery(document).ready(function($) {
+        $("div.description").find("h1,h2,h3,h4,h5,h6").addAnchor(_("Link to this section"));
+        $(".foldable").enableFolding(false, true);
+        var args = {realm: "ticket", id: 273, escape_newlines: 0}
+        $("#comment").autoPreview("/trac/software/wiki_render", args, function(textarea, text, rendered) {
+            $("#ticketchange div.comment").html(rendered);
+            if (rendered)
+              $("#ticketchange").show();
+            else if ($("#ticketchange ul.changes").length == 0)
+              $("#ticketchange").hide();
+        });
+        $("#trac-comment-editor textarea").autoPreview("/trac/software/wiki_render", args,
+                                                       function(textarea, text, rendered) {
+          var comment = $("#trac-comment-editor").next("div.comment");
+          comment.html(rendered);
+          if (rendered)
+            comment.show();
+          else
+            comment.hide();
+        });
+        $("#modify").parent().toggleClass("collapsed");
+        $(".trac-topnav a").click(function() { $("#modify").parent().removeClass("collapsed"); });
+        /* only enable control elements for the currently selected action */
+        var actions = $("#action input[name='action']");
+        function updateActionFields() {
+          actions.each(function () {
+            $(this).siblings().find("*[id]").enable($(this).checked());
+            $(this).siblings().filter("*[id]").enable($(this).checked());
+          });
+        }
+        actions.click(updateActionFields);
+        updateActionFields();
+      });
+    </script>
+    <link rel="stylesheet" type="text/css" href="/trac/software/chrome/site/style.css" />
+  </head>
+  <body>
+    <div id="banner">
+      <div id="header">
+        <a id="logo" href="http://loci.wisc.edu/"><img src="http://loci.wisc.edu/loci-logo.png" alt="LOCI" height="98" width="300" /></a>
+      </div>
+      <form id="search" action="/trac/software/search" method="get">
+        <div>
+          <label for="proj-search">Search:</label>
+          <input type="text" id="proj-search" name="q" size="18" value="" />
+          <input type="submit" value="Search" />
+        </div>
+      </form>
+      <div id="metanav" class="nav">
+    <ul>
+      <li class="first"><a href="/trac/software/login">Login</a></li><li><a href="/trac/software/wiki/TracGuide">Help/Guide</a></li><li><a href="/trac/software/about">About Trac</a></li><li><a href="/trac/software/prefs">Preferences</a></li><li class="last"><a href="/trac/software/reset_password">Forgot your password?</a></li>
+    </ul>
+  </div>
+    </div>
+    <div id="mainnav" class="nav">
+    <ul>
+      <li class="first"><a href="/trac/software/wiki">Wiki</a></li><li><a href="/trac/software/timeline">Timeline</a></li><li><a href="/trac/software/roadmap">Roadmap</a></li><li><a href="/trac/software/browser">Browse Source</a></li><li class="active"><a href="/trac/software/report">View Tickets</a></li><li class="last"><a href="/trac/software/search">Search</a></li>
+    </ul>
+  </div>
+    <div id="main">
+      <div id="ctxtnav" class="nav">
+        <h2>Context Navigation</h2>
+          <ul>
+              <li class="first"><span>&larr; <a class="prev" href="/trac/software/ticket/272" title="Ticket #272">Previous Ticket</a></span></li><li class="last"><span><a class="next" href="/trac/software/ticket/274" title="Ticket #274">Next Ticket</a> &rarr;</span></li>
+          </ul>
+        <hr />
+      </div>
+    <div id="content" class="ticket">
+      <h1 id="trac-ticket-title">
+          <a href="/trac/software/ticket/273">Ticket #273</a>
+          <span class="status">(closed defect: fixed)</span>
+      </h1>
+      <div id="ticket">
+  <div class="date">
+    <p>Opened <a class="timeline" href="/trac/software/timeline?from=2008-04-08T13%3A48%3A04-05%3A00&amp;precision=second" title="2008-04-08T13:48:04-05:00 in Timeline">11 years</a> ago</p>
+    <p>Last modified <a class="timeline" href="/trac/software/timeline?from=2010-07-28T16%3A11%3A34-05%3A00&amp;precision=second" title="2010-07-28T16:11:34-05:00 in Timeline">9 years</a> ago</p>
+  </div>
+  <h2 class="summary searchable">Some readers do not have sane file type checking</h2>
+  <table class="properties">
+    <tr>
+      <th id="h_reporter">Reported by:</th>
+      <td headers="h_reporter" class="searchable">
+        <a href="/trac/software/query?status=!closed&amp;reporter=curtis">curtis</a>
+      </td>
+      <th id="h_owner">Owned by:</th>
+      <td headers="h_owner">
+        <a href="/trac/software/query?status=!closed&amp;owner=melissa">melissa</a>
+      </td>
+    </tr>
+    <tr>
+        <th id="h_priority">
+          Priority:
+        </th>
+        <td headers="h_priority">
+              <a href="/trac/software/query?status=!closed&amp;priority=major">major</a>
+        </td>
+        <th id="h_milestone">
+          Milestone:
+        </th>
+        <td headers="h_milestone">
+              <a class="missing milestone"></a>
+        </td>
+    </tr><tr>
+        <th id="h_component">
+          Component:
+        </th>
+        <td headers="h_component">
+              <a href="/trac/software/query?status=!closed&amp;component=bio-formats">bio-formats</a>
+        </td>
+        <th id="h_severity">
+          Severity:
+        </th>
+        <td headers="h_severity">
+              <a href="/trac/software/query?status=!closed&amp;severity=serious">serious</a>
+        </td>
+    </tr><tr>
+        <th id="h_keywords">
+          Keywords:
+        </th>
+        <td headers="h_keywords" class="searchable">
+        </td>
+        <th id="h_cc">
+          Cc:
+        </th>
+        <td headers="h_cc" class="searchable">
+        </td>
+    </tr><tr>
+        <th id="h_blockedby">
+          Blocked By:
+        </th>
+        <td headers="h_blockedby">
+        </td>
+        <th id="h_blocking">
+          Blocking:
+        </th>
+        <td headers="h_blocking">
+        </td>
+    </tr>
+  </table>
+  <div class="description">
+    <h3 id="comment:description">
+      Description
+    </h3>
+    <div class="searchable">
+      <p>
+Sane file type checking means that for a given dataset, each used file on the list can be used as the base file for the dataset. That is, you can pass any of the used files to setId and the reader will identify the same dataset with the same used files list.
+</p>
+<p>
+The following readers violate this principle:
+</p>
+<ul><li>InCellReader
+</li><li>L2DReader
+</li><li>NRRDReader (BioRadReader recognizes the PIC files, but that's OK)
+</li><li>PrairieReader (PerkinElmerReader steals the CFG file)
+</li></ul><p>
+Regarding NRRD, I have moved NRRDReader before BioRadReader in the list, similar to how TiffReader appears after the custom TIFF reader types. That way, we don't need custom logic in BioRadReader to ignore PIC files that are part of an NRRD dataset. Instead, we just need NRRDReader to grab the PIC file as its own, first. (But it doesn't yet, which is why its file type checking is not sane.)
+</p>
+<p>
+I may find problems with more formats upon further testing; if so, I'll add a comment to this ticket.
+</p>
+
+    </div>
+  </div>
+</div>
+          
+
+        <div>
+          <h2 class="foldable">Change History</h2>
+          <div id="changelog">
+              <div class="change" id="trac-change-1">
+                <h3 class="change">
+                  <span class="threading">
+                    <span id="comment:1" class="cnum">
+      <a href="#comment:1">comment:1</a>
+    </span>
+                  </span>
+                  Changed <a class="timeline" href="/trac/software/timeline?from=2008-04-30T11%3A26%3A58-05%3A00&amp;precision=second" title="2008-04-30T11:26:58-05:00 in Timeline">11 years</a> ago by curtis
+                </h3>
+                
+    <div class="comment searchable">
+      
+      <p>
+Another tricky format is OIF. Some of the constituent files are BMPs, which the BMP reader steals. We can handle this the same way as TIFF and PIC, and put the BMP reader further down the list. Seems like readers.txt should have a "basic readers" section with those three (and maybe others) below the mixed-format readers.
+</p>
+
+    </div>
+
+              </div>
+              <div class="change" id="trac-change-2">
+                <h3 class="change">
+                  <span class="threading">
+                    <span id="comment:2" class="cnum">
+      <a href="#comment:2">comment:2</a>
+    </span>
+                  </span>
+                  Changed <a class="timeline" href="/trac/software/timeline?from=2010-07-22T19%3A16%3A03-05%3A00&amp;precision=second" title="2010-07-22T19:16:03-05:00 in Timeline">9 years</a> ago by melissa
+                </h3>
+                
+    <div class="comment searchable">
+      
+      <p>
+(In <a class="changeset" href="/trac/software/changeset/6724" title="Fixed a bunch of type detection problems.  See #273.
+">[6724]</a>) Fixed a bunch of type detection problems.  See <a class="closed ticket" href="/trac/software/ticket/273" title="defect: Some readers do not have sane file type checking (closed: fixed)">#273</a>.
+</p>
+
+    </div>
+
+              </div>
+              <div class="change" id="trac-change-3">
+                <h3 class="change">
+                  <span class="threading">
+                    <span id="comment:3" class="cnum">
+      <a href="#comment:3">comment:3</a>
+    </span>
+                  </span>
+                  Changed <a class="timeline" href="/trac/software/timeline?from=2010-07-23T13%3A34%3A17-05%3A00&amp;precision=second" title="2010-07-23T13:34:17-05:00 in Timeline">9 years</a> ago by melissa
+                </h3>
+                
+    <div class="comment searchable">
+      
+      <p>
+(In <a class="changeset" href="/trac/software/changeset/6726" title="A few more type checking fixes.  See #273.
+">[6726]</a>) A few more type checking fixes.  See <a class="closed ticket" href="/trac/software/ticket/273" title="defect: Some readers do not have sane file type checking (closed: fixed)">#273</a>.
+</p>
+
+    </div>
+
+              </div>
+              <div class="change" id="trac-change-4">
+                <h3 class="change">
+                  <span class="threading">
+                    <span id="comment:4" class="cnum">
+      <a href="#comment:4">comment:4</a>
+    </span>
+                  </span>
+                  Changed <a class="timeline" href="/trac/software/timeline?from=2010-07-27T08%3A06%3A39-05%3A00&amp;precision=second" title="2010-07-27T08:06:39-05:00 in Timeline">9 years</a> ago by melissa
+                </h3>
+                
+    <div class="comment searchable">
+      
+      <p>
+(In <a class="changeset" href="/trac/software/changeset/6735" title="* Handful of type checking fixes.  See #273.
+* Strip whitespace from ...">[6735]</a>) * Handful of type checking fixes.  See <a class="closed ticket" href="/trac/software/ticket/273" title="defect: Some readers do not have sane file type checking (closed: fixed)">#273</a>.
+</p>
+<ul><li>Strip whitespace from CellWorX filenames.
+</li></ul>
+    </div>
+
+              </div>
+              <div class="change" id="trac-change-5">
+                <h3 class="change">
+                  <span class="threading">
+                    <span id="comment:5" class="cnum">
+      <a href="#comment:5">comment:5</a>
+    </span>
+                  </span>
+                  Changed <a class="timeline" href="/trac/software/timeline?from=2010-07-27T20%3A18%3A01-05%3A00&amp;precision=second" title="2010-07-27T20:18:01-05:00 in Timeline">9 years</a> ago by melissa
+                </h3>
+                
+    <div class="comment searchable">
+      
+      <p>
+(In <a class="changeset" href="/trac/software/changeset/6741" title="Several more type checking fixes, see #273.
+
+Includes a fix for a very, ...">[6741]</a>) Several more type checking fixes, see <a class="closed ticket" href="/trac/software/ticket/273" title="defect: Some readers do not have sane file type checking (closed: fixed)">#273</a>.
+</p>
+<p>
+Includes a fix for a very, very evil bug in NRRDReader that prevented more than one NRRD file from being initialized in any JVM instance.  The moral of the story: *never* directly modify the ClassList returned by ImageReader.getDefaultReaderClasses().
+</p>
+
+    </div>
+
+              </div>
+              <div class="change" id="trac-change-6">
+                <h3 class="change">
+                  <span class="threading">
+                    <span id="comment:6" class="cnum">
+      <a href="#comment:6">comment:6</a>
+    </span>
+                  </span>
+                  Changed <a class="timeline" href="/trac/software/timeline?from=2010-07-28T16%3A11%3A34-05%3A00&amp;precision=second" title="2010-07-28T16:11:34-05:00 in Timeline">9 years</a> ago by melissa
+                </h3>
+                
+  <ul class="changes">
+    <li>
+      <strong>Status</strong>
+        changed from <em>new</em> to <em>closed</em>
+    </li><li>
+      <strong>Resolution</strong>
+        set to <em>fixed</em>
+    </li>
+  </ul>
+    <div class="comment searchable">
+      
+      <p>
+(In <a class="changeset" href="/trac/software/changeset/6746" title="Remainder of type checking fixes.  Closes #273.
+">[6746]</a>) Remainder of type checking fixes.  Closes <a class="closed ticket" href="/trac/software/ticket/273" title="defect: Some readers do not have sane file type checking (closed: fixed)">#273</a>.
+</p>
+
+    </div>
+
+              </div>
+          </div>
+        </div>
+      <div id="help"><strong>Note:</strong> See
+        <a href="/trac/software/wiki/TracTickets">TracTickets</a> for help on using
+        tickets.</div>
+    </div>
+    <div id="altlinks">
+      <h3>Download in other formats:</h3>
+      <ul>
+        <li class="first">
+          <a rel="nofollow" href="/trac/software/ticket/273?format=csv" class="csv">Comma-delimited Text</a>
+        </li><li>
+          <a rel="nofollow" href="/trac/software/ticket/273?format=tab" class="tab">Tab-delimited Text</a>
+        </li><li class="last">
+          <a rel="nofollow" href="/trac/software/ticket/273?format=rss" class="rss">RSS Feed</a>
+        </li>
+      </ul>
+    </div>
+    </div>
+    <div id="footer" lang="en" xml:lang="en"><hr />
+      <a id="tracpowered" href="http://trac.edgewall.org/"><img src="/trac/software/chrome/common/trac_logo_mini.png" height="30" width="107" alt="Trac Powered" /></a>
+      <p class="left">Powered by <a href="/trac/software/about"><strong>Trac 0.12.2</strong></a><br />
+        By <a href="http://www.edgewall.org/">Edgewall Software</a>.</p>
+      <p class="right">Visit the LOCI software web site at<br /><a href="http://loci.wisc.edu/software/">http://loci.wisc.edu/software/</a></p>
+    </div>
+  </body>
+</html>

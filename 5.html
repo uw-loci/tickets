@@ -1,0 +1,388 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  
+  
+
+  
+  <!-- See: http://trac.edgewall.org/wiki/TracInterfaceCustomization -->
+
+
+  <head>
+    <title>
+      #5 (Better channel merging in Bio-Formats Importer)
+     – LOCI Software
+    </title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <link rel="search" href="/trac/software/search" />
+        <link rel="prev" href="/trac/software/ticket/4" title="Ticket #4" />
+        <link rel="last" href="/trac/software/ticket/822" title="Ticket #822" />
+        <link rel="help" href="/trac/software/wiki/TracGuide" />
+        <link rel="alternate" href="/trac/software/ticket/5?format=csv" type="text/csv" class="csv" title="Comma-delimited Text" /><link rel="alternate" href="/trac/software/ticket/5?format=tab" type="text/tab-separated-values" class="tab" title="Tab-delimited Text" /><link rel="alternate" href="/trac/software/ticket/5?format=rss" type="application/rss+xml" class="rss" title="RSS Feed" />
+        <link rel="next" href="/trac/software/ticket/6" title="Ticket #6" />
+        <link rel="start" href="/trac/software/wiki" />
+        <link rel="stylesheet" href="/trac/software/chrome/common/css/trac.css" type="text/css" /><link rel="stylesheet" href="/trac/software/chrome/common/css/ticket.css" type="text/css" />
+        <link rel="first" href="/trac/software/ticket/1" title="Ticket #1" />
+        <link rel="shortcut icon" href="/trac/software/chrome/common/trac.ico" type="image/x-icon" />
+        <link rel="icon" href="/trac/software/chrome/common/trac.ico" type="image/x-icon" />
+      <link type="application/opensearchdescription+xml" rel="search" href="/trac/software/search/opensearch" title="Search LOCI Software" />
+    <script type="text/javascript">
+      var auto_preview_timeout=2.0;
+      var form_token="ca2da0cb7f70d765af2ce6ac";
+    </script>
+    <script type="text/javascript" src="/trac/software/chrome/common/js/jquery.js"></script><script type="text/javascript" src="/trac/software/chrome/common/js/babel.js"></script><script type="text/javascript" src="/trac/software/chrome/common/js/trac.js"></script><script type="text/javascript" src="/trac/software/chrome/common/js/search.js"></script><script type="text/javascript" src="/trac/software/chrome/common/js/folding.js"></script><script type="text/javascript" src="/trac/software/chrome/common/js/wikitoolbar.js"></script><script type="text/javascript" src="/trac/software/chrome/common/js/resizer.js"></script><script type="text/javascript" src="/trac/software/chrome/common/js/auto_preview.js"></script>
+    <!--[if lt IE 7]>
+    <script type="text/javascript" src="/trac/software/chrome/common/js/ie_pre7_hacks.js"></script>
+    <![endif]-->
+    <script type="text/javascript">
+      jQuery(document).ready(function($) {
+        $("div.description").find("h1,h2,h3,h4,h5,h6").addAnchor(_("Link to this section"));
+        $(".foldable").enableFolding(false, true);
+        var args = {realm: "ticket", id: 5, escape_newlines: 0}
+        $("#comment").autoPreview("/trac/software/wiki_render", args, function(textarea, text, rendered) {
+            $("#ticketchange div.comment").html(rendered);
+            if (rendered)
+              $("#ticketchange").show();
+            else if ($("#ticketchange ul.changes").length == 0)
+              $("#ticketchange").hide();
+        });
+        $("#trac-comment-editor textarea").autoPreview("/trac/software/wiki_render", args,
+                                                       function(textarea, text, rendered) {
+          var comment = $("#trac-comment-editor").next("div.comment");
+          comment.html(rendered);
+          if (rendered)
+            comment.show();
+          else
+            comment.hide();
+        });
+        $("#modify").parent().toggleClass("collapsed");
+        $(".trac-topnav a").click(function() { $("#modify").parent().removeClass("collapsed"); });
+        /* only enable control elements for the currently selected action */
+        var actions = $("#action input[name='action']");
+        function updateActionFields() {
+          actions.each(function () {
+            $(this).siblings().find("*[id]").enable($(this).checked());
+            $(this).siblings().filter("*[id]").enable($(this).checked());
+          });
+        }
+        actions.click(updateActionFields);
+        updateActionFields();
+      });
+    </script>
+    <link rel="stylesheet" type="text/css" href="/trac/software/chrome/site/style.css" />
+  </head>
+  <body>
+    <div id="banner">
+      <div id="header">
+        <a id="logo" href="http://loci.wisc.edu/"><img src="http://loci.wisc.edu/loci-logo.png" alt="LOCI" height="98" width="300" /></a>
+      </div>
+      <form id="search" action="/trac/software/search" method="get">
+        <div>
+          <label for="proj-search">Search:</label>
+          <input type="text" id="proj-search" name="q" size="18" value="" />
+          <input type="submit" value="Search" />
+        </div>
+      </form>
+      <div id="metanav" class="nav">
+    <ul>
+      <li class="first"><a href="/trac/software/login">Login</a></li><li><a href="/trac/software/wiki/TracGuide">Help/Guide</a></li><li><a href="/trac/software/about">About Trac</a></li><li><a href="/trac/software/prefs">Preferences</a></li><li class="last"><a href="/trac/software/reset_password">Forgot your password?</a></li>
+    </ul>
+  </div>
+    </div>
+    <div id="mainnav" class="nav">
+    <ul>
+      <li class="first"><a href="/trac/software/wiki">Wiki</a></li><li><a href="/trac/software/timeline">Timeline</a></li><li><a href="/trac/software/roadmap">Roadmap</a></li><li><a href="/trac/software/browser">Browse Source</a></li><li class="active"><a href="/trac/software/report">View Tickets</a></li><li class="last"><a href="/trac/software/search">Search</a></li>
+    </ul>
+  </div>
+    <div id="main">
+      <div id="ctxtnav" class="nav">
+        <h2>Context Navigation</h2>
+          <ul>
+              <li class="first"><span>&larr; <a class="prev" href="/trac/software/ticket/4" title="Ticket #4">Previous Ticket</a></span></li><li class="last"><span><a class="next" href="/trac/software/ticket/6" title="Ticket #6">Next Ticket</a> &rarr;</span></li>
+          </ul>
+        <hr />
+      </div>
+    <div id="content" class="ticket">
+      <h1 id="trac-ticket-title">
+          <a href="/trac/software/ticket/5">Ticket #5</a>
+          <span class="status">(closed enhancement: fixed)</span>
+      </h1>
+      <div id="ticket">
+  <div class="date">
+    <p>Opened <a class="timeline" href="/trac/software/timeline?from=2007-03-15T13%3A29%3A45-05%3A00&amp;precision=second" title="2007-03-15T13:29:45-05:00 in Timeline">12 years</a> ago</p>
+    <p>Last modified <a class="timeline" href="/trac/software/timeline?from=2007-12-27T17%3A14%3A40-06%3A00&amp;precision=second" title="2007-12-27T17:14:40-06:00 in Timeline">12 years</a> ago</p>
+  </div>
+  <h2 class="summary searchable">Better channel merging in Bio-Formats Importer</h2>
+  <table class="properties">
+    <tr>
+      <th id="h_reporter">Reported by:</th>
+      <td headers="h_reporter" class="searchable">
+        <a href="/trac/software/query?status=!closed&amp;reporter=curtis">curtis</a>
+      </td>
+      <th id="h_owner">Owned by:</th>
+      <td headers="h_owner">
+        <a href="/trac/software/query?status=!closed&amp;owner=melissa">melissa</a>
+      </td>
+    </tr>
+    <tr>
+        <th id="h_priority">
+          Priority:
+        </th>
+        <td headers="h_priority">
+              <a href="/trac/software/query?status=!closed&amp;priority=minor">minor</a>
+        </td>
+        <th id="h_milestone">
+          Milestone:
+        </th>
+        <td headers="h_milestone">
+              <a class="missing milestone"></a>
+        </td>
+    </tr><tr>
+        <th id="h_component">
+          Component:
+        </th>
+        <td headers="h_component">
+              <a href="/trac/software/query?status=!closed&amp;component=plugins">plugins</a>
+        </td>
+        <th id="h_severity">
+          Severity:
+        </th>
+        <td headers="h_severity">
+              <a href="/trac/software/query?status=!closed&amp;severity=non-issue">non-issue</a>
+        </td>
+    </tr><tr>
+        <th id="h_keywords">
+          Keywords:
+        </th>
+        <td headers="h_keywords" class="searchable">
+        </td>
+        <th id="h_cc">
+          Cc:
+        </th>
+        <td headers="h_cc" class="searchable">
+        </td>
+    </tr><tr>
+        <th id="h_blockedby">
+          Blocked By:
+        </th>
+        <td headers="h_blockedby">
+        </td>
+        <th id="h_blocking">
+          Blocking:
+        </th>
+        <td headers="h_blocking">
+        </td>
+    </tr>
+  </table>
+  <div class="description">
+    <h3 id="comment:description">
+      Description
+      <span class="lastmod" title="2007-03-23 18:49:02+00:00">
+        (last modified by curtis)
+        (<a href="/trac/software/ticket/5?action=diff&amp;version=2">diff</a>)
+      </span>
+    </h3>
+    <div class="searchable">
+      <p>
+As mentioned in ticket <a class="closed ticket" href="/trac/software/ticket/2" title="defect: Bio-Formats Importer plugin loses some channels when merging (closed: fixed)">#2</a>, the method to use for merging more than three channels is not obvious. Our current solution is to disallow it. But we could probably allow RGB merging in more cases.
+</p>
+<p>
+If a dataset has more than 3 channels, the importer could prompt the user how to proceed. For example, a 32-channel image series could prompt: "This series has 32 channels. How would you like to merge the channels?" with choices:
+</p>
+<ul><li>11 windows, 3 channels per plane
+</li><li>16 windows, 2 channels per plane
+</li><li>Do not merge
+</li></ul><p>
+Note that if the number of channels does not divide evenly, the final window may have a lesser number of channels per plane. With the 32-channel series with 3 channels per plane, for example, there would be 10 3-channel windows, and one 2-channel window.
+</p>
+<p>
+If we add a feature like this, it must use the proper ImageJ dialog classes so that the importer plugin continues to be fully scriptable in a macro.
+</p>
+<p>
+Another option might be to implement a spectral colorization algorithm. There are two possibilities that immediately spring to mind:
+</p>
+<ul><li>The MultiLUT application (<a class="source" href="/trac/software/browser/trunk/loci/apps/MultiLUT.java">source:trunk/loci/apps/MultiLUT.java</a>) implements a weighted slider approach, where three weights (one for each of the R, G and B color components) are applied to each spectral channel. The final color values are computed as the sum of weighted values for all channels. In this way, a particular set of channels can be favored for a specific color component, and the user can interactively explore different weighting combinations. Unfortunately, this type of interaction does not mesh well with the importer plugin, and would be a significant effort to implement well.
+</li><li>Long Yan's "spectral projection" technique (described in ticket <a class="closed ticket" href="/trac/software/ticket/86" title="enhancement: Implement spectral projection feature (closed: moved)">#86</a>).
+</li></ul><p>
+The spectral projection algorithm could be implemented as another choice on the menu ("Perform a spectral projection").
+</p>
+<p>
+As of this writing, Bio-Formats will soon support additional labeling of dimensions rasterized within channel. For example, spectral-lifetime data will be identified properly, with proper details regarding how many lifetime bins vs how many spectral channels (with the product of those lengths equaling the total number of channels). The RGB merger could use this information to present the spectral projection option (or not) depending on whether one of the channel dimensions is "spectra."
+</p>
+
+    </div>
+  </div>
+</div>
+          
+
+        <div>
+          <h2 class="foldable">Change History</h2>
+          <div id="changelog">
+              <div class="change" id="trac-change-1">
+                <h3 class="change">
+                  <span class="threading">
+                    <span id="comment:1" class="cnum">
+      <a href="#comment:1">comment:1</a>
+    </span>
+                  </span>
+                  Changed <a class="timeline" href="/trac/software/timeline?from=2007-03-15T13%3A32%3A38-05%3A00&amp;precision=second" title="2007-03-15T13:32:38-05:00 in Timeline">12 years</a> ago by curtis
+                </h3>
+                
+  <ul class="changes">
+    <li>
+      <strong>Description</strong>
+        modified (<a href="/trac/software/ticket/5?action=diff&amp;version=1">diff</a>)
+    </li>
+  </ul>
+    <div class="comment searchable">
+      
+      
+    </div>
+
+              </div>
+              <div class="change" id="trac-change-2">
+                <h3 class="change">
+                  <span class="threading">
+                    <span id="comment:2" class="cnum">
+      <a href="#comment:2">comment:2</a>
+    </span>
+                  </span>
+                  Changed <a class="timeline" href="/trac/software/timeline?from=2007-03-23T13%3A49%3A02-05%3A00&amp;precision=second" title="2007-03-23T13:49:02-05:00 in Timeline">12 years</a> ago by curtis
+                </h3>
+                
+  <ul class="changes">
+    <li>
+      <strong>Description</strong>
+        modified (<a href="/trac/software/ticket/5?action=diff&amp;version=2">diff</a>)
+    </li>
+  </ul>
+    <div class="comment searchable">
+      
+      
+    </div>
+
+              </div>
+              <div class="change" id="trac-change-3">
+                <h3 class="change">
+                  <span class="threading">
+                    <span id="comment:3" class="cnum">
+      <a href="#comment:3">comment:3</a>
+    </span>
+                  </span>
+                  Changed <a class="timeline" href="/trac/software/timeline?from=2007-04-20T12%3A58%3A53-05%3A00&amp;precision=second" title="2007-04-20T12:58:53-05:00 in Timeline">12 years</a> ago by melissa
+                </h3>
+                
+    <div class="comment searchable">
+      
+      <p>
+<a class="changeset" href="/trac/software/changeset/2652" title="Changed 'windows' to 'planes' in new merging logic, since we don't open ...">r2652</a> prompts the user to choose one of the following when merging 4+ channel data:
+</p>
+<ul><li>merge using 2 channels per plane<br />
+</li></ul><ul><li>merge using 3 channels per plane<br />
+</li></ul><ul><li>do not merge
+</li></ul>
+    </div>
+
+              </div>
+              <div class="change" id="trac-change-4">
+                <h3 class="change">
+                  <span class="threading">
+                    <span id="comment:4" class="cnum">
+      <a href="#comment:4">comment:4</a>
+    </span>
+                  </span>
+                  Changed <a class="timeline" href="/trac/software/timeline?from=2007-12-10T15%3A08%3A37-06%3A00&amp;precision=second" title="2007-12-10T15:08:37-06:00 in Timeline">12 years</a> ago by melissa
+                </h3>
+                
+  <ul class="changes">
+    <li>
+      <strong>Severity</strong>
+        set to <em>fatal</em>
+    </li>
+  </ul>
+    <div class="comment searchable">
+      
+      <p>
+As of <a class="changeset" href="/trac/software/changeset/3459" title="Updated to take advantage of new features in ImageJ's CompositeImage - can ...">r3459</a>, up to 7 channels can be merged together (using ImageJ's CompositeImage class).  If there are more than 7 channels, the user can choose to merge using 2-7 channels per plane.
+</p>
+
+    </div>
+
+              </div>
+              <div class="change" id="trac-change-5">
+                <h3 class="change">
+                  <span class="threading">
+                    <span id="comment:5" class="cnum">
+      <a href="#comment:5">comment:5</a>
+    </span>
+                  </span>
+                  Changed <a class="timeline" href="/trac/software/timeline?from=2007-12-10T15%3A08%3A58-06%3A00&amp;precision=second" title="2007-12-10T15:08:58-06:00 in Timeline">12 years</a> ago by melissa
+                </h3>
+                
+  <ul class="changes">
+    <li>
+      <strong>Severity</strong>
+        changed from <em>fatal</em> to <em>non-issue</em>
+    </li>
+  </ul>
+    <div class="comment searchable">
+      
+      
+    </div>
+
+              </div>
+              <div class="change" id="trac-change-6">
+                <h3 class="change">
+                  <span class="threading">
+                    <span id="comment:6" class="cnum">
+      <a href="#comment:6">comment:6</a>
+    </span>
+                  </span>
+                  Changed <a class="timeline" href="/trac/software/timeline?from=2007-12-27T17%3A14%3A40-06%3A00&amp;precision=second" title="2007-12-27T17:14:40-06:00 in Timeline">12 years</a> ago by melissa
+                </h3>
+                
+  <ul class="changes">
+    <li>
+      <strong>Status</strong>
+        changed from <em>new</em> to <em>closed</em>
+    </li><li>
+      <strong>Resolution</strong>
+        set to <em>fixed</em>
+    </li>
+  </ul>
+    <div class="comment searchable">
+      
+      <p>
+Added hooks for spectral projection in <a class="changeset" href="/trac/software/changeset/3501" title="Added sub-C labels and hooks for merging using spectral projection.
+">r3501</a>.  The option to use spectral projection is only displayed if there are more than 7 channels and "Spectra" is one of the sub-channels.
+</p>
+
+    </div>
+
+              </div>
+          </div>
+        </div>
+      <div id="help"><strong>Note:</strong> See
+        <a href="/trac/software/wiki/TracTickets">TracTickets</a> for help on using
+        tickets.</div>
+    </div>
+    <div id="altlinks">
+      <h3>Download in other formats:</h3>
+      <ul>
+        <li class="first">
+          <a rel="nofollow" href="/trac/software/ticket/5?format=csv" class="csv">Comma-delimited Text</a>
+        </li><li>
+          <a rel="nofollow" href="/trac/software/ticket/5?format=tab" class="tab">Tab-delimited Text</a>
+        </li><li class="last">
+          <a rel="nofollow" href="/trac/software/ticket/5?format=rss" class="rss">RSS Feed</a>
+        </li>
+      </ul>
+    </div>
+    </div>
+    <div id="footer" lang="en" xml:lang="en"><hr />
+      <a id="tracpowered" href="http://trac.edgewall.org/"><img src="/trac/software/chrome/common/trac_logo_mini.png" height="30" width="107" alt="Trac Powered" /></a>
+      <p class="left">Powered by <a href="/trac/software/about"><strong>Trac 0.12.2</strong></a><br />
+        By <a href="http://www.edgewall.org/">Edgewall Software</a>.</p>
+      <p class="right">Visit the LOCI software web site at<br /><a href="http://loci.wisc.edu/software/">http://loci.wisc.edu/software/</a></p>
+    </div>
+  </body>
+</html>

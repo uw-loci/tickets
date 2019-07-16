@@ -1,0 +1,338 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  
+  
+
+  
+  <!-- See: http://trac.edgewall.org/wiki/TracInterfaceCustomization -->
+
+
+  <head>
+    <title>
+      #421 (Feedback 853: flex reader finds other directories)
+     – LOCI Software
+    </title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <link rel="search" href="/trac/software/search" />
+        <link rel="prev" href="/trac/software/ticket/420" title="Ticket #420" />
+        <link rel="last" href="/trac/software/ticket/822" title="Ticket #822" />
+        <link rel="help" href="/trac/software/wiki/TracGuide" />
+        <link rel="alternate" href="/trac/software/ticket/421?format=csv" type="text/csv" class="csv" title="Comma-delimited Text" /><link rel="alternate" href="/trac/software/ticket/421?format=tab" type="text/tab-separated-values" class="tab" title="Tab-delimited Text" /><link rel="alternate" href="/trac/software/ticket/421?format=rss" type="application/rss+xml" class="rss" title="RSS Feed" />
+        <link rel="next" href="/trac/software/ticket/422" title="Ticket #422" />
+        <link rel="start" href="/trac/software/wiki" />
+        <link rel="stylesheet" href="/trac/software/chrome/common/css/trac.css" type="text/css" /><link rel="stylesheet" href="/trac/software/chrome/common/css/ticket.css" type="text/css" />
+        <link rel="first" href="/trac/software/ticket/1" title="Ticket #1" />
+        <link rel="shortcut icon" href="/trac/software/chrome/common/trac.ico" type="image/x-icon" />
+        <link rel="icon" href="/trac/software/chrome/common/trac.ico" type="image/x-icon" />
+      <link type="application/opensearchdescription+xml" rel="search" href="/trac/software/search/opensearch" title="Search LOCI Software" />
+    <script type="text/javascript">
+      var auto_preview_timeout=2.0;
+      var form_token="96a59c6d0fb2555cf3358463";
+    </script>
+    <script type="text/javascript" src="/trac/software/chrome/common/js/jquery.js"></script><script type="text/javascript" src="/trac/software/chrome/common/js/babel.js"></script><script type="text/javascript" src="/trac/software/chrome/common/js/trac.js"></script><script type="text/javascript" src="/trac/software/chrome/common/js/search.js"></script><script type="text/javascript" src="/trac/software/chrome/common/js/folding.js"></script><script type="text/javascript" src="/trac/software/chrome/common/js/wikitoolbar.js"></script><script type="text/javascript" src="/trac/software/chrome/common/js/resizer.js"></script><script type="text/javascript" src="/trac/software/chrome/common/js/auto_preview.js"></script>
+    <!--[if lt IE 7]>
+    <script type="text/javascript" src="/trac/software/chrome/common/js/ie_pre7_hacks.js"></script>
+    <![endif]-->
+    <script type="text/javascript">
+      jQuery(document).ready(function($) {
+        $("div.description").find("h1,h2,h3,h4,h5,h6").addAnchor(_("Link to this section"));
+        $(".foldable").enableFolding(false, true);
+        var args = {realm: "ticket", id: 421, escape_newlines: 0}
+        $("#comment").autoPreview("/trac/software/wiki_render", args, function(textarea, text, rendered) {
+            $("#ticketchange div.comment").html(rendered);
+            if (rendered)
+              $("#ticketchange").show();
+            else if ($("#ticketchange ul.changes").length == 0)
+              $("#ticketchange").hide();
+        });
+        $("#trac-comment-editor textarea").autoPreview("/trac/software/wiki_render", args,
+                                                       function(textarea, text, rendered) {
+          var comment = $("#trac-comment-editor").next("div.comment");
+          comment.html(rendered);
+          if (rendered)
+            comment.show();
+          else
+            comment.hide();
+        });
+        $("#modify").parent().toggleClass("collapsed");
+        $(".trac-topnav a").click(function() { $("#modify").parent().removeClass("collapsed"); });
+        /* only enable control elements for the currently selected action */
+        var actions = $("#action input[name='action']");
+        function updateActionFields() {
+          actions.each(function () {
+            $(this).siblings().find("*[id]").enable($(this).checked());
+            $(this).siblings().filter("*[id]").enable($(this).checked());
+          });
+        }
+        actions.click(updateActionFields);
+        updateActionFields();
+      });
+    </script>
+    <link rel="stylesheet" type="text/css" href="/trac/software/chrome/site/style.css" />
+  </head>
+  <body>
+    <div id="banner">
+      <div id="header">
+        <a id="logo" href="http://loci.wisc.edu/"><img src="http://loci.wisc.edu/loci-logo.png" alt="LOCI" height="98" width="300" /></a>
+      </div>
+      <form id="search" action="/trac/software/search" method="get">
+        <div>
+          <label for="proj-search">Search:</label>
+          <input type="text" id="proj-search" name="q" size="18" value="" />
+          <input type="submit" value="Search" />
+        </div>
+      </form>
+      <div id="metanav" class="nav">
+    <ul>
+      <li class="first"><a href="/trac/software/login">Login</a></li><li><a href="/trac/software/wiki/TracGuide">Help/Guide</a></li><li><a href="/trac/software/about">About Trac</a></li><li><a href="/trac/software/prefs">Preferences</a></li><li class="last"><a href="/trac/software/reset_password">Forgot your password?</a></li>
+    </ul>
+  </div>
+    </div>
+    <div id="mainnav" class="nav">
+    <ul>
+      <li class="first"><a href="/trac/software/wiki">Wiki</a></li><li><a href="/trac/software/timeline">Timeline</a></li><li><a href="/trac/software/roadmap">Roadmap</a></li><li><a href="/trac/software/browser">Browse Source</a></li><li class="active"><a href="/trac/software/report">View Tickets</a></li><li class="last"><a href="/trac/software/search">Search</a></li>
+    </ul>
+  </div>
+    <div id="main">
+      <div id="ctxtnav" class="nav">
+        <h2>Context Navigation</h2>
+          <ul>
+              <li class="first"><span>&larr; <a class="prev" href="/trac/software/ticket/420" title="Ticket #420">Previous Ticket</a></span></li><li class="last"><span><a class="next" href="/trac/software/ticket/422" title="Ticket #422">Next Ticket</a> &rarr;</span></li>
+          </ul>
+        <hr />
+      </div>
+    <div id="content" class="ticket">
+      <h1 id="trac-ticket-title">
+          <a href="/trac/software/ticket/421">Ticket #421</a>
+          <span class="status">(closed defect: invalid)</span>
+      </h1>
+      <div id="ticket">
+  <div class="date">
+    <p>Opened <a class="timeline" href="/trac/software/timeline?from=2009-10-14T04%3A18%3A26-05%3A00&amp;precision=second" title="2009-10-14T04:18:26-05:00 in Timeline">10 years</a> ago</p>
+    <p>Last modified <a class="timeline" href="/trac/software/timeline?from=2010-08-23T09%3A30%3A45-05%3A00&amp;precision=second" title="2010-08-23T09:30:45-05:00 in Timeline">9 years</a> ago</p>
+  </div>
+  <h2 class="summary searchable">Feedback 853: flex reader finds other directories</h2>
+  <table class="properties">
+    <tr>
+      <th id="h_reporter">Reported by:</th>
+      <td headers="h_reporter" class="searchable">
+        <a href="/trac/software/query?status=!closed&amp;reporter=omero-qa">omero-qa</a>
+      </td>
+      <th id="h_owner">Owned by:</th>
+      <td headers="h_owner">
+        <a href="/trac/software/query?status=!closed&amp;owner=melissa">melissa</a>
+      </td>
+    </tr>
+    <tr>
+        <th id="h_priority">
+          Priority:
+        </th>
+        <td headers="h_priority">
+              <a href="/trac/software/query?status=!closed&amp;priority=critical">critical</a>
+        </td>
+        <th id="h_milestone">
+          Milestone:
+        </th>
+        <td headers="h_milestone">
+              <a class="missing milestone"></a>
+        </td>
+    </tr><tr>
+        <th id="h_component">
+          Component:
+        </th>
+        <td headers="h_component">
+              <a href="/trac/software/query?status=!closed&amp;component=from+QA">from QA</a>
+        </td>
+        <th id="h_severity">
+          Severity:
+        </th>
+        <td headers="h_severity">
+              <a href="/trac/software/query?status=!closed&amp;severity=serious">serious</a>
+        </td>
+    </tr><tr>
+        <th id="h_keywords">
+          Keywords:
+        </th>
+        <td headers="h_keywords" class="searchable">
+        </td>
+        <th id="h_cc">
+          Cc:
+        </th>
+        <td headers="h_cc" class="searchable">
+              josh.moore@…
+        </td>
+    </tr><tr>
+        <th id="h_blockedby">
+          Blocked By:
+        </th>
+        <td headers="h_blockedby">
+        </td>
+        <th id="h_blocking">
+          Blocking:
+        </th>
+        <td headers="h_blocking">
+        </td>
+    </tr>
+  </table>
+  <div class="description">
+    <h3 id="comment:description">
+      Description
+    </h3>
+    <div class="searchable">
+      <p>
+<a class="ext-link" href="http://qa.openmicroscopy.org.uk/qa/feedback/853/"><span class="icon"> </span>http://qa.openmicroscopy.org.uk/qa/feedback/853/</a>
+</p>
+
+    </div>
+  </div>
+</div>
+          
+
+        <div>
+          <h2 class="foldable">Change History</h2>
+          <div id="changelog">
+              <div class="change" id="trac-change-1">
+                <h3 class="change">
+                  <span class="threading">
+                    <span id="comment:1" class="cnum">
+      <a href="#comment:1">comment:1</a>
+    </span>
+                  </span>
+                  Changed <a class="timeline" href="/trac/software/timeline?from=2010-01-19T15%3A13%3A49-06%3A00&amp;precision=second" title="2010-01-19T15:13:49-06:00 in Timeline">9 years</a> ago by melissa
+                </h3>
+                
+    <div class="comment searchable">
+      
+      <p>
+Comment from the feedback:
+</p>
+<pre class="wiki">Flex reader seems to get confused.
+I've copied mea/res files to my Desktop for 12133945. My server maps are configured. But for some reason, other directories on my desktop (Here "Flex 3D") are found.
+2009-10-14 10:14:23,902 1044664 [2-thread-1] DEBUG loci.common.Log - 1255511663902: java.lang.Thread: findFiles(C:\Documents and Settings\hudson.GRE-MPORTER\Desktop\12133945\Meas_01\Meas_01(2009-08-26_19-24-59).mea)
+2009-10-14 10:14:23,902 1044664 [2-thread-1] DEBUG loci.common.Log - 1255511663902: java.lang.Thread: Looking for files with the suffix 'flex' or 'res'.
+2009-10-14 10:14:23,902 1044664 [2-thread-1] DEBUG loci.common.Log - 1255511663902: java.lang.Thread: Looking for files in C:\Documents and Settings\hudson.GRE-MPORTER\Desktop\12133945\Meas_01
+2009-10-14 10:14:23,902 1044664 [2-thread-1] DEBUG loci.common.Log - 1255511663902: java.lang.Thread: Found file C:\Documents and Settings\hudson.GRE-MPORTER\Desktop\12133945\Meas_01\An_01_Me01_12133945(2009-08-26_19-24-59).res
+2009-10-14 10:14:23,902 1044664 [2-thread-1] DEBUG loci.common.Log - 1255511663902: java.lang.Thread: Found file C:\Documents and Settings\hudson.GRE-MPORTER\Desktop\12133945\Meas_01\An_02_Me01_12133945(2009-08-26_19-24-59).res
+2009-10-14 10:14:23,902 1044664 [2-thread-1] DEBUG loci.common.Log - 1255511663902: java.lang.Thread: Checking to see if at least one file with each suffix was found...
+2009-10-14 10:14:23,902 1044664 [2-thread-1] DEBUG loci.common.Log - 1255511663902: java.lang.Thread: Did not find required files.
+2009-10-14 10:14:23,918 1044680 [2-thread-1] DEBUG loci.common.Log - 1255511663918: java.lang.Thread: Looking for files in C:\Documents and Settings\hudson.GRE-MPORTER\Desktop\12133945
+2009-10-14 10:14:23,918 1044680 [2-thread-1] DEBUG loci.common.Log - 1255511663918: java.lang.Thread: First attempt at finding measurement file directory failed. Looking for an appropriate measurement directory in C:\Documents and Settings\hudson.GRE-MPORTER\Desktop.
+2009-10-14 10:14:23,918 1044680 [2-thread-1] DEBUG loci.common.Log - 1255511663918: java.lang.Thread: Expect measurement files to be in C:\Documents and Settings\hudson.GRE-MPORTER\Desktop\Flex 3D
+2009-10-14 10:14:23,918 1044680 [2-thread-1] DEBUG loci.common.Log - 1255511663918: java.lang.Thread: Measurement files are in a subdirectory of C:\Documents and Settings\hudson.GRE-MPORTER\Desktop\Flex 3D
+2009-10-14 10:14:23,918 1044680 [2-thread-1] DEBUG loci.common.Log - 1255511663918: java.lang.Thread: Determining which subdirectory contains the measurements for plate Meas_01
+2009-10-14 10:14:23,918 1044680 [2-thread-1] DEBUG loci.common.Log - 1255511663918: java.lang.Thread: Checking Meas_01
+2009-10-14 10:14:23,918 1044680 [2-thread-1] DEBUG loci.common.Log - 1255511663918: java.lang.Thread: Measurement files are in C:\Documents and Settings\hudson.GRE-MPORTER\Desktop\Flex 3D\Meas_01
+2009-10-14 10:14:23,934 1044696 [2-thread-1] DEBUG loci.common.Log - 1255511663934: java.lang.Thread: Returning file list:
+2009-10-14 10:14:23,934 1044696 [2-thread-1] DEBUG loci.common.Log - 1255511663934: java.lang.Thread: C:\Documents and Settings\hudson.GRE-MPORTER\Desktop\12133945\Meas_01\An_01_Me01_12133945(2009-08-26_19-24-59).res
+2009-10-14 10:14:23,934 1044696 [2-thread-1] DEBUG loci.common.Log - 1255511663934: java.lang.Thread: C:\Documents and Settings\hudson.GRE-MPORTER\Desktop\12133945\Meas_01\An_02_Me01_12133945(2009-08-26_19-24-59).res
+2009-10-14 10:14:23,934 1044696 [2-thread-1] DEBUG loci.common.Log - 1255511663934: java.lang.Thread: C:\Documents and Settings\hudson.GRE-MPORTER\Desktop\Flex 3D\Meas_01\Analysis_01.apr
+2009-10-14 10:14:23,934 1044696 [2-thread-1] DEBUG loci.common.Log - 1255511663934: java.lang.Thread: C:\Documents and Settings\hudson.GRE-MPORTER\Desktop\Flex 3D\Meas_01\An_01_Me01_20090618-onco-04(2009-06-18_16-46-32).res
+2009-10-14 10:14:23,934 1044696 [2-thread-1] DEBUG loci.common.Log - 1255511663934: java.lang.Thread: C:\Documents and Settings\hudson.GRE-MPORTER\Desktop\Flex 3D\Meas_01\Meas_01(2009-06-18_16-46-32).cpr
+2009-10-14 10:14:23,934 1044696 [2-thread-1] DEBUG loci.common.Log - 1255511663934: java.lang.Thread: C:\Documents and Settings\hudson.GRE-MPORTER\Desktop\Flex 3D\Meas_01\Meas_01(2009-06-18_16-46-32).mea
+2009-10-14 10:14:23,949 1044711 [2-thread-1] ERROR importer.gui.ErrorHandler$MyErrorHandler - FILE_EXCEPTION: C:\Documents and Settings\hudson.GRE-MPORTER\Desktop\12133945\Meas_01\Meas_01(2009-08-26_19-24-59).mea
+loci.formats.FormatException: .flex files were not found. Did you forget to specify the server names?
+at loci.formats.in.FlexReader.initMeaFile(FlexReader.java:300)
+at loci.formats.in.FlexReader.initFile(FlexReader.java:256)
+at loci.formats.FormatReader.setId(FormatReader.java:366)
+at loci.formats.ImageReader.setId(ImageReader.java:588)
+at loci.formats.ReaderWrapper.setId(ReaderWrapper.java:155)
+at loci.formats.ChannelFiller.setId(ChannelFiller.java:177)
+at loci.formats.ReaderWrapper.setId(ReaderWrapper.java:155)
+at loci.formats.ChannelSeparator.setId(ChannelSeparator.java:101)
+at loci.formats.ReaderWrapper.setId(ReaderWrapper.java:155)
+at ome.formats.importer.ImportLibrary.open(ImportLibrary.java:185)
+at ome.formats.importer.ImportLibrary.importImage(ImportLibrary.java:281)
+at ome.formats.importer.gui.ImportHandler.importImages(ImportHandler.java:182)
+at ome.formats.importer.gui.ImportHandler.access$100(ImportHandler.java:45)
+at ome.formats.importer.gui.ImportHandler$2.run(ImportHandler.java:97)
+at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:441)
+at java.util.concurrent.FutureTask$Sync.innerRun(FutureTask.java:303)
+at java.util.concurrent.FutureTask.run(FutureTask.java:138)
+at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$301(ScheduledThreadPoolExecutor.java:98)
+at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:207)
+at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:885)
+at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:907)
+at java.lang.Thread.run(Thread.java:619)
+2009-10-14 10:14:23,949 1044711 [2-thread-1] ERROR e.formats.importer.gui.GuiCommonElements - Couldn't find icon: null
+2009-10-14 10:14:23,949 1044711 [2-thread-1] ERROR e.formats.importer.gui.GuiCommonElements - Couldn't find icon: null
+2009-10-14 10:14:23,949 1044711 [2-thread-1] DEBUG ome.formats.OMEROMetadataStoreClient - Creating root!
+2009-10-14 10:14:23,980 1044742 [2-thread-1] ERROR ome.formats.importer.gui.ImportHandler - Format exception while importing image.
+loci.formats.FormatException: .flex files were not found. Did you forget to specify the server names?
+at loci.formats.in.FlexReader.initMeaFile(FlexReader.java:300)
+at loci.formats.in.FlexReader.initFile(FlexReader.java:256)
+at loci.formats.FormatReader.setId(FormatReader.java:366)
+at loci.formats.ImageReader.setId(ImageReader.java:588)
+at loci.formats.ReaderWrapper.setId(ReaderWrapper.java:155)
+at loci.formats.ChannelFiller.setId(ChannelFiller.java:177)
+at loci.formats.ReaderWrapper.setId(ReaderWrapper.java:155)
+at loci.formats.ChannelSeparator.setId(ChannelSeparator.java:101)
+at loci.formats.ReaderWrapper.setId(ReaderWrapper.java:155)
+at ome.formats.importer.ImportLibrary.open(ImportLibrary.java:185)
+at ome.formats.importer.ImportLibrary.importImage(ImportLibrary.java:281)
+at ome.formats.importer.gui.ImportHandler.importImages(ImportHandler.java:182)
+at ome.formats.importer.gui.ImportHandler.access$100(ImportHandler.java:45)
+at ome.formats.importer.gui.ImportHandler$2.run(ImportHandler.java:97)
+at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:441)
+at java.util.concurrent.FutureTask$Sync.innerRun(FutureTask.java:303)
+at java.util.concurrent.FutureTask.run(FutureTask.java:138)
+at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$301(ScheduledThreadPoolExecutor.java:98)
+at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:207)
+at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:885)
+at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:907)
+at java.lang.Thread.run(Thread.java:619)
+</pre>
+    </div>
+
+              </div>
+              <div class="change" id="trac-change-2">
+                <h3 class="change">
+                  <span class="threading">
+                    <span id="comment:2" class="cnum">
+      <a href="#comment:2">comment:2</a>
+    </span>
+                  </span>
+                  Changed <a class="timeline" href="/trac/software/timeline?from=2010-08-23T09%3A30%3A45-05%3A00&amp;precision=second" title="2010-08-23T09:30:45-05:00 in Timeline">9 years</a> ago by melissa
+                </h3>
+                
+  <ul class="changes">
+    <li>
+      <strong>Status</strong>
+        changed from <em>new</em> to <em>closed</em>
+    </li><li>
+      <strong>Resolution</strong>
+        set to <em>invalid</em>
+    </li>
+  </ul>
+    <div class="comment searchable">
+      
+      
+    </div>
+
+              </div>
+          </div>
+        </div>
+      <div id="help"><strong>Note:</strong> See
+        <a href="/trac/software/wiki/TracTickets">TracTickets</a> for help on using
+        tickets.</div>
+    </div>
+    <div id="altlinks">
+      <h3>Download in other formats:</h3>
+      <ul>
+        <li class="first">
+          <a rel="nofollow" href="/trac/software/ticket/421?format=csv" class="csv">Comma-delimited Text</a>
+        </li><li>
+          <a rel="nofollow" href="/trac/software/ticket/421?format=tab" class="tab">Tab-delimited Text</a>
+        </li><li class="last">
+          <a rel="nofollow" href="/trac/software/ticket/421?format=rss" class="rss">RSS Feed</a>
+        </li>
+      </ul>
+    </div>
+    </div>
+    <div id="footer" lang="en" xml:lang="en"><hr />
+      <a id="tracpowered" href="http://trac.edgewall.org/"><img src="/trac/software/chrome/common/trac_logo_mini.png" height="30" width="107" alt="Trac Powered" /></a>
+      <p class="left">Powered by <a href="/trac/software/about"><strong>Trac 0.12.2</strong></a><br />
+        By <a href="http://www.edgewall.org/">Edgewall Software</a>.</p>
+      <p class="right">Visit the LOCI software web site at<br /><a href="http://loci.wisc.edu/software/">http://loci.wisc.edu/software/</a></p>
+    </div>
+  </body>
+</html>

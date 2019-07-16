@@ -1,0 +1,488 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  
+  
+
+  
+  <!-- See: http://trac.edgewall.org/wiki/TracInterfaceCustomization -->
+
+
+  <head>
+    <title>
+      #40 (AVI writer produces incorrect video files)
+     – LOCI Software
+    </title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <link rel="search" href="/trac/software/search" />
+        <link rel="prev" href="/trac/software/ticket/39" title="Ticket #39" />
+        <link rel="last" href="/trac/software/ticket/822" title="Ticket #822" />
+        <link rel="help" href="/trac/software/wiki/TracGuide" />
+        <link rel="alternate" href="/trac/software/ticket/40?format=csv" type="text/csv" class="csv" title="Comma-delimited Text" /><link rel="alternate" href="/trac/software/ticket/40?format=tab" type="text/tab-separated-values" class="tab" title="Tab-delimited Text" /><link rel="alternate" href="/trac/software/ticket/40?format=rss" type="application/rss+xml" class="rss" title="RSS Feed" />
+        <link rel="next" href="/trac/software/ticket/41" title="Ticket #41" />
+        <link rel="start" href="/trac/software/wiki" />
+        <link rel="stylesheet" href="/trac/software/chrome/common/css/trac.css" type="text/css" /><link rel="stylesheet" href="/trac/software/chrome/common/css/ticket.css" type="text/css" />
+        <link rel="first" href="/trac/software/ticket/1" title="Ticket #1" />
+        <link rel="shortcut icon" href="/trac/software/chrome/common/trac.ico" type="image/x-icon" />
+        <link rel="icon" href="/trac/software/chrome/common/trac.ico" type="image/x-icon" />
+      <link type="application/opensearchdescription+xml" rel="search" href="/trac/software/search/opensearch" title="Search LOCI Software" />
+    <script type="text/javascript">
+      var auto_preview_timeout=2.0;
+      var form_token="462c5e109e7649618dbe8bbd";
+    </script>
+    <script type="text/javascript" src="/trac/software/chrome/common/js/jquery.js"></script><script type="text/javascript" src="/trac/software/chrome/common/js/babel.js"></script><script type="text/javascript" src="/trac/software/chrome/common/js/trac.js"></script><script type="text/javascript" src="/trac/software/chrome/common/js/search.js"></script><script type="text/javascript" src="/trac/software/chrome/common/js/folding.js"></script><script type="text/javascript" src="/trac/software/chrome/common/js/wikitoolbar.js"></script><script type="text/javascript" src="/trac/software/chrome/common/js/resizer.js"></script><script type="text/javascript" src="/trac/software/chrome/common/js/auto_preview.js"></script>
+    <!--[if lt IE 7]>
+    <script type="text/javascript" src="/trac/software/chrome/common/js/ie_pre7_hacks.js"></script>
+    <![endif]-->
+    <script type="text/javascript">
+      jQuery(document).ready(function($) {
+        $("div.description").find("h1,h2,h3,h4,h5,h6").addAnchor(_("Link to this section"));
+        $(".foldable").enableFolding(false, true);
+        var args = {realm: "ticket", id: 40, escape_newlines: 0}
+        $("#comment").autoPreview("/trac/software/wiki_render", args, function(textarea, text, rendered) {
+            $("#ticketchange div.comment").html(rendered);
+            if (rendered)
+              $("#ticketchange").show();
+            else if ($("#ticketchange ul.changes").length == 0)
+              $("#ticketchange").hide();
+        });
+        $("#trac-comment-editor textarea").autoPreview("/trac/software/wiki_render", args,
+                                                       function(textarea, text, rendered) {
+          var comment = $("#trac-comment-editor").next("div.comment");
+          comment.html(rendered);
+          if (rendered)
+            comment.show();
+          else
+            comment.hide();
+        });
+        $("#modify").parent().toggleClass("collapsed");
+        $(".trac-topnav a").click(function() { $("#modify").parent().removeClass("collapsed"); });
+        /* only enable control elements for the currently selected action */
+        var actions = $("#action input[name='action']");
+        function updateActionFields() {
+          actions.each(function () {
+            $(this).siblings().find("*[id]").enable($(this).checked());
+            $(this).siblings().filter("*[id]").enable($(this).checked());
+          });
+        }
+        actions.click(updateActionFields);
+        updateActionFields();
+      });
+    </script>
+    <link rel="stylesheet" type="text/css" href="/trac/software/chrome/site/style.css" />
+  </head>
+  <body>
+    <div id="banner">
+      <div id="header">
+        <a id="logo" href="http://loci.wisc.edu/"><img src="http://loci.wisc.edu/loci-logo.png" alt="LOCI" height="98" width="300" /></a>
+      </div>
+      <form id="search" action="/trac/software/search" method="get">
+        <div>
+          <label for="proj-search">Search:</label>
+          <input type="text" id="proj-search" name="q" size="18" value="" />
+          <input type="submit" value="Search" />
+        </div>
+      </form>
+      <div id="metanav" class="nav">
+    <ul>
+      <li class="first"><a href="/trac/software/login">Login</a></li><li><a href="/trac/software/wiki/TracGuide">Help/Guide</a></li><li><a href="/trac/software/about">About Trac</a></li><li><a href="/trac/software/prefs">Preferences</a></li><li class="last"><a href="/trac/software/reset_password">Forgot your password?</a></li>
+    </ul>
+  </div>
+    </div>
+    <div id="mainnav" class="nav">
+    <ul>
+      <li class="first"><a href="/trac/software/wiki">Wiki</a></li><li><a href="/trac/software/timeline">Timeline</a></li><li><a href="/trac/software/roadmap">Roadmap</a></li><li><a href="/trac/software/browser">Browse Source</a></li><li class="active"><a href="/trac/software/report">View Tickets</a></li><li class="last"><a href="/trac/software/search">Search</a></li>
+    </ul>
+  </div>
+    <div id="main">
+      <div id="ctxtnav" class="nav">
+        <h2>Context Navigation</h2>
+          <ul>
+              <li class="first"><span>&larr; <a class="prev" href="/trac/software/ticket/39" title="Ticket #39">Previous Ticket</a></span></li><li class="last"><span><a class="next" href="/trac/software/ticket/41" title="Ticket #41">Next Ticket</a> &rarr;</span></li>
+          </ul>
+        <hr />
+      </div>
+    <div id="content" class="ticket">
+      <h1 id="trac-ticket-title">
+          <a href="/trac/software/ticket/40">Ticket #40</a>
+          <span class="status">(closed defect: fixed)</span>
+      </h1>
+      <div id="ticket">
+  <div class="date">
+    <p>Opened <a class="timeline" href="/trac/software/timeline?from=2007-03-19T12%3A12%3A50-05%3A00&amp;precision=second" title="2007-03-19T12:12:50-05:00 in Timeline">12 years</a> ago</p>
+    <p>Last modified <a class="timeline" href="/trac/software/timeline?from=2007-03-22T09%3A25%3A21-05%3A00&amp;precision=second" title="2007-03-22T09:25:21-05:00 in Timeline">12 years</a> ago</p>
+  </div>
+  <h2 class="summary searchable">AVI writer produces incorrect video files</h2>
+  <table class="properties">
+    <tr>
+      <th id="h_reporter">Reported by:</th>
+      <td headers="h_reporter" class="searchable">
+        <a href="/trac/software/query?status=!closed&amp;reporter=curtis">curtis</a>
+      </td>
+      <th id="h_owner">Owned by:</th>
+      <td headers="h_owner">
+        <a href="/trac/software/query?status=!closed&amp;owner=melissa">melissa</a>
+      </td>
+    </tr>
+    <tr>
+        <th id="h_priority">
+          Priority:
+        </th>
+        <td headers="h_priority">
+              <a href="/trac/software/query?status=!closed&amp;priority=minor">minor</a>
+        </td>
+        <th id="h_milestone">
+          Milestone:
+        </th>
+        <td headers="h_milestone">
+              <a class="missing milestone"></a>
+        </td>
+    </tr><tr>
+        <th id="h_component">
+          Component:
+        </th>
+        <td headers="h_component">
+              <a href="/trac/software/query?status=!closed&amp;component=bio-formats">bio-formats</a>
+        </td>
+        <th id="h_severity">
+          Severity:
+        </th>
+        <td headers="h_severity">
+              <a href="/trac/software/query?status=!closed&amp;severity"></a>
+        </td>
+    </tr><tr>
+        <th id="h_keywords">
+          Keywords:
+        </th>
+        <td headers="h_keywords" class="searchable">
+        </td>
+        <th id="h_cc">
+          Cc:
+        </th>
+        <td headers="h_cc" class="searchable">
+        </td>
+    </tr><tr>
+        <th id="h_blockedby">
+          Blocked By:
+        </th>
+        <td headers="h_blockedby">
+        </td>
+        <th id="h_blocking">
+          Blocking:
+        </th>
+        <td headers="h_blocking">
+        </td>
+    </tr>
+  </table>
+  <div class="description">
+    <h3 id="comment:description">
+      Description
+      <span class="lastmod" title="2007-03-19 17:13:44+00:00">
+        (last modified by curtis)
+        (<a href="/trac/software/ticket/40?action=diff&amp;version=1">diff</a>)
+      </span>
+    </h3>
+    <div class="searchable">
+      <p>
+The AVI writer sometimes produces videos that are skewed or scrambled. The code was originally adapted from the ImageJ <tt>AVI_Writer</tt> plugin, which does not seem to suffer from the problem (though I have not recently verified that it works properly either). I have compared the two implementations, but was unable to determine what would cause this discrepancy, so the bug is something of a mystery.
+</p>
+<p>
+For an example, open <tt>data/tiff/mri-stack.tif</tt> into the Bio-Formats viewer, and File&gt;Save to <tt>mri-stack.avi</tt>. The video file will be extremely skewed with many video players (I tested in Totem with the totem-gstreamer engine). The video will appear more reasonable when opened with the Bio-Formats Importer, but still slightly corrupted, especially towards the later frames at the top of the image.
+</p>
+
+    </div>
+  </div>
+</div>
+          
+    <div id="attachments">
+        <h2 class="foldable">Attachments</h2>
+        <div>
+          <dl class="attachments">
+              <dt>
+    <a href="/trac/software/attachment/ticket/40/gspot.jpg" title="View attachment">gspot.jpg</a>
+      <a href="/trac/software/raw-attachment/ticket/40/gspot.jpg" class="trac-rawlink" title="Download"><img src="/trac/software/chrome/common/download.png" alt="Download" /></a>
+       (<span title="186483 bytes">182.1 KB</span>) -
+      added by <em>curtis</em> <a class="timeline" href="/trac/software/timeline?from=2007-03-21T13%3A33%3A29-05%3A00&amp;precision=second" title="2007-03-21T13:33:29-05:00 in Timeline">12 years</a> ago.
+  </dt>
+              <dd>
+                Comparison of video encoded with ImageJ vs Bio-Formats in GSpot codec identification software
+              </dd>
+          </dl>
+          
+        </div>
+    </div>
+
+        <div>
+          <h2 class="foldable">Change History</h2>
+          <div id="changelog">
+              <div class="change" id="trac-change-1">
+                <h3 class="change">
+                  <span class="threading">
+                    <span id="comment:1" class="cnum">
+      <a href="#comment:1">comment:1</a>
+    </span>
+                  </span>
+                  Changed <a class="timeline" href="/trac/software/timeline?from=2007-03-19T12%3A13%3A44-05%3A00&amp;precision=second" title="2007-03-19T12:13:44-05:00 in Timeline">12 years</a> ago by curtis
+                </h3>
+                
+  <ul class="changes">
+    <li>
+      <strong>Description</strong>
+        modified (<a href="/trac/software/ticket/40?action=diff&amp;version=1">diff</a>)
+    </li>
+  </ul>
+    <div class="comment searchable">
+      
+      
+    </div>
+
+              </div>
+              <div class="change" id="trac-change-2">
+                <h3 class="change">
+                  <span class="threading">
+                    <span id="comment:2" class="cnum">
+      <a href="#comment:2">comment:2</a>
+    </span>
+                  </span>
+                  Changed <a class="timeline" href="/trac/software/timeline?from=2007-03-19T15%3A25%3A20-05%3A00&amp;precision=second" title="2007-03-19T15:25:20-05:00 in Timeline">12 years</a> ago by melissa
+                </h3>
+                
+  <ul class="changes">
+    <li>
+      <strong>Status</strong>
+        changed from <em>new</em> to <em>closed</em>
+    </li><li>
+      <strong>Resolution</strong>
+        set to <em>fixed</em>
+    </li>
+  </ul>
+    <div class="comment searchable">
+      
+      <p>
+This was a bug in the AVI reader (not the writer); see <a class="changeset" href="/trac/software/changeset/2483" title="Fixed AVI reader bug; simplified some logic in the AVI writer.
+">r2483</a>.
+</p>
+<p>
+Totem (xine engine) still does not display the AVI file generated from data/tiff/mri-stack.tif (using Bio-Formats or AVI_Writer).  However, the following movie players display this file correctly:
+</p>
+<p>
+Bio-Formats<br />
+mplayer<br />
+xine<br />
+QuickTime (on Mac OS X)
+</p>
+<p>
+Seems to me like this is a bug in Totem, but feel free to reopen if I'm missing something.
+</p>
+
+    </div>
+
+              </div>
+              <div class="change" id="trac-change-3">
+                <h3 class="change">
+                  <span class="threading">
+                    <span id="comment:3" class="cnum">
+      <a href="#comment:3">comment:3</a>
+    </span>
+                  </span>
+                  Changed <a class="timeline" href="/trac/software/timeline?from=2007-03-21T10%3A08%3A48-05%3A00&amp;precision=second" title="2007-03-21T10:08:48-05:00 in Timeline">12 years</a> ago by curtis
+                </h3>
+                
+  <ul class="changes">
+    <li>
+      <strong>Priority</strong>
+        changed from <em>major</em> to <em>minor</em>
+    </li><li>
+      <strong>Status</strong>
+        changed from <em>closed</em> to <em>reopened</em>
+    </li><li>
+      <strong>Resolution</strong>
+        <em>fixed</em> deleted
+    </li>
+  </ul>
+    <div class="comment searchable">
+      
+      <p>
+I tested with ImageJ's <a class="ext-link" href="http://rsb.info.nih.gov/ij/plugins/avi.html"><span class="icon"> </span>AVI Writer</a> plugin, and it produces a different file than Bio-Formats does with the same input data. In particular, the ImageJ-produced video plays properly in Windows Media Player, while the Bio-Formats-produced video does not.
+</p>
+<p>
+I have placed the two files in <tt>data/curtis/avi</tt> for comparison. I also added a (crappy) binary diff utility at <a class="source" href="/trac/software/browser/trunk/loci/utils/BinaryDiff.java">source:trunk/loci/utils/BinaryDiff.java</a> that does dumb byte comparison and outputs the differences. Running it on the two AVI files produces a long list of mostly off-by-1s -- maybe there is a difference in rounding somewhere? Probably the first few lines of output are the most interesting and useful.
+</p>
+<p>
+Still, both videos look scrambled with totem (including the GNOME preview, which by default uses totem to generate the thumbnails). So there seem to be two separate problems here:
+</p>
+<ol><li>Scrambled video in Totem.
+</li><li>Video does not play in Windows Media Player.
+</li></ol><p>
+The first problem could indeed be a bug in Totem. I know the videos appear incorrectly with totem-gstreamer installed. You said the BF video is also scrambled in totem-xine? If so, that does point to Totem, but I have seen many AVI thumbnails rendered with Totem, and never seen another scrambled one, leading me to believe there is something subtly wrong or at least unusual about the ImageJ and Bio-Formats AVI encoders.
+</p>
+<p>
+The second problem is most certainly a problem, since ImageJ produces videos that work properly in Media Player.
+</p>
+
+    </div>
+
+              </div>
+              <div class="change" id="trac-change-4">
+                <h3 class="change">
+                  <span class="threading">
+                    <span id="comment:4" class="cnum">
+      <a href="#comment:4">comment:4</a>
+    </span>
+                  </span>
+                  Changed <a class="timeline" href="/trac/software/timeline?from=2007-03-21T10%3A20%3A24-05%3A00&amp;precision=second" title="2007-03-21T10:20:24-05:00 in Timeline">12 years</a> ago by curtis
+                </h3>
+                
+    <div class="comment searchable">
+      
+      <p>
+Upon further investigation, the AVI_Writer plugin available from the ImageJ web site is out of date. It has since been factored into the ImageJ core. I created a third AVI with the newest version of ImageJ, and this video does <em>not</em> suffer from the Totem skew problem. There are only three bytes different between it and the AVI_Writer video, so it should be very easy to figure out how to eliminate the skew problem from the Bio-Formats AVI writer.
+</p>
+
+    </div>
+
+              </div>
+              <div class="change" id="trac-change-5">
+                <h3 class="change">
+                  <span class="threading">
+                    <span id="comment:5" class="cnum">
+      <a href="#comment:5">comment:5</a>
+    </span>
+                  </span>
+                  Changed <a class="timeline" href="/trac/software/timeline?from=2007-03-21T11%3A45%3A55-05%3A00&amp;precision=second" title="2007-03-21T11:45:55-05:00 in Timeline">12 years</a> ago by melissa
+                </h3>
+                
+    <div class="comment searchable">
+      
+      <p>
+<a class="changeset" href="/trac/software/changeset/2491" title="Fixed bug that caused skewing in Totem.
+">r2491</a> should fix the skewing problem in Totem (totem-xine, that is).  The issue was that the Bio-Formats AVI writer recorded the actual width of each plane, when it needed to record the padded width (a multiple of four).  The old AVI_Writer plugin does the same thing.
+</p>
+<p>
+I can't test with Windows Media Player, but I'm guessing Bio-Formats AVI files will now open correctly.
+</p>
+
+    </div>
+
+              </div>
+              <div class="change">
+                <h3 class="change">
+                  Changed <a class="timeline" href="/trac/software/timeline?from=2007-03-21T13%3A33%3A29-05%3A00&amp;precision=second" title="2007-03-21T13:33:29-05:00 in Timeline">12 years</a> ago by curtis
+                </h3>
+                
+  <ul class="changes">
+    <li>
+      <strong>attachment</strong>
+        <a href="/trac/software/attachment/ticket/40/gspot.jpg"><em>gspot.jpg</em></a>
+          <a href="/trac/software/raw-attachment/ticket/40/gspot.jpg" title="Download" class="trac-rawlink"><img src="/trac/software/chrome/common/download.png" alt="Download" /></a>
+          added
+    </li>
+  </ul>
+    <div class="comment searchable">
+      
+      <p>
+Comparison of video encoded with ImageJ vs Bio-Formats in GSpot codec identification software
+</p>
+
+    </div>
+
+              </div>
+              <div class="change" id="trac-change-6">
+                <h3 class="change">
+                  <span class="threading">
+                    <span id="comment:6" class="cnum">
+      <a href="#comment:6">comment:6</a>
+    </span>
+                  </span>
+                  Changed <a class="timeline" href="/trac/software/timeline?from=2007-03-21T13%3A38%3A58-05%3A00&amp;precision=second" title="2007-03-21T13:38:58-05:00 in Timeline">12 years</a> ago by curtis
+                </h3>
+                
+    <div class="comment searchable">
+      
+      <p>
+Great, the skewing problem is fixed in totem-gstreamer as well. I replaced the Bio-Formats-encoded video at <tt>data/avi/curtis/mri-stack-bf.avi</tt> with a new version reflecting the fix.
+</p>
+<p>
+However, the Bio-Formats video still does not play in Media Player, nor can Windows XP create a thumbnail. Both ImageJ-encoded videos, old and new, do have thumbnails. So something is different about the Bio-Formats encoder.
+</p>
+<p>
+I tried reading the new ImageJ video and the Bio-Formats video into the <a class="ext-link" href="http://www.headbands.com/gspot/"><span class="icon"> </span>GSpot</a> codec information and identification software, and it reports that <tt>mri-stack-bf.avi</tt> has a bad AVI header at offset 0x0ff8. See the attachment for a screenshot.
+</p>
+
+    </div>
+
+              </div>
+              <div class="change" id="trac-change-7">
+                <h3 class="change">
+                  <span class="threading">
+                    <span id="comment:7" class="cnum">
+      <a href="#comment:7">comment:7</a>
+    </span>
+                  </span>
+                  Changed <a class="timeline" href="/trac/software/timeline?from=2007-03-21T14%3A34%3A49-05%3A00&amp;precision=second" title="2007-03-21T14:34:49-05:00 in Timeline">12 years</a> ago by melissa
+                </h3>
+                
+    <div class="comment searchable">
+      
+      <p>
+Files produced using <a class="changeset" href="/trac/software/changeset/2492" title="Fixed bug causing corrupt files to be written.
+">r2492</a> look fine in GSpot.  data/avi/curtis/mri-stack-bf.avi has been replaced to reflect this fix.
+</p>
+
+    </div>
+
+              </div>
+              <div class="change" id="trac-change-8">
+                <h3 class="change">
+                  <span class="threading">
+                    <span id="comment:8" class="cnum">
+      <a href="#comment:8">comment:8</a>
+    </span>
+                  </span>
+                  Changed <a class="timeline" href="/trac/software/timeline?from=2007-03-22T09%3A25%3A21-05%3A00&amp;precision=second" title="2007-03-22T09:25:21-05:00 in Timeline">12 years</a> ago by curtis
+                </h3>
+                
+  <ul class="changes">
+    <li>
+      <strong>Status</strong>
+        changed from <em>reopened</em> to <em>closed</em>
+    </li><li>
+      <strong>Resolution</strong>
+        set to <em>fixed</em>
+    </li>
+  </ul>
+    <div class="comment searchable">
+      
+      <p>
+Woo, it plays in Media Player, too.
+</p>
+
+    </div>
+
+              </div>
+          </div>
+        </div>
+      <div id="help"><strong>Note:</strong> See
+        <a href="/trac/software/wiki/TracTickets">TracTickets</a> for help on using
+        tickets.</div>
+    </div>
+    <div id="altlinks">
+      <h3>Download in other formats:</h3>
+      <ul>
+        <li class="first">
+          <a rel="nofollow" href="/trac/software/ticket/40?format=csv" class="csv">Comma-delimited Text</a>
+        </li><li>
+          <a rel="nofollow" href="/trac/software/ticket/40?format=tab" class="tab">Tab-delimited Text</a>
+        </li><li class="last">
+          <a rel="nofollow" href="/trac/software/ticket/40?format=rss" class="rss">RSS Feed</a>
+        </li>
+      </ul>
+    </div>
+    </div>
+    <div id="footer" lang="en" xml:lang="en"><hr />
+      <a id="tracpowered" href="http://trac.edgewall.org/"><img src="/trac/software/chrome/common/trac_logo_mini.png" height="30" width="107" alt="Trac Powered" /></a>
+      <p class="left">Powered by <a href="/trac/software/about"><strong>Trac 0.12.2</strong></a><br />
+        By <a href="http://www.edgewall.org/">Edgewall Software</a>.</p>
+      <p class="right">Visit the LOCI software web site at<br /><a href="http://loci.wisc.edu/software/">http://loci.wisc.edu/software/</a></p>
+    </div>
+  </body>
+</html>

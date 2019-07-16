@@ -1,0 +1,322 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  
+  
+
+  
+  <!-- See: http://trac.edgewall.org/wiki/TracInterfaceCustomization -->
+
+
+  <head>
+    <title>
+      #32 (Java2D support is broken)
+     – LOCI Software
+    </title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <link rel="search" href="/trac/software/search" />
+        <link rel="prev" href="/trac/software/ticket/31" title="Ticket #31" />
+        <link rel="last" href="/trac/software/ticket/822" title="Ticket #822" />
+        <link rel="help" href="/trac/software/wiki/TracGuide" />
+        <link rel="alternate" href="/trac/software/ticket/32?format=csv" type="text/csv" class="csv" title="Comma-delimited Text" /><link rel="alternate" href="/trac/software/ticket/32?format=tab" type="text/tab-separated-values" class="tab" title="Tab-delimited Text" /><link rel="alternate" href="/trac/software/ticket/32?format=rss" type="application/rss+xml" class="rss" title="RSS Feed" />
+        <link rel="next" href="/trac/software/ticket/33" title="Ticket #33" />
+        <link rel="start" href="/trac/software/wiki" />
+        <link rel="stylesheet" href="/trac/software/chrome/common/css/trac.css" type="text/css" /><link rel="stylesheet" href="/trac/software/chrome/common/css/ticket.css" type="text/css" />
+        <link rel="first" href="/trac/software/ticket/1" title="Ticket #1" />
+        <link rel="shortcut icon" href="/trac/software/chrome/common/trac.ico" type="image/x-icon" />
+        <link rel="icon" href="/trac/software/chrome/common/trac.ico" type="image/x-icon" />
+      <link type="application/opensearchdescription+xml" rel="search" href="/trac/software/search/opensearch" title="Search LOCI Software" />
+    <script type="text/javascript">
+      var auto_preview_timeout=2.0;
+      var form_token="b689d4ab6b62c7e04fbd3809";
+    </script>
+    <script type="text/javascript" src="/trac/software/chrome/common/js/jquery.js"></script><script type="text/javascript" src="/trac/software/chrome/common/js/babel.js"></script><script type="text/javascript" src="/trac/software/chrome/common/js/trac.js"></script><script type="text/javascript" src="/trac/software/chrome/common/js/search.js"></script><script type="text/javascript" src="/trac/software/chrome/common/js/folding.js"></script><script type="text/javascript" src="/trac/software/chrome/common/js/wikitoolbar.js"></script><script type="text/javascript" src="/trac/software/chrome/common/js/resizer.js"></script><script type="text/javascript" src="/trac/software/chrome/common/js/auto_preview.js"></script>
+    <!--[if lt IE 7]>
+    <script type="text/javascript" src="/trac/software/chrome/common/js/ie_pre7_hacks.js"></script>
+    <![endif]-->
+    <script type="text/javascript">
+      jQuery(document).ready(function($) {
+        $("div.description").find("h1,h2,h3,h4,h5,h6").addAnchor(_("Link to this section"));
+        $(".foldable").enableFolding(false, true);
+        var args = {realm: "ticket", id: 32, escape_newlines: 0}
+        $("#comment").autoPreview("/trac/software/wiki_render", args, function(textarea, text, rendered) {
+            $("#ticketchange div.comment").html(rendered);
+            if (rendered)
+              $("#ticketchange").show();
+            else if ($("#ticketchange ul.changes").length == 0)
+              $("#ticketchange").hide();
+        });
+        $("#trac-comment-editor textarea").autoPreview("/trac/software/wiki_render", args,
+                                                       function(textarea, text, rendered) {
+          var comment = $("#trac-comment-editor").next("div.comment");
+          comment.html(rendered);
+          if (rendered)
+            comment.show();
+          else
+            comment.hide();
+        });
+        $("#modify").parent().toggleClass("collapsed");
+        $(".trac-topnav a").click(function() { $("#modify").parent().removeClass("collapsed"); });
+        /* only enable control elements for the currently selected action */
+        var actions = $("#action input[name='action']");
+        function updateActionFields() {
+          actions.each(function () {
+            $(this).siblings().find("*[id]").enable($(this).checked());
+            $(this).siblings().filter("*[id]").enable($(this).checked());
+          });
+        }
+        actions.click(updateActionFields);
+        updateActionFields();
+      });
+    </script>
+    <link rel="stylesheet" type="text/css" href="/trac/software/chrome/site/style.css" />
+  </head>
+  <body>
+    <div id="banner">
+      <div id="header">
+        <a id="logo" href="http://loci.wisc.edu/"><img src="http://loci.wisc.edu/loci-logo.png" alt="LOCI" height="98" width="300" /></a>
+      </div>
+      <form id="search" action="/trac/software/search" method="get">
+        <div>
+          <label for="proj-search">Search:</label>
+          <input type="text" id="proj-search" name="q" size="18" value="" />
+          <input type="submit" value="Search" />
+        </div>
+      </form>
+      <div id="metanav" class="nav">
+    <ul>
+      <li class="first"><a href="/trac/software/login">Login</a></li><li><a href="/trac/software/wiki/TracGuide">Help/Guide</a></li><li><a href="/trac/software/about">About Trac</a></li><li><a href="/trac/software/prefs">Preferences</a></li><li class="last"><a href="/trac/software/reset_password">Forgot your password?</a></li>
+    </ul>
+  </div>
+    </div>
+    <div id="mainnav" class="nav">
+    <ul>
+      <li class="first"><a href="/trac/software/wiki">Wiki</a></li><li><a href="/trac/software/timeline">Timeline</a></li><li><a href="/trac/software/roadmap">Roadmap</a></li><li><a href="/trac/software/browser">Browse Source</a></li><li class="active"><a href="/trac/software/report">View Tickets</a></li><li class="last"><a href="/trac/software/search">Search</a></li>
+    </ul>
+  </div>
+    <div id="main">
+      <div id="ctxtnav" class="nav">
+        <h2>Context Navigation</h2>
+          <ul>
+              <li class="first"><span>&larr; <a class="prev" href="/trac/software/ticket/31" title="Ticket #31">Previous Ticket</a></span></li><li class="last"><span><a class="next" href="/trac/software/ticket/33" title="Ticket #33">Next Ticket</a> &rarr;</span></li>
+          </ul>
+        <hr />
+      </div>
+    <div id="content" class="ticket">
+      <h1 id="trac-ticket-title">
+          <a href="/trac/software/ticket/32">Ticket #32</a>
+          <span class="status">(closed defect: wontfix)</span>
+      </h1>
+      <div id="ticket">
+  <div class="date">
+    <p>Opened <a class="timeline" href="/trac/software/timeline?from=2007-03-19T10%3A42%3A48-05%3A00&amp;precision=second" title="2007-03-19T10:42:48-05:00 in Timeline">12 years</a> ago</p>
+    <p>Last modified <a class="timeline" href="/trac/software/timeline?from=2007-04-12T14%3A36%3A31-05%3A00&amp;precision=second" title="2007-04-12T14:36:31-05:00 in Timeline">12 years</a> ago</p>
+  </div>
+  <h2 class="summary searchable">Java2D support is broken</h2>
+  <table class="properties">
+    <tr>
+      <th id="h_reporter">Reported by:</th>
+      <td headers="h_reporter" class="searchable">
+        <a href="/trac/software/query?status=!closed&amp;reporter=curtis">curtis</a>
+      </td>
+      <th id="h_owner">Owned by:</th>
+      <td headers="h_owner">
+        <a href="/trac/software/query?status=!closed&amp;owner=curtis">curtis</a>
+      </td>
+    </tr>
+    <tr>
+        <th id="h_priority">
+          Priority:
+        </th>
+        <td headers="h_priority">
+              <a href="/trac/software/query?status=!closed&amp;priority=major">major</a>
+        </td>
+        <th id="h_milestone">
+          Milestone:
+        </th>
+        <td headers="h_milestone">
+              <a class="missing milestone"></a>
+        </td>
+    </tr><tr>
+        <th id="h_component">
+          Component:
+        </th>
+        <td headers="h_component">
+              <a href="/trac/software/query?status=!closed&amp;component=visbio">visbio</a>
+        </td>
+        <th id="h_severity">
+          Severity:
+        </th>
+        <td headers="h_severity">
+              <a href="/trac/software/query?status=!closed&amp;severity"></a>
+        </td>
+    </tr><tr>
+        <th id="h_keywords">
+          Keywords:
+        </th>
+        <td headers="h_keywords" class="searchable">
+        </td>
+        <th id="h_cc">
+          Cc:
+        </th>
+        <td headers="h_cc" class="searchable">
+        </td>
+    </tr><tr>
+        <th id="h_blockedby">
+          Blocked By:
+        </th>
+        <td headers="h_blockedby">
+        </td>
+        <th id="h_blocking">
+          Blocking:
+        </th>
+        <td headers="h_blocking">
+        </td>
+    </tr>
+  </table>
+  <div class="description">
+    <h3 id="comment:description">
+      Description
+    </h3>
+    <div class="searchable">
+      <p>
+VisBio is supposed to support Java2D displays, but currently makes several calls that cause VisAD's Java2D support to blow up:
+</p>
+<pre class="wiki">visad.DisplayException: GraphicsModeControlJ2D.setTransparencyMode: bad mode
+	at visad.java2d.GraphicsModeControlJ2D.setTransparencyMode(GraphicsModeControlJ2D.java:343)
+	at loci.visbio.view.DisplayWindow.setTransparencyMode(DisplayWindow.java:212)
+	at loci.visbio.view.DisplayWindow.initState(DisplayWindow.java:315)
+	at loci.visbio.view.DisplayWindow.&lt;init&gt;(DisplayWindow.java:116)
+	at loci.visbio.view.DisplayManager.createDisplay(DisplayManager.java:107)
+	at loci.visbio.data.DataControls.doNewDisplay(DataControls.java:372)
+	at loci.visbio.help.HelpManager.checkVisualization(HelpManager.java:116)
+	at loci.visbio.help.HelpManager.doEvent(HelpManager.java:137)
+	at loci.visbio.VisBioFrame.generateEvent(VisBioFrame.java:262)
+	at loci.visbio.VisBioFrame.generateEvent(VisBioFrame.java:254)
+	at loci.visbio.data.DataManager.addData(DataManager.java:88)
+	at loci.visbio.data.DataManager.createDataset(DataManager.java:303)
+	at loci.visbio.data.DatasetPane$2.run(DatasetPane.java:292)
+visad.DisplayException: DisplayImpl.addReferences: illegal DataRenderer class
+	at visad.DisplayImpl.addReferences(DisplayImpl.java:1253)
+	at visad.DisplayImpl.addReferences(DisplayImpl.java:1212)
+	at visad.DisplayImpl.addReferences(DisplayImpl.java:1065)
+	at loci.visbio.view.TransformLink.link(TransformLink.java:159)
+	at loci.visbio.view.TransformHandler.doLinks(TransformHandler.java:369)
+	at loci.visbio.view.TransformHandler.rebuild(TransformHandler.java:463)
+	at loci.visbio.view.TransformHandler.addTransform(TransformHandler.java:121)
+	at loci.visbio.view.DisplayWindow.addTransform(DisplayWindow.java:177)
+	at loci.visbio.data.DataControls.doNewDisplay(DataControls.java:374)
+	at loci.visbio.help.HelpManager.checkVisualization(HelpManager.java:116)
+	at loci.visbio.help.HelpManager.doEvent(HelpManager.java:137)
+	at loci.visbio.VisBioFrame.generateEvent(VisBioFrame.java:262)
+	at loci.visbio.VisBioFrame.generateEvent(VisBioFrame.java:254)
+	at loci.visbio.data.DataManager.addData(DataManager.java:88)
+	at loci.visbio.data.DataManager.createDataset(DataManager.java:303)
+	at loci.visbio.data.DatasetPane$2.run(DatasetPane.java:292)
+visad.DisplayException: DisplayImpl.addReferences: illegal DataRenderer class
+	at visad.DisplayImpl.addReferences(DisplayImpl.java:1253)
+	at visad.DisplayImpl.addReferences(DisplayImpl.java:1212)
+	at visad.DisplayImpl.addReferences(DisplayImpl.java:1065)
+	at loci.visbio.view.ColorPane.setPreviewData(ColorPane.java:237)
+	at loci.visbio.view.ColorHandler.refreshPreviewData(ColorHandler.java:177)
+	at loci.visbio.view.ColorHandler.initColors(ColorHandler.java:124)
+	at loci.visbio.view.TransformHandler.rebuild(TransformHandler.java:495)
+	at loci.visbio.view.TransformHandler.addTransform(TransformHandler.java:121)
+	at loci.visbio.view.DisplayWindow.addTransform(DisplayWindow.java:177)
+	at loci.visbio.data.DataControls.doNewDisplay(DataControls.java:374)
+	at loci.visbio.help.HelpManager.checkVisualization(HelpManager.java:116)
+	at loci.visbio.help.HelpManager.doEvent(HelpManager.java:137)
+	at loci.visbio.VisBioFrame.generateEvent(VisBioFrame.java:262)
+	at loci.visbio.VisBioFrame.generateEvent(VisBioFrame.java:254)
+	at loci.visbio.data.DataManager.addData(DataManager.java:88)
+	at loci.visbio.data.DataManager.createDataset(DataManager.java:303)
+	at loci.visbio.data.DatasetPane$2.run(DatasetPane.java:292)
+</pre><p>
+The easiest way to see this problem is to change the <tt>ALLOW_JAVA3D</tt> constant in <a class="source" href="/trac/software/browser/trunk/loci/visbio/util/DisplayUtil.java">source:trunk/loci/visbio/util/DisplayUtil.java</a> to false.
+</p>
+
+    </div>
+  </div>
+</div>
+          
+
+        <div>
+          <h2 class="foldable">Change History</h2>
+          <div id="changelog">
+              <div class="change" id="trac-change-1">
+                <h3 class="change">
+                  <span class="threading">
+                    <span id="comment:1" class="cnum">
+      <a href="#comment:1">comment:1</a>
+    </span>
+                  </span>
+                  Changed <a class="timeline" href="/trac/software/timeline?from=2007-03-19T10%3A43%3A12-05%3A00&amp;precision=second" title="2007-03-19T10:43:12-05:00 in Timeline">12 years</a> ago by curtis
+                </h3>
+                
+  <ul class="changes">
+    <li>
+      <strong>Priority</strong>
+        changed from <em>critical</em> to <em>major</em>
+    </li>
+  </ul>
+    <div class="comment searchable">
+      
+      
+    </div>
+
+              </div>
+              <div class="change" id="trac-change-2">
+                <h3 class="change">
+                  <span class="threading">
+                    <span id="comment:2" class="cnum">
+      <a href="#comment:2">comment:2</a>
+    </span>
+                  </span>
+                  Changed <a class="timeline" href="/trac/software/timeline?from=2007-04-12T14%3A36%3A31-05%3A00&amp;precision=second" title="2007-04-12T14:36:31-05:00 in Timeline">12 years</a> ago by curtis
+                </h3>
+                
+  <ul class="changes">
+    <li>
+      <strong>Status</strong>
+        changed from <em>new</em> to <em>closed</em>
+    </li><li>
+      <strong>Resolution</strong>
+        set to <em>wontfix</em>
+    </li>
+  </ul>
+    <div class="comment searchable">
+      
+      <p>
+Fixed a bug setting the transparency mode for Java2D in <a class="changeset" href="/trac/software/changeset/2614" title="Avoid exception when setting transparency type for Java2D displays.
+">r2614</a>. But there is a more major problem, in that VisBio now makes use of transparency for certain data transforms, most notably overlays. To fix this problem, checks would need to be added in multiple places to behave differently if the display can support transparency vs not. It is probably too much hassle, since no one uses VisBio with Java2D anyway.
+</p>
+
+    </div>
+
+              </div>
+          </div>
+        </div>
+      <div id="help"><strong>Note:</strong> See
+        <a href="/trac/software/wiki/TracTickets">TracTickets</a> for help on using
+        tickets.</div>
+    </div>
+    <div id="altlinks">
+      <h3>Download in other formats:</h3>
+      <ul>
+        <li class="first">
+          <a rel="nofollow" href="/trac/software/ticket/32?format=csv" class="csv">Comma-delimited Text</a>
+        </li><li>
+          <a rel="nofollow" href="/trac/software/ticket/32?format=tab" class="tab">Tab-delimited Text</a>
+        </li><li class="last">
+          <a rel="nofollow" href="/trac/software/ticket/32?format=rss" class="rss">RSS Feed</a>
+        </li>
+      </ul>
+    </div>
+    </div>
+    <div id="footer" lang="en" xml:lang="en"><hr />
+      <a id="tracpowered" href="http://trac.edgewall.org/"><img src="/trac/software/chrome/common/trac_logo_mini.png" height="30" width="107" alt="Trac Powered" /></a>
+      <p class="left">Powered by <a href="/trac/software/about"><strong>Trac 0.12.2</strong></a><br />
+        By <a href="http://www.edgewall.org/">Edgewall Software</a>.</p>
+      <p class="right">Visit the LOCI software web site at<br /><a href="http://loci.wisc.edu/software/">http://loci.wisc.edu/software/</a></p>
+    </div>
+  </body>
+</html>

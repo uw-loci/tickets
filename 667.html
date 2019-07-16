@@ -1,0 +1,556 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  
+  
+
+  
+  <!-- See: http://trac.edgewall.org/wiki/TracInterfaceCustomization -->
+
+
+  <head>
+    <title>
+      #667 (Create multi-platform version of SLIM Plugin)
+     – LOCI Software
+    </title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <link rel="search" href="/trac/software/search" />
+        <link rel="prev" href="/trac/software/ticket/666" title="Ticket #666" />
+        <link rel="last" href="/trac/software/ticket/822" title="Ticket #822" />
+        <link rel="help" href="/trac/software/wiki/TracGuide" />
+        <link rel="alternate" href="/trac/software/ticket/667?format=csv" type="text/csv" class="csv" title="Comma-delimited Text" /><link rel="alternate" href="/trac/software/ticket/667?format=tab" type="text/tab-separated-values" class="tab" title="Tab-delimited Text" /><link rel="alternate" href="/trac/software/ticket/667?format=rss" type="application/rss+xml" class="rss" title="RSS Feed" />
+        <link rel="next" href="/trac/software/ticket/668" title="Ticket #668" />
+        <link rel="start" href="/trac/software/wiki" />
+        <link rel="stylesheet" href="/trac/software/chrome/common/css/trac.css" type="text/css" /><link rel="stylesheet" href="/trac/software/chrome/common/css/ticket.css" type="text/css" />
+        <link rel="first" href="/trac/software/ticket/1" title="Ticket #1" />
+        <link rel="shortcut icon" href="/trac/software/chrome/common/trac.ico" type="image/x-icon" />
+        <link rel="icon" href="/trac/software/chrome/common/trac.ico" type="image/x-icon" />
+      <link type="application/opensearchdescription+xml" rel="search" href="/trac/software/search/opensearch" title="Search LOCI Software" />
+    <script type="text/javascript">
+      var auto_preview_timeout=2.0;
+      var form_token="a9489ab27d4e860755d5409e";
+    </script>
+    <script type="text/javascript" src="/trac/software/chrome/common/js/jquery.js"></script><script type="text/javascript" src="/trac/software/chrome/common/js/babel.js"></script><script type="text/javascript" src="/trac/software/chrome/common/js/trac.js"></script><script type="text/javascript" src="/trac/software/chrome/common/js/search.js"></script><script type="text/javascript" src="/trac/software/chrome/common/js/folding.js"></script><script type="text/javascript" src="/trac/software/chrome/common/js/wikitoolbar.js"></script><script type="text/javascript" src="/trac/software/chrome/common/js/resizer.js"></script><script type="text/javascript" src="/trac/software/chrome/common/js/auto_preview.js"></script>
+    <!--[if lt IE 7]>
+    <script type="text/javascript" src="/trac/software/chrome/common/js/ie_pre7_hacks.js"></script>
+    <![endif]-->
+    <script type="text/javascript">
+      jQuery(document).ready(function($) {
+        $("div.description").find("h1,h2,h3,h4,h5,h6").addAnchor(_("Link to this section"));
+        $(".foldable").enableFolding(false, true);
+        var args = {realm: "ticket", id: 667, escape_newlines: 0}
+        $("#comment").autoPreview("/trac/software/wiki_render", args, function(textarea, text, rendered) {
+            $("#ticketchange div.comment").html(rendered);
+            if (rendered)
+              $("#ticketchange").show();
+            else if ($("#ticketchange ul.changes").length == 0)
+              $("#ticketchange").hide();
+        });
+        $("#trac-comment-editor textarea").autoPreview("/trac/software/wiki_render", args,
+                                                       function(textarea, text, rendered) {
+          var comment = $("#trac-comment-editor").next("div.comment");
+          comment.html(rendered);
+          if (rendered)
+            comment.show();
+          else
+            comment.hide();
+        });
+        $("#modify").parent().toggleClass("collapsed");
+        $(".trac-topnav a").click(function() { $("#modify").parent().removeClass("collapsed"); });
+        /* only enable control elements for the currently selected action */
+        var actions = $("#action input[name='action']");
+        function updateActionFields() {
+          actions.each(function () {
+            $(this).siblings().find("*[id]").enable($(this).checked());
+            $(this).siblings().filter("*[id]").enable($(this).checked());
+          });
+        }
+        actions.click(updateActionFields);
+        updateActionFields();
+      });
+    </script>
+    <link rel="stylesheet" type="text/css" href="/trac/software/chrome/site/style.css" />
+  </head>
+  <body>
+    <div id="banner">
+      <div id="header">
+        <a id="logo" href="http://loci.wisc.edu/"><img src="http://loci.wisc.edu/loci-logo.png" alt="LOCI" height="98" width="300" /></a>
+      </div>
+      <form id="search" action="/trac/software/search" method="get">
+        <div>
+          <label for="proj-search">Search:</label>
+          <input type="text" id="proj-search" name="q" size="18" value="" />
+          <input type="submit" value="Search" />
+        </div>
+      </form>
+      <div id="metanav" class="nav">
+    <ul>
+      <li class="first"><a href="/trac/software/login">Login</a></li><li><a href="/trac/software/wiki/TracGuide">Help/Guide</a></li><li><a href="/trac/software/about">About Trac</a></li><li><a href="/trac/software/prefs">Preferences</a></li><li class="last"><a href="/trac/software/reset_password">Forgot your password?</a></li>
+    </ul>
+  </div>
+    </div>
+    <div id="mainnav" class="nav">
+    <ul>
+      <li class="first"><a href="/trac/software/wiki">Wiki</a></li><li><a href="/trac/software/timeline">Timeline</a></li><li><a href="/trac/software/roadmap">Roadmap</a></li><li><a href="/trac/software/browser">Browse Source</a></li><li class="active"><a href="/trac/software/report">View Tickets</a></li><li class="last"><a href="/trac/software/search">Search</a></li>
+    </ul>
+  </div>
+    <div id="main">
+      <div id="ctxtnav" class="nav">
+        <h2>Context Navigation</h2>
+          <ul>
+              <li class="first"><span>&larr; <a class="prev" href="/trac/software/ticket/666" title="Ticket #666">Previous Ticket</a></span></li><li class="last"><span><a class="next" href="/trac/software/ticket/668" title="Ticket #668">Next Ticket</a> &rarr;</span></li>
+          </ul>
+        <hr />
+      </div>
+    <div id="content" class="ticket">
+      <h1 id="trac-ticket-title">
+          <a href="/trac/software/ticket/667">Ticket #667</a>
+          <span class="status">(closed task: fixed)</span>
+      </h1>
+      <div id="ticket">
+  <div class="date">
+    <p>Opened <a class="timeline" href="/trac/software/timeline?from=2012-02-06T15%3A08%3A32-06%3A00&amp;precision=second" title="2012-02-06T15:08:32-06:00 in Timeline">7 years</a> ago</p>
+    <p>Last modified <a class="timeline" href="/trac/software/timeline?from=2013-12-05T18%3A15%3A16-06%3A00&amp;precision=second" title="2013-12-05T18:15:16-06:00 in Timeline">6 years</a> ago</p>
+  </div>
+  <h2 class="summary searchable">Create multi-platform version of SLIM Plugin</h2>
+  <table class="properties">
+    <tr>
+      <th id="h_reporter">Reported by:</th>
+      <td headers="h_reporter" class="searchable">
+        <a href="/trac/software/query?status=!closed&amp;reporter=aivar">aivar</a>
+      </td>
+      <th id="h_owner">Owned by:</th>
+      <td headers="h_owner">
+        <a href="/trac/software/query?status=!closed&amp;owner=aivar">aivar</a>
+      </td>
+    </tr>
+    <tr>
+        <th id="h_priority">
+          Priority:
+        </th>
+        <td headers="h_priority">
+              <a href="/trac/software/query?status=!closed&amp;priority=minor">minor</a>
+        </td>
+        <th id="h_milestone">
+          Milestone:
+        </th>
+        <td headers="h_milestone">
+              <a class="closed milestone" href="/trac/software/milestone/slimplugin2.0">slimplugin2.0</a>
+        </td>
+    </tr><tr>
+        <th id="h_component">
+          Component:
+        </th>
+        <td headers="h_component">
+              <a href="/trac/software/query?status=!closed&amp;component=slim-plugin">slim-plugin</a>
+        </td>
+        <th id="h_severity">
+          Severity:
+        </th>
+        <td headers="h_severity">
+              <a href="/trac/software/query?status=!closed&amp;severity=minor">minor</a>
+        </td>
+    </tr><tr>
+        <th id="h_keywords">
+          Keywords:
+        </th>
+        <td headers="h_keywords" class="searchable">
+        </td>
+        <th id="h_cc">
+          Cc:
+        </th>
+        <td headers="h_cc" class="searchable">
+        </td>
+    </tr><tr>
+        <th id="h_blockedby">
+          Blocked By:
+        </th>
+        <td headers="h_blockedby">
+        </td>
+        <th id="h_blocking">
+          Blocking:
+        </th>
+        <td headers="h_blocking">
+        </td>
+    </tr>
+  </table>
+  <div class="description">
+    <h3 id="comment:description">
+      Description
+    </h3>
+    <div class="searchable">
+      <p>
+Create and load dynamic native code libraries for all target platforms.
+</p>
+
+    </div>
+  </div>
+</div>
+          
+
+        <div>
+          <h2 class="foldable">Change History</h2>
+          <div id="changelog">
+              <div class="change" id="trac-change-1">
+                <h3 class="change">
+                  <span class="threading">
+                    <span id="comment:1" class="cnum">
+      <a href="#comment:1">comment:1</a>
+    </span>
+                  </span>
+                  Changed <a class="timeline" href="/trac/software/timeline?from=2012-02-06T15%3A10%3A03-06%3A00&amp;precision=second" title="2012-02-06T15:10:03-06:00 in Timeline">7 years</a> ago by aivar
+                </h3>
+                
+    <div class="comment searchable">
+      
+      <p>
+(was "Changed 13 months ago by aivar", moved from ImageJ Trac)
+</p>
+<p>
+Investigated the Maven Nar plugin. This provides a way of building on multiple platforms and consolidating the resultant native libraries in a central Maven repository. It also provides native libraries for the current platform during development. However it is lacking in support for running platform-appropriate native libraries during application runtime.
+</p>
+<p>
+Maven Nar install "installs produced artifacts in the local repository. The unpacking is done in the unpack goal of a dependent artifact upon first usage". In AbstractUnpackMojo it is again stated "unpacking happens in the local repository". The generated NarSystem doesn't actually do any unpacking, it merely appends a version specific string, such as "-2.0-SNAPSHOT", to the library name.
+</p>
+<p>
+I created a Native Library Utility project to unpack Nar-generated native libraries from a Jar file. It uses open source code from Richard van der Hoff:
+</p>
+<blockquote>
+<p>
+<a class="ext-link" href="http://docs.codehaus.org/display/MAVENUSER/Projects+With+JNI"><span class="icon"> </span>http://docs.codehaus.org/display/MAVENUSER/Projects+With+JNI</a>
+</p>
+</blockquote>
+<blockquote>
+<p>
+<a class="ext-link" href="http://opensource.mxtelecom.com/maven/repo/com/wapmx/native/mx-native-loader/1.7/"><span class="icon"> </span>http://opensource.mxtelecom.com/maven/repo/com/wapmx/native/mx-native-loader/1.7/</a>
+</p>
+</blockquote>
+<p>
+It also uses a trick to add a directory to the java.library.path properties.
+</p>
+<blockquote>
+<p>
+<a class="ext-link" href="http://nicklothian.com/blog/2008/11/19/modify-javalibrarypath-at-runtime/"><span class="icon"> </span>http://nicklothian.com/blog/2008/11/19/modify-javalibrarypath-at-runtime/</a>
+</p>
+</blockquote>
+
+    </div>
+
+              </div>
+              <div class="change" id="trac-change-2">
+                <h3 class="change">
+                  <span class="threading">
+                    <span id="comment:2" class="cnum">
+      <a href="#comment:2">comment:2</a>
+    </span>
+                  </span>
+                  Changed <a class="timeline" href="/trac/software/timeline?from=2012-02-06T15%3A11%3A50-06%3A00&amp;precision=second" title="2012-02-06T15:11:50-06:00 in Timeline">7 years</a> ago by aivar
+                </h3>
+                
+    <div class="comment searchable">
+      
+      <p>
+(was "Changed 12 months ago by aivar", moved from ImageJ Trac)
+</p>
+<p>
+At the February 2011 Fiji Hackathon Johannes Schindelin told me about cross-compilation with gcc. This is a much better solution than having to build a Maven Nar for each platform we support, on a machine running that platform, and consolidate these in the repository.
+</p>
+<p>
+I am currently using the Maven Native plugin and working on cross compilation within Maven, based on the information at  <a class="ext-link" href="http://www.tricoder.net/blog/?p=197"><span class="icon"> </span>http://www.tricoder.net/blog/?p=197</a> .
+</p>
+
+    </div>
+
+              </div>
+              <div class="change" id="trac-change-3">
+                <h3 class="change">
+                  <span class="threading">
+                    <span id="comment:3" class="cnum">
+      <a href="#comment:3">comment:3</a>
+    </span>
+                  </span>
+                  Changed <a class="timeline" href="/trac/software/timeline?from=2012-02-06T15%3A13%3A13-06%3A00&amp;precision=second" title="2012-02-06T15:13:13-06:00 in Timeline">7 years</a> ago by aivar
+                </h3>
+                
+    <div class="comment searchable">
+      
+      <p>
+(was "Changed 11 months ago by aivar", moved from ImageJ Trac)
+</p>
+<p>
+Have a cross-compilation scheme that compiles for Windows and Linux on Linux (i.e. our Hudson/Jenkins build machine) and OSX on OSX, but haven't applied it to the SLIM Plugin.
+</p>
+<p>
+Worked on being able to create Instrument Response Function, aka Prompt, aka Excitation within plugin, save/restore, display, initialize and edit cursors.
+</p>
+
+    </div>
+
+              </div>
+              <div class="change" id="trac-change-4">
+                <h3 class="change">
+                  <span class="threading">
+                    <span id="comment:4" class="cnum">
+      <a href="#comment:4">comment:4</a>
+    </span>
+                  </span>
+                  Changed <a class="timeline" href="/trac/software/timeline?from=2012-02-06T15%3A16%3A15-06%3A00&amp;precision=second" title="2012-02-06T15:16:15-06:00 in Timeline">7 years</a> ago by aivar
+                </h3>
+                
+    <div class="comment searchable">
+      
+      <p>
+(was "Changed 11 months ago by aivar", moved from ImageJ Trac.)
+</p>
+<p>
+Added Instrument Response Function functionality, although I'm not sure it's working quite right. Added an automatic fit with RLD followed by LMA capabiilty, had some difficulty with that breaking the ability to fix fit parameters. Discovered export to text was completely not working and dealing with multiple channels was broken also and fixed those.
+</p>
+<p>
+I was diverted by all these major issues and haven't gotten the multiplatform release working yet.
+</p>
+
+    </div>
+
+              </div>
+              <div class="change" id="trac-change-5">
+                <h3 class="change">
+                  <span class="threading">
+                    <span id="comment:5" class="cnum">
+      <a href="#comment:5">comment:5</a>
+    </span>
+                  </span>
+                  Changed <a class="timeline" href="/trac/software/timeline?from=2012-02-06T15%3A22%3A30-06%3A00&amp;precision=second" title="2012-02-06T15:22:30-06:00 in Timeline">7 years</a> ago by aivar
+                </h3>
+                
+  <ul class="changes">
+    <li>
+      <strong>Status</strong>
+        changed from <em>new</em> to <em>assigned</em>
+    </li>
+  </ul>
+    <div class="comment searchable">
+      
+      <p>
+(Was "Changed 2 months ago by aivar", moved from ImageJ Trac.)
+</p>
+<p>
+I have something that works but the build process is really ugly. I'll leave this open for improvements.
+</p>
+<p>
+I also created a ticket <a class="closed ticket" href="/trac/software/ticket/668" title="defect: Package SLIM Plugin release (closed: duplicate)">#668</a> to specifically address just putting together an up-to-date version using these techniques.
+</p>
+
+    </div>
+
+              </div>
+              <div class="change" id="trac-change-6">
+                <h3 class="change">
+                  <span class="threading">
+                    <span id="comment:6" class="cnum">
+      <a href="#comment:6">comment:6</a>
+    </span>
+                  </span>
+                  Changed <a class="timeline" href="/trac/software/timeline?from=2012-02-20T09%3A55%3A28-06%3A00&amp;precision=second" title="2012-02-20T09:55:28-06:00 in Timeline">7 years</a> ago by aivar
+                </h3>
+                
+    <div class="comment searchable">
+      
+      <p>
+Now that SLIM Plugin is being distributed as a Fiji plugin, we could adopt the Fiji plugin scheme of handling native libraries.  Whereas the ideal ImageJ distribution was to build one big jar with everything in it, Fiji handles distributing and updating each component jar or native library.  With Fiji the native libraries are placed in a 'lib' directory that is on the classpath, under a platform specific path.  The Fiji updater handles them like any other component of the plugin.
+</p>
+<p>
+I need to provide document for the multi-platform build process.
+</p>
+
+    </div>
+
+              </div>
+              <div class="change" id="trac-change-7">
+                <h3 class="change">
+                  <span class="threading">
+                    <span id="comment:7" class="cnum">
+      <a href="#comment:7">comment:7</a>
+    </span>
+                  </span>
+                  Changed <a class="timeline" href="/trac/software/timeline?from=2012-03-05T10%3A00%3A56-06%3A00&amp;precision=second" title="2012-03-05T10:00:56-06:00 in Timeline">7 years</a> ago by aivar
+                </h3>
+                
+  <ul class="changes">
+    <li>
+      <strong>Milestone</strong>
+        set to <em>slimplugin1.0</em>
+    </li>
+  </ul>
+    <div class="comment searchable">
+      
+      
+    </div>
+
+              </div>
+              <div class="change" id="trac-change-8">
+                <h3 class="change">
+                  <span class="threading">
+                    <span id="comment:8" class="cnum">
+      <a href="#comment:8">comment:8</a>
+    </span>
+                  </span>
+                  Changed <a class="timeline" href="/trac/software/timeline?from=2012-04-16T10%3A37%3A15-05%3A00&amp;precision=second" title="2012-04-16T10:37:15-05:00 in Timeline">7 years</a> ago by aivar
+                </h3>
+                
+  <ul class="changes">
+    <li>
+      <strong>Milestone</strong>
+        changed from <em>slimplugin1.0</em> to <em>slimplugin1.1</em>
+    </li>
+  </ul>
+    <div class="comment searchable">
+      
+      
+    </div>
+
+              </div>
+              <div class="change" id="trac-change-9">
+                <h3 class="change">
+                  <span class="threading">
+                    <span id="comment:9" class="cnum">
+      <a href="#comment:9">comment:9</a>
+    </span>
+                  </span>
+                  Changed <a class="timeline" href="/trac/software/timeline?from=2012-05-07T10%3A50%3A54-05%3A00&amp;precision=second" title="2012-05-07T10:50:54-05:00 in Timeline">7 years</a> ago by aivar
+                </h3>
+                
+    <div class="comment searchable">
+      
+      <p>
+Created an initial release of curve-fitter-1.0-SNAPSHOT-with-libs.jar, a hand-created jar with the native libraries in it.  I did document my multi-platform build process but it is really ugly.
+</p>
+<p>
+Meanwhile it looks like Johannes has figured out how to use the Maven NAR plugin to build multi-platform FIJI launchers.  I'm leaving this ticket open to cover adopting that scheme.
+</p>
+
+    </div>
+
+              </div>
+              <div class="change" id="trac-change-10">
+                <h3 class="change">
+                  <span class="threading">
+                    <span id="comment:10" class="cnum">
+      <a href="#comment:10">comment:10</a>
+    </span>
+                  </span>
+                  Changed <a class="timeline" href="/trac/software/timeline?from=2012-07-16T09%3A48%3A27-05%3A00&amp;precision=second" title="2012-07-16T09:48:27-05:00 in Timeline">7 years</a> ago by aivar
+                </h3>
+                
+  <ul class="changes">
+    <li>
+      <strong>Milestone</strong>
+        changed from <em>slimplugin1.1</em> to <em>slimplugin1.2</em>
+    </li>
+  </ul>
+    <div class="comment searchable">
+      
+      
+    </div>
+
+              </div>
+              <div class="change" id="trac-change-11">
+                <h3 class="change">
+                  <span class="threading">
+                    <span id="comment:11" class="cnum">
+      <a href="#comment:11">comment:11</a>
+    </span>
+                  </span>
+                  Changed <a class="timeline" href="/trac/software/timeline?from=2012-07-16T10%3A01%3A39-05%3A00&amp;precision=second" title="2012-07-16T10:01:39-05:00 in Timeline">7 years</a> ago by aivar
+                </h3>
+                
+  <ul class="changes">
+    <li>
+      <strong>Priority</strong>
+        changed from <em>major</em> to <em>minor</em>
+    </li><li>
+      <strong>Type</strong>
+        changed from <em>defect</em> to <em>task</em>
+    </li>
+  </ul>
+    <div class="comment searchable">
+      
+      
+    </div>
+
+              </div>
+              <div class="change" id="trac-change-12">
+                <h3 class="change">
+                  <span class="threading">
+                    <span id="comment:12" class="cnum">
+      <a href="#comment:12">comment:12</a>
+    </span>
+                  </span>
+                  Changed <a class="timeline" href="/trac/software/timeline?from=2012-07-16T10%3A13%3A55-05%3A00&amp;precision=second" title="2012-07-16T10:13:55-05:00 in Timeline">7 years</a> ago by aivar
+                </h3>
+                
+  <ul class="changes">
+    <li>
+      <strong>Severity</strong>
+        changed from <em>serious</em> to <em>minor</em>
+    </li>
+  </ul>
+    <div class="comment searchable">
+      
+      
+    </div>
+
+              </div>
+              <div class="change" id="trac-change-13">
+                <h3 class="change">
+                  <span class="threading">
+                    <span id="comment:13" class="cnum">
+      <a href="#comment:13">comment:13</a>
+    </span>
+                  </span>
+                  Changed <a class="timeline" href="/trac/software/timeline?from=2013-12-05T18%3A15%3A16-06%3A00&amp;precision=second" title="2013-12-05T18:15:16-06:00 in Timeline">6 years</a> ago by aivar
+                </h3>
+                
+  <ul class="changes">
+    <li>
+      <strong>Status</strong>
+        changed from <em>assigned</em> to <em>closed</em>
+    </li><li>
+      <strong>Resolution</strong>
+        set to <em>fixed</em>
+    </li>
+  </ul>
+    <div class="comment searchable">
+      
+      <p>
+Adopted Johannes's scheme to build cross-platform SLIM Curve libraries.
+</p>
+
+    </div>
+
+              </div>
+          </div>
+        </div>
+      <div id="help"><strong>Note:</strong> See
+        <a href="/trac/software/wiki/TracTickets">TracTickets</a> for help on using
+        tickets.</div>
+    </div>
+    <div id="altlinks">
+      <h3>Download in other formats:</h3>
+      <ul>
+        <li class="first">
+          <a rel="nofollow" href="/trac/software/ticket/667?format=csv" class="csv">Comma-delimited Text</a>
+        </li><li>
+          <a rel="nofollow" href="/trac/software/ticket/667?format=tab" class="tab">Tab-delimited Text</a>
+        </li><li class="last">
+          <a rel="nofollow" href="/trac/software/ticket/667?format=rss" class="rss">RSS Feed</a>
+        </li>
+      </ul>
+    </div>
+    </div>
+    <div id="footer" lang="en" xml:lang="en"><hr />
+      <a id="tracpowered" href="http://trac.edgewall.org/"><img src="/trac/software/chrome/common/trac_logo_mini.png" height="30" width="107" alt="Trac Powered" /></a>
+      <p class="left">Powered by <a href="/trac/software/about"><strong>Trac 0.12.2</strong></a><br />
+        By <a href="http://www.edgewall.org/">Edgewall Software</a>.</p>
+      <p class="right">Visit the LOCI software web site at<br /><a href="http://loci.wisc.edu/software/">http://loci.wisc.edu/software/</a></p>
+    </div>
+  </body>
+</html>

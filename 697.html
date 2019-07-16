@@ -1,0 +1,496 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  
+  
+
+  
+  <!-- See: http://trac.edgewall.org/wiki/TracInterfaceCustomization -->
+
+
+  <head>
+    <title>
+      #697 (Sometimes TRI2 and SLIMPlugin results agree, except for chi-square)
+     – LOCI Software
+    </title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <link rel="search" href="/trac/software/search" />
+        <link rel="prev" href="/trac/software/ticket/696" title="Ticket #696" />
+        <link rel="last" href="/trac/software/ticket/822" title="Ticket #822" />
+        <link rel="help" href="/trac/software/wiki/TracGuide" />
+        <link rel="alternate" href="/trac/software/ticket/697?format=csv" type="text/csv" class="csv" title="Comma-delimited Text" /><link rel="alternate" href="/trac/software/ticket/697?format=tab" type="text/tab-separated-values" class="tab" title="Tab-delimited Text" /><link rel="alternate" href="/trac/software/ticket/697?format=rss" type="application/rss+xml" class="rss" title="RSS Feed" />
+        <link rel="next" href="/trac/software/ticket/698" title="Ticket #698" />
+        <link rel="start" href="/trac/software/wiki" />
+        <link rel="stylesheet" href="/trac/software/chrome/common/css/trac.css" type="text/css" /><link rel="stylesheet" href="/trac/software/chrome/common/css/ticket.css" type="text/css" />
+        <link rel="first" href="/trac/software/ticket/1" title="Ticket #1" />
+        <link rel="shortcut icon" href="/trac/software/chrome/common/trac.ico" type="image/x-icon" />
+        <link rel="icon" href="/trac/software/chrome/common/trac.ico" type="image/x-icon" />
+      <link type="application/opensearchdescription+xml" rel="search" href="/trac/software/search/opensearch" title="Search LOCI Software" />
+    <script type="text/javascript">
+      var auto_preview_timeout=2.0;
+      var form_token="2ed8f99120584247622f9a52";
+    </script>
+    <script type="text/javascript" src="/trac/software/chrome/common/js/jquery.js"></script><script type="text/javascript" src="/trac/software/chrome/common/js/babel.js"></script><script type="text/javascript" src="/trac/software/chrome/common/js/trac.js"></script><script type="text/javascript" src="/trac/software/chrome/common/js/search.js"></script><script type="text/javascript" src="/trac/software/chrome/common/js/folding.js"></script><script type="text/javascript" src="/trac/software/chrome/common/js/wikitoolbar.js"></script><script type="text/javascript" src="/trac/software/chrome/common/js/resizer.js"></script><script type="text/javascript" src="/trac/software/chrome/common/js/auto_preview.js"></script>
+    <!--[if lt IE 7]>
+    <script type="text/javascript" src="/trac/software/chrome/common/js/ie_pre7_hacks.js"></script>
+    <![endif]-->
+    <script type="text/javascript">
+      jQuery(document).ready(function($) {
+        $("div.description").find("h1,h2,h3,h4,h5,h6").addAnchor(_("Link to this section"));
+        $(".foldable").enableFolding(false, true);
+        var args = {realm: "ticket", id: 697, escape_newlines: 0}
+        $("#comment").autoPreview("/trac/software/wiki_render", args, function(textarea, text, rendered) {
+            $("#ticketchange div.comment").html(rendered);
+            if (rendered)
+              $("#ticketchange").show();
+            else if ($("#ticketchange ul.changes").length == 0)
+              $("#ticketchange").hide();
+        });
+        $("#trac-comment-editor textarea").autoPreview("/trac/software/wiki_render", args,
+                                                       function(textarea, text, rendered) {
+          var comment = $("#trac-comment-editor").next("div.comment");
+          comment.html(rendered);
+          if (rendered)
+            comment.show();
+          else
+            comment.hide();
+        });
+        $("#modify").parent().toggleClass("collapsed");
+        $(".trac-topnav a").click(function() { $("#modify").parent().removeClass("collapsed"); });
+        /* only enable control elements for the currently selected action */
+        var actions = $("#action input[name='action']");
+        function updateActionFields() {
+          actions.each(function () {
+            $(this).siblings().find("*[id]").enable($(this).checked());
+            $(this).siblings().filter("*[id]").enable($(this).checked());
+          });
+        }
+        actions.click(updateActionFields);
+        updateActionFields();
+      });
+    </script>
+    <link rel="stylesheet" type="text/css" href="/trac/software/chrome/site/style.css" />
+  </head>
+  <body>
+    <div id="banner">
+      <div id="header">
+        <a id="logo" href="http://loci.wisc.edu/"><img src="http://loci.wisc.edu/loci-logo.png" alt="LOCI" height="98" width="300" /></a>
+      </div>
+      <form id="search" action="/trac/software/search" method="get">
+        <div>
+          <label for="proj-search">Search:</label>
+          <input type="text" id="proj-search" name="q" size="18" value="" />
+          <input type="submit" value="Search" />
+        </div>
+      </form>
+      <div id="metanav" class="nav">
+    <ul>
+      <li class="first"><a href="/trac/software/login">Login</a></li><li><a href="/trac/software/wiki/TracGuide">Help/Guide</a></li><li><a href="/trac/software/about">About Trac</a></li><li><a href="/trac/software/prefs">Preferences</a></li><li class="last"><a href="/trac/software/reset_password">Forgot your password?</a></li>
+    </ul>
+  </div>
+    </div>
+    <div id="mainnav" class="nav">
+    <ul>
+      <li class="first"><a href="/trac/software/wiki">Wiki</a></li><li><a href="/trac/software/timeline">Timeline</a></li><li><a href="/trac/software/roadmap">Roadmap</a></li><li><a href="/trac/software/browser">Browse Source</a></li><li class="active"><a href="/trac/software/report">View Tickets</a></li><li class="last"><a href="/trac/software/search">Search</a></li>
+    </ul>
+  </div>
+    <div id="main">
+      <div id="ctxtnav" class="nav">
+        <h2>Context Navigation</h2>
+          <ul>
+              <li class="first"><span>&larr; <a class="prev" href="/trac/software/ticket/696" title="Ticket #696">Previous Ticket</a></span></li><li><span><a class="next" href="/trac/software/ticket/698" title="Ticket #698">Next Ticket</a> &rarr;</span></li><li class="last"><a href="/trac/software/depgraph/697">Depgraph</a></li>
+          </ul>
+        <hr />
+      </div>
+    <div id="content" class="ticket">
+      <h1 id="trac-ticket-title">
+          <a href="/trac/software/ticket/697">Ticket #697</a>
+          <span class="status">(closed defect: fixed)</span>
+      </h1>
+      <div id="ticket">
+  <div class="date">
+    <p>Opened <a class="timeline" href="/trac/software/timeline?from=2012-04-09T15%3A34%3A35-05%3A00&amp;precision=second" title="2012-04-09T15:34:35-05:00 in Timeline">7 years</a> ago</p>
+    <p>Last modified <a class="timeline" href="/trac/software/timeline?from=2012-06-15T18%3A42%3A51-05%3A00&amp;precision=second" title="2012-06-15T18:42:51-05:00 in Timeline">7 years</a> ago</p>
+  </div>
+  <h2 class="summary searchable">Sometimes TRI2 and SLIMPlugin results agree, except for chi-square</h2>
+  <table class="properties">
+    <tr>
+      <th id="h_reporter">Reported by:</th>
+      <td headers="h_reporter" class="searchable">
+        <a href="/trac/software/query?status=!closed&amp;reporter=aivar">aivar</a>
+      </td>
+      <th id="h_owner">Owned by:</th>
+      <td headers="h_owner">
+        <a href="/trac/software/query?status=!closed&amp;owner=aivar">aivar</a>
+      </td>
+    </tr>
+    <tr>
+        <th id="h_priority">
+          Priority:
+        </th>
+        <td headers="h_priority">
+              <a href="/trac/software/query?status=!closed&amp;priority=major">major</a>
+        </td>
+        <th id="h_milestone">
+          Milestone:
+        </th>
+        <td headers="h_milestone">
+              <a class="closed milestone" href="/trac/software/milestone/slimplugin1.1">slimplugin1.1</a>
+        </td>
+    </tr><tr>
+        <th id="h_component">
+          Component:
+        </th>
+        <td headers="h_component">
+              <a href="/trac/software/query?status=!closed&amp;component=slim-plugin">slim-plugin</a>
+        </td>
+        <th id="h_severity">
+          Severity:
+        </th>
+        <td headers="h_severity">
+              <a href="/trac/software/query?status=!closed&amp;severity=serious">serious</a>
+        </td>
+    </tr><tr>
+        <th id="h_keywords">
+          Keywords:
+        </th>
+        <td headers="h_keywords" class="searchable">
+        </td>
+        <th id="h_cc">
+          Cc:
+        </th>
+        <td headers="h_cc" class="searchable">
+        </td>
+    </tr><tr>
+        <th id="h_blockedby">
+          Blocked By:
+        </th>
+        <td headers="h_blockedby">
+        </td>
+        <th id="h_blocking">
+          Blocking:
+        </th>
+        <td headers="h_blocking">
+              <a class="closed" href="/trac/software/ticket/674" title="SLIMPlugin: Ensure TRI2 and SLIMPlugin results agree">#674</a>
+        </td>
+    </tr>
+  </table>
+  <div class="description">
+    <h3 id="comment:description">
+      Description
+    </h3>
+    <div class="searchable">
+      <p>
+Sometimes the results are in agreement, but the reduced chi-square is not in agreement.
+</p>
+
+    </div>
+  </div>
+</div>
+          
+
+        <div>
+          <h2 class="foldable">Change History</h2>
+          <div id="changelog">
+              <div class="change" id="trac-change-1">
+                <h3 class="change">
+                  <span class="threading">
+                    <span id="comment:1" class="cnum">
+      <a href="#comment:1">comment:1</a>
+    </span>
+                  </span>
+                  Changed <a class="timeline" href="/trac/software/timeline?from=2012-04-09T15%3A41%3A39-05%3A00&amp;precision=second" title="2012-04-09T15:41:39-05:00 in Timeline">7 years</a> ago by aivar
+                </h3>
+                
+    <div class="comment searchable">
+      
+      <p>
+For 100611-YG-256.sdt which I got from Jimmy Fong, with cursors at 0.0/2.1484/11.2305 for point (146, 230) RLD/LMA fit I get:
+</p>
+<p>
+Gaussian noise is good
+</p>
+<p>
+SLIM Plugin
+A 73,23523
+T 2.0873063
+Z 0.94988865
+X2 0.85290354
+</p>
+<p>
+TRI2
+A 73.24
+T 2.09
+Z 0.95
+X2 0.852904
+</p>
+<p>
+Poisson Data is bad
+</p>
+<p>
+SLIM Plugin
+A 69.08094
+T 2.1349077
+Z 0.9221971
+X2 0.32471284 X
+</p>
+<p>
+TRI2
+A 69.08
+T 2.13
+Z 0.92
+X2 1.007875 X
+</p>
+<p>
+Poisson Fit is bad
+</p>
+<p>
+SLIM Plugin
+A 75.977646
+T 2.0332031
+Z 1.039639
+X2 0.33459756 X
+</p>
+<p>
+TRI2
+A 75.98
+T 2.03
+Z 1.04
+X2 0.851691 X
+</p>
+<p>
+Maximum Likelihood Estimation is good
+</p>
+<p>
+SLIM Plugin
+A 73.182625
+T 2.0885024
+Z 0.9476004
+X2 0.9309332
+</p>
+<p>
+TRI2
+A 73.19 (bit of a rounding error?)
+T 2.09
+Z 0.95
+X2 0.930933
+TRI2
+</p>
+
+    </div>
+
+              </div>
+              <div class="change" id="trac-change-2">
+                <h3 class="change">
+                  <span class="threading">
+                    <span id="comment:2" class="cnum">
+      <a href="#comment:2">comment:2</a>
+    </span>
+                  </span>
+                  Changed <a class="timeline" href="/trac/software/timeline?from=2012-04-09T17%3A30%3A14-05%3A00&amp;precision=second" title="2012-04-09T17:30:14-05:00 in Timeline">7 years</a> ago by aivar
+                </h3>
+                
+    <div class="comment searchable">
+      
+      <p>
+Another point (155, 230) exhibits the same behavior, results agree except for chisquare for Poisson Data and Poisson Fit.
+</p>
+
+    </div>
+
+              </div>
+              <div class="change" id="trac-change-3">
+                <h3 class="change">
+                  <span class="threading">
+                    <span id="comment:3" class="cnum">
+      <a href="#comment:3">comment:3</a>
+    </span>
+                  </span>
+                  Changed <a class="timeline" href="/trac/software/timeline?from=2012-04-09T18%3A18%3A08-05%3A00&amp;precision=second" title="2012-04-09T18:18:08-05:00 in Timeline">7 years</a> ago by aivar
+                </h3>
+                
+    <div class="comment searchable">
+      
+      <p>
+Note this bug covers fitting without an Excitation curve loaded.
+</p>
+
+    </div>
+
+              </div>
+              <div class="change" id="trac-change-4">
+                <h3 class="change">
+                  <span class="threading">
+                    <span id="comment:4" class="cnum">
+      <a href="#comment:4">comment:4</a>
+    </span>
+                  </span>
+                  Changed <a class="timeline" href="/trac/software/timeline?from=2012-05-07T10%3A45%3A01-05%3A00&amp;precision=second" title="2012-05-07T10:45:01-05:00 in Timeline">7 years</a> ago by aivar
+                </h3>
+                
+  <ul class="changes">
+    <li>
+      <strong>Status</strong>
+        changed from <em>new</em> to <em>assigned</em>
+    </li>
+  </ul>
+    <div class="comment searchable">
+      
+      
+    </div>
+
+              </div>
+              <div class="change" id="trac-change-5">
+                <h3 class="change">
+                  <span class="threading">
+                    <span id="comment:5" class="cnum">
+      <a href="#comment:5">comment:5</a>
+    </span>
+                  </span>
+                  Changed <a class="timeline" href="/trac/software/timeline?from=2012-06-12T11%3A21%3A50-05%3A00&amp;precision=second" title="2012-06-12T11:21:50-05:00 in Timeline">7 years</a> ago by aivar
+                </h3>
+                
+    <div class="comment searchable">
+      
+      <p>
+100611-YG-256.sdt at (146, 230) cursors 0.0/2.15/11.23 Poisson Data:
+</p>
+<p>
+SLIM Plugin: A 71.28562 T 2.092129 Z 0.99059045 X2 0.32557997
+TRI2: A 69.08 T 2.13 Z 0.92 X2 1.007875
+</p>
+<p>
+In other words for TRI2 cursors 0.0/2.1484/11.2305 and 0.0/2.15/11.23 are equivalent, for SLIM Plugin they are not.  Suggests a rounding technique discrepancy.
+</p>
+
+    </div>
+
+              </div>
+              <div class="change" id="trac-change-6">
+                <h3 class="change">
+                  <span class="threading">
+                    <span id="comment:6" class="cnum">
+      <a href="#comment:6">comment:6</a>
+    </span>
+                  </span>
+                  Changed <a class="timeline" href="/trac/software/timeline?from=2012-06-12T11%3A28%3A12-05%3A00&amp;precision=second" title="2012-06-12T11:28:12-05:00 in Timeline">7 years</a> ago by aivar
+                </h3>
+                
+    <div class="comment searchable">
+      
+      <p>
+Comment to last comment:
+</p>
+<p>
+I went from 0.0/2.1484/11.2305 to 0.0/2.15/11.23 because TRI2 is now truncating cursors to 2 places.  (Odd because I used to enter more digits--this is with my XP VM and TRI2 Version 2.5.2.1 FI_port.)
+</p>
+
+    </div>
+
+              </div>
+              <div class="change" id="trac-change-7">
+                <h3 class="change">
+                  <span class="threading">
+                    <span id="comment:7" class="cnum">
+      <a href="#comment:7">comment:7</a>
+    </span>
+                  </span>
+                  Changed <a class="timeline" href="/trac/software/timeline?from=2012-06-12T15%3A19%3A46-05%3A00&amp;precision=second" title="2012-06-12T15:19:46-05:00 in Timeline">7 years</a> ago by aivar
+                </h3>
+                
+    <div class="comment searchable">
+      
+      <p>
+With my Windows 7 VM and TRI2 version 2.731 I get:
+</p>
+<p>
+0/2.15/11.23
+A 71.286 T  2.092 Z 0.991 X2 1.015688
+</p>
+<p>
+0/2.1484/11.2305
+A 69.081 T 2.135 Z 0.922 X2 1.007875
+</p>
+<p>
+So "for TRI2 cursors 0.0/2.1484/11.2305 and 0.0/2.15/11.23 are equivalent" from two comments above only applies for version 2.5.2.1 (on XP).  They are not equivalent for 2.731 (on Windows 7).  In other words latest TRI2 is consistent with SLIM Plugin, except for this chisquare being off issue.
+</p>
+
+    </div>
+
+              </div>
+              <div class="change" id="trac-change-8">
+                <h3 class="change">
+                  <span class="threading">
+                    <span id="comment:8" class="cnum">
+      <a href="#comment:8">comment:8</a>
+    </span>
+                  </span>
+                  Changed <a class="timeline" href="/trac/software/timeline?from=2012-06-12T16%3A43%3A33-05%3A00&amp;precision=second" title="2012-06-12T16:43:33-05:00 in Timeline">7 years</a> ago by aivar
+                </h3>
+                
+  <ul class="changes">
+    <li>
+      <strong>Summary</strong>
+        changed from <em>Sometime TRI2 and SLIMPlugin results agree, except for chi-square</em> to <em>Sometimes TRI2 and SLIMPlugin results agree, except for chi-square</em>
+    </li>
+  </ul>
+    <div class="comment searchable">
+      
+      
+    </div>
+
+              </div>
+              <div class="change" id="trac-change-9">
+                <h3 class="change">
+                  <span class="threading">
+                    <span id="comment:9" class="cnum">
+      <a href="#comment:9">comment:9</a>
+    </span>
+                  </span>
+                  Changed <a class="timeline" href="/trac/software/timeline?from=2012-06-15T18%3A42%3A51-05%3A00&amp;precision=second" title="2012-06-15T18:42:51-05:00 in Timeline">7 years</a> ago by aivar
+                </h3>
+                
+  <ul class="changes">
+    <li>
+      <strong>Status</strong>
+        changed from <em>assigned</em> to <em>closed</em>
+    </li><li>
+      <strong>Resolution</strong>
+        set to <em>fixed</em>
+    </li>
+  </ul>
+    <div class="comment searchable">
+      
+      <p>
+"Chisquare_delta" was off and causing these problems.  Cursor rounding discrepancies do not appear to exist with recent SP and TRI2 2.7.3.1.
+</p>
+
+    </div>
+
+              </div>
+          </div>
+        </div>
+      <div id="help"><strong>Note:</strong> See
+        <a href="/trac/software/wiki/TracTickets">TracTickets</a> for help on using
+        tickets.</div>
+    </div>
+    <div id="altlinks">
+      <h3>Download in other formats:</h3>
+      <ul>
+        <li class="first">
+          <a rel="nofollow" href="/trac/software/ticket/697?format=csv" class="csv">Comma-delimited Text</a>
+        </li><li>
+          <a rel="nofollow" href="/trac/software/ticket/697?format=tab" class="tab">Tab-delimited Text</a>
+        </li><li class="last">
+          <a rel="nofollow" href="/trac/software/ticket/697?format=rss" class="rss">RSS Feed</a>
+        </li>
+      </ul>
+    </div>
+    </div>
+    <div id="footer" lang="en" xml:lang="en"><hr />
+      <a id="tracpowered" href="http://trac.edgewall.org/"><img src="/trac/software/chrome/common/trac_logo_mini.png" height="30" width="107" alt="Trac Powered" /></a>
+      <p class="left">Powered by <a href="/trac/software/about"><strong>Trac 0.12.2</strong></a><br />
+        By <a href="http://www.edgewall.org/">Edgewall Software</a>.</p>
+      <p class="right">Visit the LOCI software web site at<br /><a href="http://loci.wisc.edu/software/">http://loci.wisc.edu/software/</a></p>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,375 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  
+  
+
+  
+  <!-- See: http://trac.edgewall.org/wiki/TracInterfaceCustomization -->
+
+
+  <head>
+    <title>
+      #237 (Image planes from LegacyQTReader can no longer be displayed)
+     – LOCI Software
+    </title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <link rel="search" href="/trac/software/search" />
+        <link rel="prev" href="/trac/software/ticket/236" title="Ticket #236" />
+        <link rel="last" href="/trac/software/ticket/822" title="Ticket #822" />
+        <link rel="help" href="/trac/software/wiki/TracGuide" />
+        <link rel="alternate" href="/trac/software/ticket/237?format=csv" type="text/csv" class="csv" title="Comma-delimited Text" /><link rel="alternate" href="/trac/software/ticket/237?format=tab" type="text/tab-separated-values" class="tab" title="Tab-delimited Text" /><link rel="alternate" href="/trac/software/ticket/237?format=rss" type="application/rss+xml" class="rss" title="RSS Feed" />
+        <link rel="next" href="/trac/software/ticket/238" title="Ticket #238" />
+        <link rel="start" href="/trac/software/wiki" />
+        <link rel="stylesheet" href="/trac/software/chrome/common/css/trac.css" type="text/css" /><link rel="stylesheet" href="/trac/software/chrome/common/css/ticket.css" type="text/css" />
+        <link rel="first" href="/trac/software/ticket/1" title="Ticket #1" />
+        <link rel="shortcut icon" href="/trac/software/chrome/common/trac.ico" type="image/x-icon" />
+        <link rel="icon" href="/trac/software/chrome/common/trac.ico" type="image/x-icon" />
+      <link type="application/opensearchdescription+xml" rel="search" href="/trac/software/search/opensearch" title="Search LOCI Software" />
+    <script type="text/javascript">
+      var auto_preview_timeout=2.0;
+      var form_token="e8d2e31ab9b183e47c714a8e";
+    </script>
+    <script type="text/javascript" src="/trac/software/chrome/common/js/jquery.js"></script><script type="text/javascript" src="/trac/software/chrome/common/js/babel.js"></script><script type="text/javascript" src="/trac/software/chrome/common/js/trac.js"></script><script type="text/javascript" src="/trac/software/chrome/common/js/search.js"></script><script type="text/javascript" src="/trac/software/chrome/common/js/folding.js"></script><script type="text/javascript" src="/trac/software/chrome/common/js/wikitoolbar.js"></script><script type="text/javascript" src="/trac/software/chrome/common/js/resizer.js"></script><script type="text/javascript" src="/trac/software/chrome/common/js/auto_preview.js"></script>
+    <!--[if lt IE 7]>
+    <script type="text/javascript" src="/trac/software/chrome/common/js/ie_pre7_hacks.js"></script>
+    <![endif]-->
+    <script type="text/javascript">
+      jQuery(document).ready(function($) {
+        $("div.description").find("h1,h2,h3,h4,h5,h6").addAnchor(_("Link to this section"));
+        $(".foldable").enableFolding(false, true);
+        var args = {realm: "ticket", id: 237, escape_newlines: 0}
+        $("#comment").autoPreview("/trac/software/wiki_render", args, function(textarea, text, rendered) {
+            $("#ticketchange div.comment").html(rendered);
+            if (rendered)
+              $("#ticketchange").show();
+            else if ($("#ticketchange ul.changes").length == 0)
+              $("#ticketchange").hide();
+        });
+        $("#trac-comment-editor textarea").autoPreview("/trac/software/wiki_render", args,
+                                                       function(textarea, text, rendered) {
+          var comment = $("#trac-comment-editor").next("div.comment");
+          comment.html(rendered);
+          if (rendered)
+            comment.show();
+          else
+            comment.hide();
+        });
+        $("#modify").parent().toggleClass("collapsed");
+        $(".trac-topnav a").click(function() { $("#modify").parent().removeClass("collapsed"); });
+        /* only enable control elements for the currently selected action */
+        var actions = $("#action input[name='action']");
+        function updateActionFields() {
+          actions.each(function () {
+            $(this).siblings().find("*[id]").enable($(this).checked());
+            $(this).siblings().filter("*[id]").enable($(this).checked());
+          });
+        }
+        actions.click(updateActionFields);
+        updateActionFields();
+      });
+    </script>
+    <link rel="stylesheet" type="text/css" href="/trac/software/chrome/site/style.css" />
+  </head>
+  <body>
+    <div id="banner">
+      <div id="header">
+        <a id="logo" href="http://loci.wisc.edu/"><img src="http://loci.wisc.edu/loci-logo.png" alt="LOCI" height="98" width="300" /></a>
+      </div>
+      <form id="search" action="/trac/software/search" method="get">
+        <div>
+          <label for="proj-search">Search:</label>
+          <input type="text" id="proj-search" name="q" size="18" value="" />
+          <input type="submit" value="Search" />
+        </div>
+      </form>
+      <div id="metanav" class="nav">
+    <ul>
+      <li class="first"><a href="/trac/software/login">Login</a></li><li><a href="/trac/software/wiki/TracGuide">Help/Guide</a></li><li><a href="/trac/software/about">About Trac</a></li><li><a href="/trac/software/prefs">Preferences</a></li><li class="last"><a href="/trac/software/reset_password">Forgot your password?</a></li>
+    </ul>
+  </div>
+    </div>
+    <div id="mainnav" class="nav">
+    <ul>
+      <li class="first"><a href="/trac/software/wiki">Wiki</a></li><li><a href="/trac/software/timeline">Timeline</a></li><li><a href="/trac/software/roadmap">Roadmap</a></li><li><a href="/trac/software/browser">Browse Source</a></li><li class="active"><a href="/trac/software/report">View Tickets</a></li><li class="last"><a href="/trac/software/search">Search</a></li>
+    </ul>
+  </div>
+    <div id="main">
+      <div id="ctxtnav" class="nav">
+        <h2>Context Navigation</h2>
+          <ul>
+              <li class="first"><span>&larr; <a class="prev" href="/trac/software/ticket/236" title="Ticket #236">Previous Ticket</a></span></li><li class="last"><span><a class="next" href="/trac/software/ticket/238" title="Ticket #238">Next Ticket</a> &rarr;</span></li>
+          </ul>
+        <hr />
+      </div>
+    <div id="content" class="ticket">
+      <h1 id="trac-ticket-title">
+          <a href="/trac/software/ticket/237">Ticket #237</a>
+          <span class="status">(closed defect: fixed)</span>
+      </h1>
+      <div id="ticket">
+  <div class="date">
+    <p>Opened <a class="timeline" href="/trac/software/timeline?from=2008-02-11T12%3A11%3A29-06%3A00&amp;precision=second" title="2008-02-11T12:11:29-06:00 in Timeline">11 years</a> ago</p>
+    <p>Last modified <a class="timeline" href="/trac/software/timeline?from=2008-02-14T09%3A27%3A48-06%3A00&amp;precision=second" title="2008-02-14T09:27:48-06:00 in Timeline">11 years</a> ago</p>
+  </div>
+  <h2 class="summary searchable">Image planes from LegacyQTReader can no longer be displayed</h2>
+  <table class="properties">
+    <tr>
+      <th id="h_reporter">Reported by:</th>
+      <td headers="h_reporter" class="searchable">
+        <a href="/trac/software/query?status=!closed&amp;reporter=curtis">curtis</a>
+      </td>
+      <th id="h_owner">Owned by:</th>
+      <td headers="h_owner">
+        <a href="/trac/software/query?status=!closed&amp;owner=melissa">melissa</a>
+      </td>
+    </tr>
+    <tr>
+        <th id="h_priority">
+          Priority:
+        </th>
+        <td headers="h_priority">
+              <a href="/trac/software/query?status=!closed&amp;priority=critical">critical</a>
+        </td>
+        <th id="h_milestone">
+          Milestone:
+        </th>
+        <td headers="h_milestone">
+              <a class="missing milestone"></a>
+        </td>
+    </tr><tr>
+        <th id="h_component">
+          Component:
+        </th>
+        <td headers="h_component">
+              <a href="/trac/software/query?status=!closed&amp;component=bio-formats">bio-formats</a>
+        </td>
+        <th id="h_severity">
+          Severity:
+        </th>
+        <td headers="h_severity">
+              <a href="/trac/software/query?status=!closed&amp;severity=critical">critical</a>
+        </td>
+    </tr><tr>
+        <th id="h_keywords">
+          Keywords:
+        </th>
+        <td headers="h_keywords" class="searchable">
+        </td>
+        <th id="h_cc">
+          Cc:
+        </th>
+        <td headers="h_cc" class="searchable">
+        </td>
+    </tr><tr>
+        <th id="h_blockedby">
+          Blocked By:
+        </th>
+        <td headers="h_blockedby">
+        </td>
+        <th id="h_blocking">
+          Blocking:
+        </th>
+        <td headers="h_blocking">
+        </td>
+    </tr>
+  </table>
+  <div class="description">
+    <h3 id="comment:description">
+      Description
+    </h3>
+    <div class="searchable">
+      <p>
+Attempting to read <tt>data/quicktime/curtis/mri-cinepak.mov</tt> on a Windows system, the following exception occurs when attempting to paint the image in the Image Viewer:
+</p>
+<pre class="wiki">Exception in thread "AWT-EventQueue-0" java.lang.ArrayIndexOutOfBoundsException: 42036
+        at java.awt.image.DataBufferInt.getElem(Unknown Source)
+        at java.awt.image.ComponentSampleModel.getDataElements(Unknown Source)
+        at java.awt.image.Raster.getDataElements(Unknown Source)
+        at sun.java2d.loops.OpaqueCopyAnyToArgb.Blit(Unknown Source)
+        at sun.java2d.loops.GraphicsPrimitive.convertFrom(Unknown Source)
+        at sun.java2d.loops.GraphicsPrimitive.convertFrom(Unknown Source)
+        at sun.java2d.loops.MaskBlit$General.MaskBlit(Unknown Source)
+        at sun.java2d.loops.Blit$GeneralMaskBlit.Blit(Unknown Source)
+        at sun.java2d.pipe.DrawImage.blitSurfaceData(Unknown Source)
+        at sun.java2d.pipe.DrawImage.renderImageCopy(Unknown Source)
+        at sun.java2d.pipe.DrawImage.copyImage(Unknown Source)
+        at sun.java2d.pipe.DrawImage.copyImage(Unknown Source)
+        at sun.java2d.SunGraphics2D.drawImage(Unknown Source)
+        at sun.java2d.SunGraphics2D.drawImage(Unknown Source)
+        at javax.swing.ImageIcon.paintIcon(Unknown Source)
+        at javax.swing.plaf.basic.BasicLabelUI.paint(Unknown Source)
+        at javax.swing.plaf.ComponentUI.update(Unknown Source)
+        at javax.swing.JComponent.paintComponent(Unknown Source)
+        at javax.swing.JComponent.paint(Unknown Source)
+        at javax.swing.JComponent.paintChildren(Unknown Source)
+        at javax.swing.JComponent.paint(Unknown Source)
+        at javax.swing.JViewport.paint(Unknown Source)
+        at javax.swing.JComponent.paintChildren(Unknown Source)
+        at javax.swing.JComponent.paint(Unknown Source)
+        at javax.swing.JComponent.paintChildren(Unknown Source)
+        at javax.swing.JComponent.paint(Unknown Source)
+        at javax.swing.JComponent.paintChildren(Unknown Source)
+        at javax.swing.JComponent.paint(Unknown Source)
+        at javax.swing.JLayeredPane.paint(Unknown Source)
+        at javax.swing.JComponent.paintChildren(Unknown Source)
+        at javax.swing.JComponent.paintToOffscreen(Unknown Source)
+        at javax.swing.BufferStrategyPaintManager.paint(Unknown Source)
+        at javax.swing.RepaintManager.paint(Unknown Source)
+        at javax.swing.JComponent.paint(Unknown Source)
+        at java.awt.GraphicsCallback$PaintCallback.run(Unknown Source)
+        at sun.awt.SunGraphicsCallback.runOneComponent(Unknown Source)
+        at sun.awt.SunGraphicsCallback.runComponents(Unknown Source)
+        at java.awt.Container.paint(Unknown Source)
+        at javax.swing.RepaintManager.paintDirtyRegions(Unknown Source)
+        at javax.swing.RepaintManager.paintDirtyRegions(Unknown Source)
+        at javax.swing.RepaintManager.seqPaintDirtyRegions(Unknown Source)
+        at javax.swing.SystemEventQueueUtilities$ComponentWorkRequest.run(Unknown Source)
+        at java.awt.event.InvocationEvent.dispatch(Unknown Source)
+        at java.awt.EventQueue.dispatchEvent(Unknown Source)
+        at java.awt.EventDispatchThread.pumpOneEventForFilters(Unknown Source)
+        at java.awt.EventDispatchThread.pumpEventsForFilter(Unknown Source)
+        at java.awt.EventDispatchThread.pumpEventsForHierarchy(Unknown Source)
+        at java.awt.EventDispatchThread.pumpEvents(Unknown Source)
+        at java.awt.EventDispatchThread.pumpEvents(Unknown Source)
+        at java.awt.EventDispatchThread.run(Unknown Source)
+</pre><p>
+On Mac OS X, the exception is similar:
+</p>
+<pre class="wiki">Exception in thread "AWT-EventQueue-0" java.lang.ArrayIndexOutOfBoundsException: 42036
+        at java.awt.image.DataBufferInt.getElem(DataBufferInt.java:187)
+        at java.awt.image.ComponentSampleModel.getDataElements(ComponentSampleModel.java:625)
+        at java.awt.image.Raster.getDataElements(Raster.java:1460)
+        at sun.awt.image.SunWritableRaster.getDataElements(SunWritableRaster.java:227)
+        at java.awt.image.BufferedImage.getRGB(BufferedImage.java:949)
+        at apple.awt.OSXOffScreenSurfaceData.syncFromCustom(OSXOffScreenSurfaceData.java:936)
+        at apple.awt.CRenderer.doImage(Native Method)
+        at apple.awt.OSXSurfaceData.blitImage(OSXSurfaceData.java:1393)
+        at apple.awt.CRenderer.blitImage(CRenderer.java:698)
+        at apple.awt.CRenderer.copyImage(CRenderer.java:712)
+        at apple.awt.CRenderer.copyImage(CRenderer.java:799)
+        at sun.java2d.pipe.ValidatePipe.copyImage(ValidatePipe.java:168)
+        at sun.java2d.SunGraphics2D.drawImage(SunGraphics2D.java:3163)
+        at sun.java2d.SunGraphics2D.drawImage(SunGraphics2D.java:3148)
+        at javax.swing.ImageIcon.paintIcon(ImageIcon.java:324)
+        at javax.swing.plaf.basic.BasicLabelUI.paint(BasicLabelUI.java:161)
+        at apple.laf.AquaLabelUI.paint(AquaLabelUI.java:31)
+        at javax.swing.plaf.ComponentUI.update(ComponentUI.java:154)
+        at javax.swing.JComponent.paintComponent(JComponent.java:743)
+        at javax.swing.JComponent.paint(JComponent.java:1006)
+        at javax.swing.JComponent.paintChildren(JComponent.java:843)
+        at javax.swing.JComponent.paint(JComponent.java:1015)
+        at javax.swing.JViewport.paint(JViewport.java:726)
+        at javax.swing.JComponent.paintChildren(JComponent.java:843)
+        at javax.swing.JComponent.paint(JComponent.java:1015)
+        at javax.swing.JComponent.paintChildren(JComponent.java:843)
+        at javax.swing.JComponent.paint(JComponent.java:1015)
+        at javax.swing.JComponent.paintChildren(JComponent.java:843)
+        at javax.swing.JComponent.paint(JComponent.java:1015)
+        at javax.swing.JLayeredPane.paint(JLayeredPane.java:559)
+        at javax.swing.JComponent.paintChildren(JComponent.java:843)
+        at javax.swing.JComponent.paint(JComponent.java:1015)
+        at java.awt.GraphicsCallback$PaintCallback.run(GraphicsCallback.java:34)
+        at sun.awt.SunGraphicsCallback.runOneComponent(SunGraphicsCallback.java:60)
+        at sun.awt.SunGraphicsCallback.runComponents(SunGraphicsCallback.java:97)
+        at java.awt.Container.paint(Container.java:1722)
+        at sun.awt.RepaintArea.paintComponent(RepaintArea.java:276)
+        at sun.awt.RepaintArea.paint(RepaintArea.java:241)
+        at apple.awt.ComponentModel.handleEvent(ComponentModel.java:251)
+        at apple.awt.CWindow.handleEvent(CWindow.java:176)
+        at java.awt.Component.dispatchEventImpl(Component.java:4126)
+        at java.awt.Container.dispatchEventImpl(Container.java:2068)
+        at java.awt.Window.dispatchEventImpl(Window.java:1791)
+        at java.awt.Component.dispatchEvent(Component.java:3885)
+        at java.awt.EventQueue.dispatchEvent(EventQueue.java:463)
+        at java.awt.EventDispatchThread.pumpOneEventForHierarchy(EventDispatchThread.java:269)
+        at java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:190)
+        at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:184)
+        at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:176)
+        at java.awt.EventDispatchThread.run(EventDispatchThread.java:110)
+</pre><p>
+Something must have changed in the way we generate BufferedImages.
+</p>
+
+    </div>
+  </div>
+</div>
+          
+
+        <div>
+          <h2 class="foldable">Change History</h2>
+          <div id="changelog">
+              <div class="change" id="trac-change-1">
+                <h3 class="change">
+                  <span class="threading">
+                    <span id="comment:1" class="cnum">
+      <a href="#comment:1">comment:1</a>
+    </span>
+                  </span>
+                  Changed <a class="timeline" href="/trac/software/timeline?from=2008-02-11T12%3A20%3A48-06%3A00&amp;precision=second" title="2008-02-11T12:20:48-06:00 in Timeline">11 years</a> ago by curtis
+                </h3>
+                
+    <div class="comment searchable">
+      
+      <p>
+I tried it with <a class="changeset" href="/trac/software/changeset/3520" title="2007 Dec 28 release of LOCI Tools
+">r3520</a> and the code worked then. If this ticket is still open, I'll narrow it down further later when I have some time.
+</p>
+
+    </div>
+
+              </div>
+              <div class="change" id="trac-change-2">
+                <h3 class="change">
+                  <span class="threading">
+                    <span id="comment:2" class="cnum">
+      <a href="#comment:2">comment:2</a>
+    </span>
+                  </span>
+                  Changed <a class="timeline" href="/trac/software/timeline?from=2008-02-14T09%3A27%3A48-06%3A00&amp;precision=second" title="2008-02-14T09:27:48-06:00 in Timeline">11 years</a> ago by melissa
+                </h3>
+                
+  <ul class="changes">
+    <li>
+      <strong>Status</strong>
+        changed from <em>new</em> to <em>closed</em>
+    </li><li>
+      <strong>Resolution</strong>
+        set to <em>fixed</em>
+    </li>
+  </ul>
+    <div class="comment searchable">
+      
+      <p>
+<a class="changeset" href="/trac/software/changeset/3689" title="Override openImage(int, int, int, int, int) so that legacy files don't ...">r3689</a>
+</p>
+
+    </div>
+
+              </div>
+          </div>
+        </div>
+      <div id="help"><strong>Note:</strong> See
+        <a href="/trac/software/wiki/TracTickets">TracTickets</a> for help on using
+        tickets.</div>
+    </div>
+    <div id="altlinks">
+      <h3>Download in other formats:</h3>
+      <ul>
+        <li class="first">
+          <a rel="nofollow" href="/trac/software/ticket/237?format=csv" class="csv">Comma-delimited Text</a>
+        </li><li>
+          <a rel="nofollow" href="/trac/software/ticket/237?format=tab" class="tab">Tab-delimited Text</a>
+        </li><li class="last">
+          <a rel="nofollow" href="/trac/software/ticket/237?format=rss" class="rss">RSS Feed</a>
+        </li>
+      </ul>
+    </div>
+    </div>
+    <div id="footer" lang="en" xml:lang="en"><hr />
+      <a id="tracpowered" href="http://trac.edgewall.org/"><img src="/trac/software/chrome/common/trac_logo_mini.png" height="30" width="107" alt="Trac Powered" /></a>
+      <p class="left">Powered by <a href="/trac/software/about"><strong>Trac 0.12.2</strong></a><br />
+        By <a href="http://www.edgewall.org/">Edgewall Software</a>.</p>
+      <p class="right">Visit the LOCI software web site at<br /><a href="http://loci.wisc.edu/software/">http://loci.wisc.edu/software/</a></p>
+    </div>
+  </body>
+</html>

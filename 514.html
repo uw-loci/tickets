@@ -1,0 +1,511 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  
+  
+
+  
+  <!-- See: http://trac.edgewall.org/wiki/TracInterfaceCustomization -->
+
+
+  <head>
+    <title>
+      #514 (Fix Image5D and View5D view modes)
+     – LOCI Software
+    </title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <link rel="search" href="/trac/software/search" />
+        <link rel="prev" href="/trac/software/ticket/513" title="Ticket #513" />
+        <link rel="last" href="/trac/software/ticket/822" title="Ticket #822" />
+        <link rel="help" href="/trac/software/wiki/TracGuide" />
+        <link rel="alternate" href="/trac/software/ticket/514?format=csv" type="text/csv" class="csv" title="Comma-delimited Text" /><link rel="alternate" href="/trac/software/ticket/514?format=tab" type="text/tab-separated-values" class="tab" title="Tab-delimited Text" /><link rel="alternate" href="/trac/software/ticket/514?format=rss" type="application/rss+xml" class="rss" title="RSS Feed" />
+        <link rel="next" href="/trac/software/ticket/515" title="Ticket #515" />
+        <link rel="start" href="/trac/software/wiki" />
+        <link rel="stylesheet" href="/trac/software/chrome/common/css/trac.css" type="text/css" /><link rel="stylesheet" href="/trac/software/chrome/common/css/ticket.css" type="text/css" />
+        <link rel="first" href="/trac/software/ticket/1" title="Ticket #1" />
+        <link rel="shortcut icon" href="/trac/software/chrome/common/trac.ico" type="image/x-icon" />
+        <link rel="icon" href="/trac/software/chrome/common/trac.ico" type="image/x-icon" />
+      <link type="application/opensearchdescription+xml" rel="search" href="/trac/software/search/opensearch" title="Search LOCI Software" />
+    <script type="text/javascript">
+      var auto_preview_timeout=2.0;
+      var form_token="00a35f186bf2961f34779352";
+    </script>
+    <script type="text/javascript" src="/trac/software/chrome/common/js/jquery.js"></script><script type="text/javascript" src="/trac/software/chrome/common/js/babel.js"></script><script type="text/javascript" src="/trac/software/chrome/common/js/trac.js"></script><script type="text/javascript" src="/trac/software/chrome/common/js/search.js"></script><script type="text/javascript" src="/trac/software/chrome/common/js/folding.js"></script><script type="text/javascript" src="/trac/software/chrome/common/js/wikitoolbar.js"></script><script type="text/javascript" src="/trac/software/chrome/common/js/resizer.js"></script><script type="text/javascript" src="/trac/software/chrome/common/js/auto_preview.js"></script>
+    <!--[if lt IE 7]>
+    <script type="text/javascript" src="/trac/software/chrome/common/js/ie_pre7_hacks.js"></script>
+    <![endif]-->
+    <script type="text/javascript">
+      jQuery(document).ready(function($) {
+        $("div.description").find("h1,h2,h3,h4,h5,h6").addAnchor(_("Link to this section"));
+        $(".foldable").enableFolding(false, true);
+        var args = {realm: "ticket", id: 514, escape_newlines: 0}
+        $("#comment").autoPreview("/trac/software/wiki_render", args, function(textarea, text, rendered) {
+            $("#ticketchange div.comment").html(rendered);
+            if (rendered)
+              $("#ticketchange").show();
+            else if ($("#ticketchange ul.changes").length == 0)
+              $("#ticketchange").hide();
+        });
+        $("#trac-comment-editor textarea").autoPreview("/trac/software/wiki_render", args,
+                                                       function(textarea, text, rendered) {
+          var comment = $("#trac-comment-editor").next("div.comment");
+          comment.html(rendered);
+          if (rendered)
+            comment.show();
+          else
+            comment.hide();
+        });
+        $("#modify").parent().toggleClass("collapsed");
+        $(".trac-topnav a").click(function() { $("#modify").parent().removeClass("collapsed"); });
+        /* only enable control elements for the currently selected action */
+        var actions = $("#action input[name='action']");
+        function updateActionFields() {
+          actions.each(function () {
+            $(this).siblings().find("*[id]").enable($(this).checked());
+            $(this).siblings().filter("*[id]").enable($(this).checked());
+          });
+        }
+        actions.click(updateActionFields);
+        updateActionFields();
+      });
+    </script>
+    <link rel="stylesheet" type="text/css" href="/trac/software/chrome/site/style.css" />
+  </head>
+  <body>
+    <div id="banner">
+      <div id="header">
+        <a id="logo" href="http://loci.wisc.edu/"><img src="http://loci.wisc.edu/loci-logo.png" alt="LOCI" height="98" width="300" /></a>
+      </div>
+      <form id="search" action="/trac/software/search" method="get">
+        <div>
+          <label for="proj-search">Search:</label>
+          <input type="text" id="proj-search" name="q" size="18" value="" />
+          <input type="submit" value="Search" />
+        </div>
+      </form>
+      <div id="metanav" class="nav">
+    <ul>
+      <li class="first"><a href="/trac/software/login">Login</a></li><li><a href="/trac/software/wiki/TracGuide">Help/Guide</a></li><li><a href="/trac/software/about">About Trac</a></li><li><a href="/trac/software/prefs">Preferences</a></li><li class="last"><a href="/trac/software/reset_password">Forgot your password?</a></li>
+    </ul>
+  </div>
+    </div>
+    <div id="mainnav" class="nav">
+    <ul>
+      <li class="first"><a href="/trac/software/wiki">Wiki</a></li><li><a href="/trac/software/timeline">Timeline</a></li><li><a href="/trac/software/roadmap">Roadmap</a></li><li><a href="/trac/software/browser">Browse Source</a></li><li class="active"><a href="/trac/software/report">View Tickets</a></li><li class="last"><a href="/trac/software/search">Search</a></li>
+    </ul>
+  </div>
+    <div id="main">
+      <div id="ctxtnav" class="nav">
+        <h2>Context Navigation</h2>
+          <ul>
+              <li class="first"><span>&larr; <a class="prev" href="/trac/software/ticket/513" title="Ticket #513">Previous Ticket</a></span></li><li class="last"><span><a class="next" href="/trac/software/ticket/515" title="Ticket #515">Next Ticket</a> &rarr;</span></li>
+          </ul>
+        <hr />
+      </div>
+    <div id="content" class="ticket">
+      <h1 id="trac-ticket-title">
+          <a href="/trac/software/ticket/514">Ticket #514</a>
+          <span class="status">(closed defect: fixed)</span>
+      </h1>
+      <div id="ticket">
+  <div class="date">
+    <p>Opened <a class="timeline" href="/trac/software/timeline?from=2010-07-13T15%3A03%3A09-05%3A00&amp;precision=second" title="2010-07-13T15:03:09-05:00 in Timeline">9 years</a> ago</p>
+    <p>Last modified <a class="timeline" href="/trac/software/timeline?from=2010-09-17T16%3A02%3A52-05%3A00&amp;precision=second" title="2010-09-17T16:02:52-05:00 in Timeline">9 years</a> ago</p>
+  </div>
+  <h2 class="summary searchable">Fix Image5D and View5D view modes</h2>
+  <table class="properties">
+    <tr>
+      <th id="h_reporter">Reported by:</th>
+      <td headers="h_reporter" class="searchable">
+        <a href="/trac/software/query?status=!closed&amp;reporter=curtis">curtis</a>
+      </td>
+      <th id="h_owner">Owned by:</th>
+      <td headers="h_owner">
+        <a href="/trac/software/query?status=!closed&amp;owner=curtis">curtis</a>
+      </td>
+    </tr>
+    <tr>
+        <th id="h_priority">
+          Priority:
+        </th>
+        <td headers="h_priority">
+              <a href="/trac/software/query?status=!closed&amp;priority=minor">minor</a>
+        </td>
+        <th id="h_milestone">
+          Milestone:
+        </th>
+        <td headers="h_milestone">
+              <a class="closed milestone" href="/trac/software/milestone/bio-formats-4.2.1">bio-formats-4.2.1</a>
+        </td>
+    </tr><tr>
+        <th id="h_component">
+          Component:
+        </th>
+        <td headers="h_component">
+              <a href="/trac/software/query?status=!closed&amp;component=plugins">plugins</a>
+        </td>
+        <th id="h_severity">
+          Severity:
+        </th>
+        <td headers="h_severity">
+              <a href="/trac/software/query?status=!closed&amp;severity=serious">serious</a>
+        </td>
+    </tr><tr>
+        <th id="h_keywords">
+          Keywords:
+        </th>
+        <td headers="h_keywords" class="searchable">
+        </td>
+        <th id="h_cc">
+          Cc:
+        </th>
+        <td headers="h_cc" class="searchable">
+        </td>
+    </tr><tr>
+        <th id="h_blockedby">
+          Blocked By:
+        </th>
+        <td headers="h_blockedby">
+        </td>
+        <th id="h_blocking">
+          Blocking:
+        </th>
+        <td headers="h_blocking">
+        </td>
+    </tr>
+  </table>
+  <div class="description">
+    <h3 id="comment:description">
+      Description
+    </h3>
+    <div class="searchable">
+      <p>
+There may be an issue with Image5D and View5D view modes, as they were not well-tested before the 4.2 release. Investigate, and make sure they work.
+</p>
+<p>
+Relevant code is in the displayImage5D and displayView5D methods of 
+<a class="source" href="/trac/software/browser/trunk/components/loci-plugins/src/loci/plugins/in/DisplayHandler.java">source:trunk/components/loci-plugins/src/loci/plugins/in/DisplayHandler.java</a>.
+</p>
+
+    </div>
+  </div>
+</div>
+          
+    <div id="attachments">
+        <h2 class="foldable">Attachments</h2>
+        <div>
+          <dl class="attachments">
+              <dt>
+    <a href="/trac/software/attachment/ticket/514/image5d-z-slider.diff" title="View attachment">image5d-z-slider.diff</a>
+      <a href="/trac/software/raw-attachment/ticket/514/image5d-z-slider.diff" class="trac-rawlink" title="Download"><img src="/trac/software/chrome/common/download.png" alt="Download" /></a>
+       (<span title="163 bytes">163 bytes</span>) -
+      added by <em>melissa</em> <a class="timeline" href="/trac/software/timeline?from=2010-07-20T09%3A22%3A53-05%3A00&amp;precision=second" title="2010-07-20T09:22:53-05:00 in Timeline">9 years</a> ago.
+  </dt>
+          </dl>
+          
+        </div>
+    </div>
+
+        <div>
+          <h2 class="foldable">Change History</h2>
+          <div id="changelog">
+              <div class="change" id="trac-change-1">
+                <h3 class="change">
+                  <span class="threading">
+                    <span id="comment:1" class="cnum">
+      <a href="#comment:1">comment:1</a>
+    </span>
+                  </span>
+                  Changed <a class="timeline" href="/trac/software/timeline?from=2010-07-15T14%3A19%3A51-05%3A00&amp;precision=second" title="2010-07-15T14:19:51-05:00 in Timeline">9 years</a> ago by melissa
+                </h3>
+                
+    <div class="comment searchable">
+      
+      <p>
+(In <a class="changeset" href="/trac/software/changeset/6701" title="Fixed View5D instantiation; see #514.
+">[6701]</a>) Fixed View5D instantiation; see <a class="closed ticket" href="/trac/software/ticket/514" title="defect: Fix Image5D and View5D view modes (closed: fixed)">#514</a>.
+</p>
+
+    </div>
+
+              </div>
+              <div class="change" id="trac-change-2">
+                <h3 class="change">
+                  <span class="threading">
+                    <span id="comment:2" class="cnum">
+      <a href="#comment:2">comment:2</a>
+    </span>
+                          <span>follow-ups:</span>
+      <a href="#comment:5">↓ 5</a>
+      <a href="#comment:7">↓ 7</a>
+                  </span>
+                  Changed <a class="timeline" href="/trac/software/timeline?from=2010-07-15T14%3A27%3A34-05%3A00&amp;precision=second" title="2010-07-15T14:27:34-05:00 in Timeline">9 years</a> ago by melissa
+                </h3>
+                
+    <div class="comment searchable">
+      
+      <p>
+Remaining Image5D issues:
+</p>
+<ul><li>Z slider doesn't work (tested against andor/mark/MF-2CH-Z-T.tif).  The play/pause button, however, does work.
+</li><li>An exception is thrown if the "concatenate series" option is checked (tested against andor/mark/MF-2CH-Z-T.tif).  Most likely, we want to disable this option if the Image5D display mode is selected.
+</li><li>An exception is thrown when trying to open a subset of planes.
+</li></ul><p>
+Remaining View5D issues:
+</p>
+<ul><li>View5D prompts for image dimensions (tested against andor/mark/VESSEL-DEC-Z.tif).  I don't know what (if anything) we can do about this, but it's kind of annoying given that the original ImagePlus contains all of the dimension information.
+</li></ul>
+    </div>
+
+              </div>
+              <div class="change" id="trac-change-3">
+                <h3 class="change">
+                  <span class="threading">
+                    <span id="comment:3" class="cnum">
+      <a href="#comment:3">comment:3</a>
+    </span>
+                          <span>follow-up:</span>
+      <a href="#comment:4">↓ 4</a>
+                  </span>
+                  Changed <a class="timeline" href="/trac/software/timeline?from=2010-07-15T15%3A23%3A56-05%3A00&amp;precision=second" title="2010-07-15T15:23:56-05:00 in Timeline">9 years</a> ago by melissa
+                </h3>
+                
+    <div class="comment searchable">
+      
+      <p>
+(In <a class="changeset" href="/trac/software/changeset/6703" title="Disable the &#34;concatenate series&#34; option when displaying with Image5D.  See ...">[6703]</a>) Disable the "concatenate series" option when displaying with Image5D.  See <a class="closed ticket" href="/trac/software/ticket/514" title="defect: Fix Image5D and View5D view modes (closed: fixed)">#514</a>.
+</p>
+
+    </div>
+
+              </div>
+              <div class="change" id="trac-change-4">
+                <h3 class="change">
+                  <span class="threading">
+                    <span id="comment:4" class="cnum">
+      <a href="#comment:4">comment:4</a>
+    </span>
+                        in reply to:
+      <a href="#comment:3">↑ 3</a>
+                  </span>
+                  Changed <a class="timeline" href="/trac/software/timeline?from=2010-07-15T15%3A55%3A33-05%3A00&amp;precision=second" title="2010-07-15T15:55:33-05:00 in Timeline">9 years</a> ago by curtis
+                </h3>
+                
+    <div class="comment searchable">
+      
+      <p>
+Replying to <a href="/trac/software/ticket/514#comment:3" title="Comment 3 for Ticket #514">melissa</a>:
+</p>
+<blockquote class="citation">
+<p>
+(In <a class="changeset" href="/trac/software/changeset/6703" title="Disable the &#34;concatenate series&#34; option when displaying with Image5D.  See ...">[6703]</a>) Disable the "concatenate series" option when displaying with Image5D.  See <a class="closed ticket" href="/trac/software/ticket/514" title="defect: Fix Image5D and View5D view modes (closed: fixed)">#514</a>.
+</p>
+</blockquote>
+<p>
+It is not clear to me why this should be necessary. The resultant ImagePlus object (after concatenation) should be no different than any other ImagePlus, so why wouldn't it be displayable within Image5D?
+</p>
+
+    </div>
+
+              </div>
+              <div class="change" id="trac-change-5">
+                <h3 class="change">
+                  <span class="threading">
+                    <span id="comment:5" class="cnum">
+      <a href="#comment:5">comment:5</a>
+    </span>
+                        in reply to:
+      <a href="#comment:2">↑ 2</a>
+                  </span>
+                  Changed <a class="timeline" href="/trac/software/timeline?from=2010-07-15T15%3A56%3A24-05%3A00&amp;precision=second" title="2010-07-15T15:56:24-05:00 in Timeline">9 years</a> ago by curtis
+                </h3>
+                
+    <div class="comment searchable">
+      
+      <blockquote class="citation">
+<p>
+Remaining View5D issues:
+</p>
+<ul><li>View5D prompts for image dimensions (tested against andor/mark/VESSEL-DEC-Z.tif).  I don't know what (if anything) we can do about this, but it's kind of annoying given that the original ImagePlus contains all of the dimension information.
+</li></ul></blockquote>
+<p>
+I thought we had found a way around this before. Perhaps a different View5D constructor? At worst, we can email the author asking for a way to avoid it.
+</p>
+
+    </div>
+
+              </div>
+              <div class="change" id="trac-change-6">
+                <h3 class="change">
+                  <span class="threading">
+                    <span id="comment:6" class="cnum">
+      <a href="#comment:6">comment:6</a>
+    </span>
+                  </span>
+                  Changed <a class="timeline" href="/trac/software/timeline?from=2010-07-16T11%3A30%3A56-05%3A00&amp;precision=second" title="2010-07-16T11:30:56-05:00 in Timeline">9 years</a> ago by melissa
+                </h3>
+                
+    <div class="comment searchable">
+      
+      <p>
+(In <a class="changeset" href="/trac/software/changeset/6704" title="* Reverted r6703 stupidity.
+* Fixed Image5D display mode to work with ...">[6704]</a>) * Reverted <a class="changeset" href="/trac/software/changeset/6703" title="Disable the &#34;concatenate series&#34; option when displaying with Image5D.  See ...">r6703</a> stupidity.
+</p>
+<ul><li>Fixed Image5D display mode to work with concatenation and range options; see <a class="closed ticket" href="/trac/software/ticket/514" title="defect: Fix Image5D and View5D view modes (closed: fixed)">#514</a>.
+</li></ul>
+    </div>
+
+              </div>
+              <div class="change" id="trac-change-7">
+                <h3 class="change">
+                  <span class="threading">
+                    <span id="comment:7" class="cnum">
+      <a href="#comment:7">comment:7</a>
+    </span>
+                        in reply to:
+      <a href="#comment:2">↑ 2</a>
+                  </span>
+                  Changed <a class="timeline" href="/trac/software/timeline?from=2010-07-20T09%3A22%3A14-05%3A00&amp;precision=second" title="2010-07-20T09:22:14-05:00 in Timeline">9 years</a> ago by melissa
+                </h3>
+                
+    <div class="comment searchable">
+      
+      <p>
+Replying to <a href="/trac/software/ticket/514#comment:2" title="Comment 2 for Ticket #514">melissa</a>:
+</p>
+<blockquote class="citation">
+<p>
+Remaining Image5D issues:
+</p>
+<ul><li>Z slider doesn't work (tested against andor/mark/MF-2CH-Z-T.tif).  The play/pause button, however, does work.
+</li></ul></blockquote>
+<p>
+This is a bug in Image5D; the attached patch solves it.
+</p>
+
+    </div>
+
+              </div>
+              <div class="change">
+                <h3 class="change">
+                  Changed <a class="timeline" href="/trac/software/timeline?from=2010-07-20T09%3A22%3A53-05%3A00&amp;precision=second" title="2010-07-20T09:22:53-05:00 in Timeline">9 years</a> ago by melissa
+                </h3>
+                
+  <ul class="changes">
+    <li>
+      <strong>attachment</strong>
+        <a href="/trac/software/attachment/ticket/514/image5d-z-slider.diff"><em>image5d-z-slider.diff</em></a>
+          <a href="/trac/software/raw-attachment/ticket/514/image5d-z-slider.diff" title="Download" class="trac-rawlink"><img src="/trac/software/chrome/common/download.png" alt="Download" /></a>
+          added
+    </li>
+  </ul>
+    <div class="comment searchable">
+      
+      
+    </div>
+
+              </div>
+              <div class="change" id="trac-change-8">
+                <h3 class="change">
+                  <span class="threading">
+                    <span id="comment:8" class="cnum">
+      <a href="#comment:8">comment:8</a>
+    </span>
+                  </span>
+                  Changed <a class="timeline" href="/trac/software/timeline?from=2010-08-16T15%3A47%3A48-05%3A00&amp;precision=second" title="2010-08-16T15:47:48-05:00 in Timeline">9 years</a> ago by curtis
+                </h3>
+                
+  <ul class="changes">
+    <li>
+      <strong>Owner</strong>
+        changed from <em>melissa</em> to <em>curtis</em>
+    </li>
+  </ul>
+    <div class="comment searchable">
+      
+      <p>
+The remaining work for Image5D is to apply Melissa's patch to the Image5D codebase, posting the updated version to our web site, and notifying interested parties.
+</p>
+<p>
+For View5D, we should dig a little more to eliminate the need to respecify the image dimensions, since they are already known (and I think this used to work).
+</p>
+
+    </div>
+
+              </div>
+              <div class="change" id="trac-change-9">
+                <h3 class="change">
+                  <span class="threading">
+                    <span id="comment:9" class="cnum">
+      <a href="#comment:9">comment:9</a>
+    </span>
+                  </span>
+                  Changed <a class="timeline" href="/trac/software/timeline?from=2010-09-17T15%3A12%3A50-05%3A00&amp;precision=second" title="2010-09-17T15:12:50-05:00 in Timeline">9 years</a> ago by curtis
+                </h3>
+                
+    <div class="comment searchable">
+      
+      <p>
+I have set up <a class="ext-link" href="http://dev.imagejdev.org/svn/imagej/trunk/image5d"><span class="icon"> </span>Image5D in the ImageJDev.org codebase</a>, added an <a class="ext-link" href="http://imagejdev.org/plugins/image5d"><span class="icon"> </span>Image5D page</a> to the web site, <a class="ext-link" href="http://trac.imagej.net/intertrac/r1423" title="r1423 in ImageJ"><span class="icon"> </span>committed Melissa's patch</a>, and <a class="ext-link" href="http://imagej.588099.n2.nabble.com/Image5D-1-2-1-released-was-Image-5D-td5544104.html"><span class="icon"> </span>released Image5D 1.2.1</a>.
+</p>
+<p>
+All that remains to close this ticket is to eliminate the extra View5D dialog.
+</p>
+
+    </div>
+
+              </div>
+              <div class="change" id="trac-change-10">
+                <h3 class="change">
+                  <span class="threading">
+                    <span id="comment:10" class="cnum">
+      <a href="#comment:10">comment:10</a>
+    </span>
+                  </span>
+                  Changed <a class="timeline" href="/trac/software/timeline?from=2010-09-17T16%3A02%3A52-05%3A00&amp;precision=second" title="2010-09-17T16:02:52-05:00 in Timeline">9 years</a> ago by curtis
+                </h3>
+                
+  <ul class="changes">
+    <li>
+      <strong>Status</strong>
+        changed from <em>new</em> to <em>closed</em>
+    </li><li>
+      <strong>Resolution</strong>
+        set to <em>fixed</em>
+    </li>
+  </ul>
+    <div class="comment searchable">
+      
+      <p>
+I reviewed the View5D code, and there is simply no way to avoid invoking a dialog pop-up when calling the View5D_ constructor with multidimensional data. So I'm going to punt on the extra View5D dialog for now—if people complain, we can contact the View5D author to  resolve it.
+</p>
+
+    </div>
+
+              </div>
+          </div>
+        </div>
+      <div id="help"><strong>Note:</strong> See
+        <a href="/trac/software/wiki/TracTickets">TracTickets</a> for help on using
+        tickets.</div>
+    </div>
+    <div id="altlinks">
+      <h3>Download in other formats:</h3>
+      <ul>
+        <li class="first">
+          <a rel="nofollow" href="/trac/software/ticket/514?format=csv" class="csv">Comma-delimited Text</a>
+        </li><li>
+          <a rel="nofollow" href="/trac/software/ticket/514?format=tab" class="tab">Tab-delimited Text</a>
+        </li><li class="last">
+          <a rel="nofollow" href="/trac/software/ticket/514?format=rss" class="rss">RSS Feed</a>
+        </li>
+      </ul>
+    </div>
+    </div>
+    <div id="footer" lang="en" xml:lang="en"><hr />
+      <a id="tracpowered" href="http://trac.edgewall.org/"><img src="/trac/software/chrome/common/trac_logo_mini.png" height="30" width="107" alt="Trac Powered" /></a>
+      <p class="left">Powered by <a href="/trac/software/about"><strong>Trac 0.12.2</strong></a><br />
+        By <a href="http://www.edgewall.org/">Edgewall Software</a>.</p>
+      <p class="right">Visit the LOCI software web site at<br /><a href="http://loci.wisc.edu/software/">http://loci.wisc.edu/software/</a></p>
+    </div>
+  </body>
+</html>

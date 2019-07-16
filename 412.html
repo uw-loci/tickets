@@ -1,0 +1,736 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  
+  
+
+  
+  <!-- See: http://trac.edgewall.org/wiki/TracInterfaceCustomization -->
+
+
+  <head>
+    <title>
+      #412 (Add support for scanning microscopy formats)
+     – LOCI Software
+    </title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <link rel="search" href="/trac/software/search" />
+        <link rel="prev" href="/trac/software/ticket/411" title="Ticket #411" />
+        <link rel="last" href="/trac/software/ticket/822" title="Ticket #822" />
+        <link rel="help" href="/trac/software/wiki/TracGuide" />
+        <link rel="alternate" href="/trac/software/ticket/412?format=csv" type="text/csv" class="csv" title="Comma-delimited Text" /><link rel="alternate" href="/trac/software/ticket/412?format=tab" type="text/tab-separated-values" class="tab" title="Tab-delimited Text" /><link rel="alternate" href="/trac/software/ticket/412?format=rss" type="application/rss+xml" class="rss" title="RSS Feed" />
+        <link rel="next" href="/trac/software/ticket/413" title="Ticket #413" />
+        <link rel="start" href="/trac/software/wiki" />
+        <link rel="stylesheet" href="/trac/software/chrome/common/css/trac.css" type="text/css" /><link rel="stylesheet" href="/trac/software/chrome/common/css/ticket.css" type="text/css" />
+        <link rel="first" href="/trac/software/ticket/1" title="Ticket #1" />
+        <link rel="shortcut icon" href="/trac/software/chrome/common/trac.ico" type="image/x-icon" />
+        <link rel="icon" href="/trac/software/chrome/common/trac.ico" type="image/x-icon" />
+      <link type="application/opensearchdescription+xml" rel="search" href="/trac/software/search/opensearch" title="Search LOCI Software" />
+    <script type="text/javascript">
+      var auto_preview_timeout=2.0;
+      var form_token="435751f031e1b832665dd930";
+    </script>
+    <script type="text/javascript" src="/trac/software/chrome/common/js/jquery.js"></script><script type="text/javascript" src="/trac/software/chrome/common/js/babel.js"></script><script type="text/javascript" src="/trac/software/chrome/common/js/trac.js"></script><script type="text/javascript" src="/trac/software/chrome/common/js/search.js"></script><script type="text/javascript" src="/trac/software/chrome/common/js/folding.js"></script><script type="text/javascript" src="/trac/software/chrome/common/js/wikitoolbar.js"></script><script type="text/javascript" src="/trac/software/chrome/common/js/resizer.js"></script><script type="text/javascript" src="/trac/software/chrome/common/js/auto_preview.js"></script>
+    <!--[if lt IE 7]>
+    <script type="text/javascript" src="/trac/software/chrome/common/js/ie_pre7_hacks.js"></script>
+    <![endif]-->
+    <script type="text/javascript">
+      jQuery(document).ready(function($) {
+        $("div.description").find("h1,h2,h3,h4,h5,h6").addAnchor(_("Link to this section"));
+        $(".foldable").enableFolding(false, true);
+        var args = {realm: "ticket", id: 412, escape_newlines: 0}
+        $("#comment").autoPreview("/trac/software/wiki_render", args, function(textarea, text, rendered) {
+            $("#ticketchange div.comment").html(rendered);
+            if (rendered)
+              $("#ticketchange").show();
+            else if ($("#ticketchange ul.changes").length == 0)
+              $("#ticketchange").hide();
+        });
+        $("#trac-comment-editor textarea").autoPreview("/trac/software/wiki_render", args,
+                                                       function(textarea, text, rendered) {
+          var comment = $("#trac-comment-editor").next("div.comment");
+          comment.html(rendered);
+          if (rendered)
+            comment.show();
+          else
+            comment.hide();
+        });
+        $("#modify").parent().toggleClass("collapsed");
+        $(".trac-topnav a").click(function() { $("#modify").parent().removeClass("collapsed"); });
+        /* only enable control elements for the currently selected action */
+        var actions = $("#action input[name='action']");
+        function updateActionFields() {
+          actions.each(function () {
+            $(this).siblings().find("*[id]").enable($(this).checked());
+            $(this).siblings().filter("*[id]").enable($(this).checked());
+          });
+        }
+        actions.click(updateActionFields);
+        updateActionFields();
+      });
+    </script>
+    <link rel="stylesheet" type="text/css" href="/trac/software/chrome/site/style.css" />
+  </head>
+  <body>
+    <div id="banner">
+      <div id="header">
+        <a id="logo" href="http://loci.wisc.edu/"><img src="http://loci.wisc.edu/loci-logo.png" alt="LOCI" height="98" width="300" /></a>
+      </div>
+      <form id="search" action="/trac/software/search" method="get">
+        <div>
+          <label for="proj-search">Search:</label>
+          <input type="text" id="proj-search" name="q" size="18" value="" />
+          <input type="submit" value="Search" />
+        </div>
+      </form>
+      <div id="metanav" class="nav">
+    <ul>
+      <li class="first"><a href="/trac/software/login">Login</a></li><li><a href="/trac/software/wiki/TracGuide">Help/Guide</a></li><li><a href="/trac/software/about">About Trac</a></li><li><a href="/trac/software/prefs">Preferences</a></li><li class="last"><a href="/trac/software/reset_password">Forgot your password?</a></li>
+    </ul>
+  </div>
+    </div>
+    <div id="mainnav" class="nav">
+    <ul>
+      <li class="first"><a href="/trac/software/wiki">Wiki</a></li><li><a href="/trac/software/timeline">Timeline</a></li><li><a href="/trac/software/roadmap">Roadmap</a></li><li><a href="/trac/software/browser">Browse Source</a></li><li class="active"><a href="/trac/software/report">View Tickets</a></li><li class="last"><a href="/trac/software/search">Search</a></li>
+    </ul>
+  </div>
+    <div id="main">
+      <div id="ctxtnav" class="nav">
+        <h2>Context Navigation</h2>
+          <ul>
+              <li class="first"><span>&larr; <a class="prev" href="/trac/software/ticket/411" title="Ticket #411">Previous Ticket</a></span></li><li class="last"><span><a class="next" href="/trac/software/ticket/413" title="Ticket #413">Next Ticket</a> &rarr;</span></li>
+          </ul>
+        <hr />
+      </div>
+    <div id="content" class="ticket">
+      <h1 id="trac-ticket-title">
+          <a href="/trac/software/ticket/412">Ticket #412</a>
+          <span class="status">(closed enhancement: fixed)</span>
+      </h1>
+      <div id="ticket">
+  <div class="date">
+    <p>Opened <a class="timeline" href="/trac/software/timeline?from=2009-09-01T09%3A34%3A06-05%3A00&amp;precision=second" title="2009-09-01T09:34:06-05:00 in Timeline">10 years</a> ago</p>
+    <p>Last modified <a class="timeline" href="/trac/software/timeline?from=2011-02-02T04%3A45%3A00-06%3A00&amp;precision=second" title="2011-02-02T04:45:00-06:00 in Timeline">8 years</a> ago</p>
+  </div>
+  <h2 class="summary searchable">Add support for scanning microscopy formats</h2>
+  <table class="properties">
+    <tr>
+      <th id="h_reporter">Reported by:</th>
+      <td headers="h_reporter" class="searchable">
+        <a href="/trac/software/query?status=!closed&amp;reporter=melissa">melissa</a>
+      </td>
+      <th id="h_owner">Owned by:</th>
+      <td headers="h_owner">
+        <a href="/trac/software/query?status=!closed&amp;owner=melissa">melissa</a>
+      </td>
+    </tr>
+    <tr>
+        <th id="h_priority">
+          Priority:
+        </th>
+        <td headers="h_priority">
+              <a href="/trac/software/query?status=!closed&amp;priority=minor">minor</a>
+        </td>
+        <th id="h_milestone">
+          Milestone:
+        </th>
+        <td headers="h_milestone">
+              <a class="closed milestone" href="/trac/software/milestone/bio-formats-5.0">bio-formats-5.0</a>
+        </td>
+    </tr><tr>
+        <th id="h_component">
+          Component:
+        </th>
+        <td headers="h_component">
+              <a href="/trac/software/query?status=!closed&amp;component=bio-formats">bio-formats</a>
+        </td>
+        <th id="h_severity">
+          Severity:
+        </th>
+        <td headers="h_severity">
+              <a href="/trac/software/query?status=!closed&amp;severity=non-issue">non-issue</a>
+        </td>
+    </tr><tr>
+        <th id="h_keywords">
+          Keywords:
+        </th>
+        <td headers="h_keywords" class="searchable">
+        </td>
+        <th id="h_cc">
+          Cc:
+        </th>
+        <td headers="h_cc" class="searchable">
+              cervetti.christian@…
+        </td>
+    </tr><tr>
+        <th id="h_blockedby">
+          Blocked By:
+        </th>
+        <td headers="h_blockedby">
+        </td>
+        <th id="h_blocking">
+          Blocking:
+        </th>
+        <td headers="h_blocking">
+        </td>
+    </tr>
+  </table>
+  <div class="description">
+    <h3 id="comment:description">
+      Description
+    </h3>
+    <div class="searchable">
+      <p>
+We have source code from Image SXM for handling several scanning microscopy formats.  This source code is in data/specs/image-sxm.
+</p>
+<p>
+It would be nice to port this code to Bio-Formats readers.
+</p>
+
+    </div>
+  </div>
+</div>
+          
+
+        <div>
+          <h2 class="foldable">Change History</h2>
+          <div id="changelog">
+              <div class="change" id="trac-change-1">
+                <h3 class="change">
+                  <span class="threading">
+                    <span id="comment:1" class="cnum">
+      <a href="#comment:1">comment:1</a>
+    </span>
+                  </span>
+                  Changed <a class="timeline" href="/trac/software/timeline?from=2010-01-21T09%3A20%3A52-06%3A00&amp;precision=second" title="2010-01-21T09:20:52-06:00 in Timeline">9 years</a> ago by melissa
+                </h3>
+                
+    <div class="comment searchable">
+      
+      <p>
+The formats are:
+ 
+</p>
+<ul><li>Asylum Research
+</li><li>Burleigh
+</li><li>DME
+</li><li>Pentax RAW (data/sxm/steve/DSLR raw files/*.PEF)
+</li><li>Digital Instruments Nanoscope
+</li><li>Gatan (NOT .dm3) (data/sxm/steve/Gatan)
+</li><li>Hamamatsu .his
+</li><li>JEOL
+</li><li>JPK
+</li><li>Klocke .stm
+</li><li>LEO
+</li><li>Molecular Imaging
+</li><li>NT-MDT
+</li><li>NanoMagnetics SIF
+</li><li>Nanonics
+</li><li>Nanonis
+</li><li>Nanosurf
+</li><li>Nanotec WSxM
+</li><li>Noran Vantage
+</li><li>Omicron
+</li><li>Oxford Instruments
+</li><li>PDS
+</li><li>Park Scientific
+</li><li>Philips
+</li><li>Quesant Instruments
+</li><li>RHK Tech
+</li><li>SBIG
+</li><li>SM-Camera
+</li><li>SPA-LEED
+</li><li>SPEC
+</li><li>Seiko Instruments
+</li><li>Targa
+</li><li>TopoMetrix
+</li><li>UBM
+</li><li>Unisoku
+</li><li>VG SAM
+</li><li>WA Technology
+</li><li>Wyko
+</li><li>...and whatever is in 'data/sxm/steve/Misc SXM test images'
+</li></ul>
+    </div>
+
+              </div>
+              <div class="change" id="trac-change-2">
+                <h3 class="change">
+                  <span class="threading">
+                    <span id="comment:2" class="cnum">
+      <a href="#comment:2">comment:2</a>
+    </span>
+                  </span>
+                  Changed <a class="timeline" href="/trac/software/timeline?from=2010-01-25T12%3A57%3A19-06%3A00&amp;precision=second" title="2010-01-25T12:57:19-06:00 in Timeline">9 years</a> ago by melissa
+                </h3>
+                
+    <div class="comment searchable">
+      
+      <p>
+(In <a class="changeset" href="/trac/software/changeset/5829" title="Added Targa reader. See #412.
+">[5829]</a>) Added Targa reader. See <a class="closed ticket" href="/trac/software/ticket/412" title="enhancement: Add support for scanning microscopy formats (closed: fixed)">#412</a>.
+</p>
+
+    </div>
+
+              </div>
+              <div class="change" id="trac-change-3">
+                <h3 class="change">
+                  <span class="threading">
+                    <span id="comment:3" class="cnum">
+      <a href="#comment:3">comment:3</a>
+    </span>
+                  </span>
+                  Changed <a class="timeline" href="/trac/software/timeline?from=2010-01-25T14%3A14%3A30-06%3A00&amp;precision=second" title="2010-01-25T14:14:30-06:00 in Timeline">9 years</a> ago by melissa
+                </h3>
+                
+    <div class="comment searchable">
+      
+      <p>
+(In <a class="changeset" href="/trac/software/changeset/5830" title="* Added LEO EM reader. See #412.
+* Updated FITS reader to allow the 'fts' ...">[5830]</a>) * Added LEO EM reader. See <a class="closed ticket" href="/trac/software/ticket/412" title="enhancement: Add support for scanning microscopy formats (closed: fixed)">#412</a>.
+</p>
+<ul><li>Updated FITS reader to allow the 'fts' extension.
+</li></ul>
+    </div>
+
+              </div>
+              <div class="change" id="trac-change-4">
+                <h3 class="change">
+                  <span class="threading">
+                    <span id="comment:4" class="cnum">
+      <a href="#comment:4">comment:4</a>
+    </span>
+                  </span>
+                  Changed <a class="timeline" href="/trac/software/timeline?from=2010-02-12T10%3A58%3A56-06%3A00&amp;precision=second" title="2010-02-12T10:58:56-06:00 in Timeline">9 years</a> ago by melissa
+                </h3>
+                
+    <div class="comment searchable">
+      
+      <p>
+(In <a class="changeset" href="/trac/software/changeset/5907" title="Added reader for Oxford Instruments' SPM files.  See #412.
+">[5907]</a>) Added reader for Oxford Instruments' SPM files.  See <a class="closed ticket" href="/trac/software/ticket/412" title="enhancement: Add support for scanning microscopy formats (closed: fixed)">#412</a>.
+</p>
+
+    </div>
+
+              </div>
+              <div class="change" id="trac-change-5">
+                <h3 class="change">
+                  <span class="threading">
+                    <span id="comment:5" class="cnum">
+      <a href="#comment:5">comment:5</a>
+    </span>
+                  </span>
+                  Changed <a class="timeline" href="/trac/software/timeline?from=2010-02-12T12%3A30%3A31-06%3A00&amp;precision=second" title="2010-02-12T12:30:31-06:00 in Timeline">9 years</a> ago by melissa
+                </h3>
+                
+    <div class="comment searchable">
+      
+      <p>
+(In <a class="changeset" href="/trac/software/changeset/5908" title="Added reader for Unisoku files.  See #412.
+">[5908]</a>) Added reader for Unisoku files.  See <a class="closed ticket" href="/trac/software/ticket/412" title="enhancement: Add support for scanning microscopy formats (closed: fixed)">#412</a>.
+</p>
+
+    </div>
+
+              </div>
+              <div class="change" id="trac-change-6">
+                <h3 class="change">
+                  <span class="threading">
+                    <span id="comment:6" class="cnum">
+      <a href="#comment:6">comment:6</a>
+    </span>
+                  </span>
+                  Changed <a class="timeline" href="/trac/software/timeline?from=2010-02-12T13%3A05%3A17-06%3A00&amp;precision=second" title="2010-02-12T13:05:17-06:00 in Timeline">9 years</a> ago by melissa
+                </h3>
+                
+    <div class="comment searchable">
+      
+      <p>
+(In <a class="changeset" href="/trac/software/changeset/5909" title="Added reader for VG SAM .dti files. See #412.
+">[5909]</a>) Added reader for VG SAM .dti files. See <a class="closed ticket" href="/trac/software/ticket/412" title="enhancement: Add support for scanning microscopy formats (closed: fixed)">#412</a>.
+</p>
+
+    </div>
+
+              </div>
+              <div class="change" id="trac-change-7">
+                <h3 class="change">
+                  <span class="threading">
+                    <span id="comment:7" class="cnum">
+      <a href="#comment:7">comment:7</a>
+    </span>
+                  </span>
+                  Changed <a class="timeline" href="/trac/software/timeline?from=2010-02-13T10%3A31%3A09-06%3A00&amp;precision=second" title="2010-02-13T10:31:09-06:00 in Timeline">9 years</a> ago by melissa
+                </h3>
+                
+    <div class="comment searchable">
+      
+      <p>
+(In <a class="changeset" href="/trac/software/changeset/5912" title="Added reader for Hamamatsu .his files.  See #412.
+">[5912]</a>) Added reader for Hamamatsu .his files.  See <a class="closed ticket" href="/trac/software/ticket/412" title="enhancement: Add support for scanning microscopy formats (closed: fixed)">#412</a>.
+</p>
+
+    </div>
+
+              </div>
+              <div class="change" id="trac-change-8">
+                <h3 class="change">
+                  <span class="threading">
+                    <span id="comment:8" class="cnum">
+      <a href="#comment:8">comment:8</a>
+    </span>
+                  </span>
+                  Changed <a class="timeline" href="/trac/software/timeline?from=2010-02-26T17%3A18%3A16-06%3A00&amp;precision=second" title="2010-02-26T17:18:16-06:00 in Timeline">9 years</a> ago by melissa
+                </h3>
+                
+    <div class="comment searchable">
+      
+      <p>
+(In <a class="changeset" href="/trac/software/changeset/5972" title="Added Gatan .dm2 reader and fixed a couple of Gatan .dm3 bugs.  See #412.
+">[5972]</a>) Added Gatan .dm2 reader and fixed a couple of Gatan .dm3 bugs.  See <a class="closed ticket" href="/trac/software/ticket/412" title="enhancement: Add support for scanning microscopy formats (closed: fixed)">#412</a>.
+</p>
+
+    </div>
+
+              </div>
+              <div class="change" id="trac-change-9">
+                <h3 class="change">
+                  <span class="threading">
+                    <span id="comment:9" class="cnum">
+      <a href="#comment:9">comment:9</a>
+    </span>
+                  </span>
+                  Changed <a class="timeline" href="/trac/software/timeline?from=2010-03-01T09%3A20%3A13-06%3A00&amp;precision=second" title="2010-03-01T09:20:13-06:00 in Timeline">9 years</a> ago by melissa
+                </h3>
+                
+    <div class="comment searchable">
+      
+      <p>
+(In <a class="changeset" href="/trac/software/changeset/5975" title="Added reader for WA Technology .wat files.  See #412.
+">[5975]</a>) Added reader for WA Technology .wat files.  See <a class="closed ticket" href="/trac/software/ticket/412" title="enhancement: Add support for scanning microscopy formats (closed: fixed)">#412</a>.
+</p>
+
+    </div>
+
+              </div>
+              <div class="change" id="trac-change-10">
+                <h3 class="change">
+                  <span class="threading">
+                    <span id="comment:10" class="cnum">
+      <a href="#comment:10">comment:10</a>
+    </span>
+                  </span>
+                  Changed <a class="timeline" href="/trac/software/timeline?from=2010-03-02T15%3A11%3A12-06%3A00&amp;precision=second" title="2010-03-02T15:11:12-06:00 in Timeline">9 years</a> ago by melissa
+                </h3>
+                
+    <div class="comment searchable">
+      
+      <p>
+(In <a class="changeset" href="/trac/software/changeset/5983" title="Added SM Camera reader.  See #412.
+">[5983]</a>) Added SM Camera reader.  See <a class="closed ticket" href="/trac/software/ticket/412" title="enhancement: Add support for scanning microscopy formats (closed: fixed)">#412</a>.
+</p>
+
+    </div>
+
+              </div>
+              <div class="change" id="trac-change-11">
+                <h3 class="change">
+                  <span class="threading">
+                    <span id="comment:11" class="cnum">
+      <a href="#comment:11">comment:11</a>
+    </span>
+                  </span>
+                  Changed <a class="timeline" href="/trac/software/timeline?from=2010-03-02T16%3A18%3A34-06%3A00&amp;precision=second" title="2010-03-02T16:18:34-06:00 in Timeline">9 years</a> ago by melissa
+                </h3>
+                
+    <div class="comment searchable">
+      
+      <p>
+(In <a class="changeset" href="/trac/software/changeset/5984" title="Added Seiko reader and cleaned up SM Camera reader a bit.  See #412.
+">[5984]</a>) Added Seiko reader and cleaned up SM Camera reader a bit.  See <a class="closed ticket" href="/trac/software/ticket/412" title="enhancement: Add support for scanning microscopy formats (closed: fixed)">#412</a>.
+</p>
+
+    </div>
+
+              </div>
+              <div class="change" id="trac-change-12">
+                <h3 class="change">
+                  <span class="threading">
+                    <span id="comment:12" class="cnum">
+      <a href="#comment:12">comment:12</a>
+    </span>
+                  </span>
+                  Changed <a class="timeline" href="/trac/software/timeline?from=2010-03-03T12%3A26%3A33-06%3A00&amp;precision=second" title="2010-03-03T12:26:33-06:00 in Timeline">9 years</a> ago by melissa
+                </h3>
+                
+    <div class="comment searchable">
+      
+      <p>
+(In <a class="changeset" href="/trac/software/changeset/5985" title="Added TopoMetrix reader.  See #412.
+">[5985]</a>) Added TopoMetrix reader.  See <a class="closed ticket" href="/trac/software/ticket/412" title="enhancement: Add support for scanning microscopy formats (closed: fixed)">#412</a>.
+</p>
+
+    </div>
+
+              </div>
+              <div class="change" id="trac-change-13">
+                <h3 class="change">
+                  <span class="threading">
+                    <span id="comment:13" class="cnum">
+      <a href="#comment:13">comment:13</a>
+    </span>
+                  </span>
+                  Changed <a class="timeline" href="/trac/software/timeline?from=2010-03-05T16%3A02%3A37-06%3A00&amp;precision=second" title="2010-03-05T16:02:37-06:00 in Timeline">9 years</a> ago by melissa
+                </h3>
+                
+    <div class="comment searchable">
+      
+      <p>
+(In <a class="changeset" href="/trac/software/changeset/5993" title="Added JEOL reader.  See #412.
+">[5993]</a>) Added JEOL reader.  See <a class="closed ticket" href="/trac/software/ticket/412" title="enhancement: Add support for scanning microscopy formats (closed: fixed)">#412</a>.
+</p>
+
+    </div>
+
+              </div>
+              <div class="change" id="trac-change-14">
+                <h3 class="change">
+                  <span class="threading">
+                    <span id="comment:14" class="cnum">
+      <a href="#comment:14">comment:14</a>
+    </span>
+                  </span>
+                  Changed <a class="timeline" href="/trac/software/timeline?from=2010-03-08T08%3A16%3A34-06%3A00&amp;precision=second" title="2010-03-08T08:16:34-06:00 in Timeline">9 years</a> ago by melissa
+                </h3>
+                
+    <div class="comment searchable">
+      
+      <p>
+(In <a class="changeset" href="/trac/software/changeset/5996" title="Tweaked FEI reader to support Philips .img files.  See #412.
+">[5996]</a>) Tweaked FEI reader to support Philips .img files.  See <a class="closed ticket" href="/trac/software/ticket/412" title="enhancement: Add support for scanning microscopy formats (closed: fixed)">#412</a>.
+</p>
+
+    </div>
+
+              </div>
+              <div class="change" id="trac-change-15">
+                <h3 class="change">
+                  <span class="threading">
+                    <span id="comment:15" class="cnum">
+      <a href="#comment:15">comment:15</a>
+    </span>
+                  </span>
+                  Changed <a class="timeline" href="/trac/software/timeline?from=2010-03-08T14%3A43%3A24-06%3A00&amp;precision=second" title="2010-03-08T14:43:24-06:00 in Timeline">9 years</a> ago by melissa
+                </h3>
+                
+    <div class="comment searchable">
+      
+      <p>
+(In <a class="changeset" href="/trac/software/changeset/6001" title="Added UBM reader.  See #412.
+">[6001]</a>) Added UBM reader.  See <a class="closed ticket" href="/trac/software/ticket/412" title="enhancement: Add support for scanning microscopy formats (closed: fixed)">#412</a>.
+</p>
+
+    </div>
+
+              </div>
+              <div class="change" id="trac-change-16">
+                <h3 class="change">
+                  <span class="threading">
+                    <span id="comment:16" class="cnum">
+      <a href="#comment:16">comment:16</a>
+    </span>
+                  </span>
+                  Changed <a class="timeline" href="/trac/software/timeline?from=2010-03-09T18%3A47%3A48-06%3A00&amp;precision=second" title="2010-03-09T18:47:48-06:00 in Timeline">9 years</a> ago by melissa
+                </h3>
+                
+    <div class="comment searchable">
+      
+      <p>
+(In <a class="changeset" href="/trac/software/changeset/6013" title="Added Quesant reader.  See #412.
+">[6013]</a>) Added Quesant reader.  See <a class="closed ticket" href="/trac/software/ticket/412" title="enhancement: Add support for scanning microscopy formats (closed: fixed)">#412</a>.
+</p>
+
+    </div>
+
+              </div>
+              <div class="change" id="trac-change-17">
+                <h3 class="change">
+                  <span class="threading">
+                    <span id="comment:17" class="cnum">
+      <a href="#comment:17">comment:17</a>
+    </span>
+                  </span>
+                  Changed <a class="timeline" href="/trac/software/timeline?from=2010-03-10T09%3A34%3A04-06%3A00&amp;precision=second" title="2010-03-10T09:34:04-06:00 in Timeline">9 years</a> ago by melissa
+                </h3>
+                
+    <div class="comment searchable">
+      
+      <p>
+(In <a class="changeset" href="/trac/software/changeset/6015" title="Added Burleigh reader.  See #412.
+">[6015]</a>) Added Burleigh reader.  See <a class="closed ticket" href="/trac/software/ticket/412" title="enhancement: Add support for scanning microscopy formats (closed: fixed)">#412</a>.
+</p>
+
+    </div>
+
+              </div>
+              <div class="change" id="trac-change-18">
+                <h3 class="change">
+                  <span class="threading">
+                    <span id="comment:18" class="cnum">
+      <a href="#comment:18">comment:18</a>
+    </span>
+                  </span>
+                  Changed <a class="timeline" href="/trac/software/timeline?from=2010-04-26T12%3A11%3A40-05%3A00&amp;precision=second" title="2010-04-26T12:11:40-05:00 in Timeline">9 years</a> ago by melissa
+                </h3>
+                
+    <div class="comment searchable">
+      
+      <p>
+(In <a class="changeset" href="/trac/software/changeset/6191" title="Added SBIG reader and fixed a NIfTI type detection bug.  See #412.
+">[6191]</a>) Added SBIG reader and fixed a NIfTI type detection bug.  See <a class="closed ticket" href="/trac/software/ticket/412" title="enhancement: Add support for scanning microscopy formats (closed: fixed)">#412</a>.
+</p>
+
+    </div>
+
+              </div>
+              <div class="change" id="trac-change-19">
+                <h3 class="change">
+                  <span class="threading">
+                    <span id="comment:19" class="cnum">
+      <a href="#comment:19">comment:19</a>
+    </span>
+                  </span>
+                  Changed <a class="timeline" href="/trac/software/timeline?from=2010-04-26T13%3A51%3A43-05%3A00&amp;precision=second" title="2010-04-26T13:51:43-05:00 in Timeline">9 years</a> ago by melissa
+                </h3>
+                
+    <div class="comment searchable">
+      
+      <p>
+(In <a class="changeset" href="/trac/software/changeset/6193" title="Added RHK Technologies reader.  See #412.
+">[6193]</a>) Added RHK Technologies reader.  See <a class="closed ticket" href="/trac/software/ticket/412" title="enhancement: Add support for scanning microscopy formats (closed: fixed)">#412</a>.
+</p>
+
+    </div>
+
+              </div>
+              <div class="change" id="trac-change-20">
+                <h3 class="change">
+                  <span class="threading">
+                    <span id="comment:20" class="cnum">
+      <a href="#comment:20">comment:20</a>
+    </span>
+                  </span>
+                  Changed <a class="timeline" href="/trac/software/timeline?from=2010-04-27T13%3A16%3A46-05%3A00&amp;precision=second" title="2010-04-27T13:16:46-05:00 in Timeline">9 years</a> ago by melissa
+                </h3>
+                
+    <div class="comment searchable">
+      
+      <p>
+(In <a class="changeset" href="/trac/software/changeset/6197" title="* Added Molecular Imaging and JPK readers.  See #412.
+* Minor cleanup in ...">[6197]</a>) * Added Molecular Imaging and JPK readers.  See <a class="closed ticket" href="/trac/software/ticket/412" title="enhancement: Add support for scanning microscopy formats (closed: fixed)">#412</a>.
+</p>
+<ul><li>Minor cleanup in SBIG reader.
+</li></ul>
+    </div>
+
+              </div>
+              <div class="change" id="trac-change-21">
+                <h3 class="change">
+                  <span class="threading">
+                    <span id="comment:21" class="cnum">
+      <a href="#comment:21">comment:21</a>
+    </span>
+                  </span>
+                  Changed <a class="timeline" href="/trac/software/timeline?from=2010-05-06T08%3A33%3A31-05%3A00&amp;precision=second" title="2010-05-06T08:33:31-05:00 in Timeline">9 years</a> ago by melissa
+                </h3>
+                
+  <ul class="changes">
+    <li>
+      <strong>Milestone</strong>
+        changed from <em>bio-formats-4.2</em> to <em>bio-formats-5.0</em>
+    </li>
+  </ul>
+    <div class="comment searchable">
+      
+      
+    </div>
+
+              </div>
+              <div class="change" id="trac-change-22">
+                <h3 class="change">
+                  <span class="threading">
+                    <span id="comment:22" class="cnum">
+      <a href="#comment:22">comment:22</a>
+    </span>
+                  </span>
+                  Changed <a class="timeline" href="/trac/software/timeline?from=2010-10-12T14%3A08%3A01-05%3A00&amp;precision=second" title="2010-10-12T14:08:01-05:00 in Timeline">9 years</a> ago by curtis
+                </h3>
+                
+  <ul class="changes">
+    <li>
+      <strong>Cc</strong>
+        <em>cervetti.christian@…</em> added
+    </li>
+  </ul>
+    <div class="comment searchable">
+      
+      
+    </div>
+
+              </div>
+              <div class="change" id="trac-change-23">
+                <h3 class="change">
+                  <span class="threading">
+                    <span id="comment:23" class="cnum">
+      <a href="#comment:23">comment:23</a>
+    </span>
+                  </span>
+                  Changed <a class="timeline" href="/trac/software/timeline?from=2011-02-02T04%3A45%3A00-06%3A00&amp;precision=second" title="2011-02-02T04:45:00-06:00 in Timeline">8 years</a> ago by curtis
+                </h3>
+                
+  <ul class="changes">
+    <li>
+      <strong>Status</strong>
+        changed from <em>new</em> to <em>closed</em>
+    </li><li>
+      <strong>Resolution</strong>
+        set to <em>fixed</em>
+    </li>
+  </ul>
+    <div class="comment searchable">
+      
+      <p>
+moved to <a class="ext-link" href="http://trac.openmicroscopy.org.uk/ome/intertrac/%234115" title="#4115 in OME Trac"><span class="icon"> </span>ome:#4115</a>
+</p>
+
+    </div>
+
+              </div>
+          </div>
+        </div>
+      <div id="help"><strong>Note:</strong> See
+        <a href="/trac/software/wiki/TracTickets">TracTickets</a> for help on using
+        tickets.</div>
+    </div>
+    <div id="altlinks">
+      <h3>Download in other formats:</h3>
+      <ul>
+        <li class="first">
+          <a rel="nofollow" href="/trac/software/ticket/412?format=csv" class="csv">Comma-delimited Text</a>
+        </li><li>
+          <a rel="nofollow" href="/trac/software/ticket/412?format=tab" class="tab">Tab-delimited Text</a>
+        </li><li class="last">
+          <a rel="nofollow" href="/trac/software/ticket/412?format=rss" class="rss">RSS Feed</a>
+        </li>
+      </ul>
+    </div>
+    </div>
+    <div id="footer" lang="en" xml:lang="en"><hr />
+      <a id="tracpowered" href="http://trac.edgewall.org/"><img src="/trac/software/chrome/common/trac_logo_mini.png" height="30" width="107" alt="Trac Powered" /></a>
+      <p class="left">Powered by <a href="/trac/software/about"><strong>Trac 0.12.2</strong></a><br />
+        By <a href="http://www.edgewall.org/">Edgewall Software</a>.</p>
+      <p class="right">Visit the LOCI software web site at<br /><a href="http://loci.wisc.edu/software/">http://loci.wisc.edu/software/</a></p>
+    </div>
+  </body>
+</html>

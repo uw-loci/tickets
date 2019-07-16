@@ -1,0 +1,441 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  
+  
+
+  
+  <!-- See: http://trac.edgewall.org/wiki/TracInterfaceCustomization -->
+
+
+  <head>
+    <title>
+      #88 (Need system to scale selection areas to pixel coordinates)
+     – LOCI Software
+    </title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <link rel="search" href="/trac/software/search" />
+        <link rel="prev" href="/trac/software/ticket/87" title="Ticket #87" />
+        <link rel="last" href="/trac/software/ticket/822" title="Ticket #822" />
+        <link rel="help" href="/trac/software/wiki/TracGuide" />
+        <link rel="alternate" href="/trac/software/ticket/88?format=csv" type="text/csv" class="csv" title="Comma-delimited Text" /><link rel="alternate" href="/trac/software/ticket/88?format=tab" type="text/tab-separated-values" class="tab" title="Tab-delimited Text" /><link rel="alternate" href="/trac/software/ticket/88?format=rss" type="application/rss+xml" class="rss" title="RSS Feed" />
+        <link rel="next" href="/trac/software/ticket/89" title="Ticket #89" />
+        <link rel="start" href="/trac/software/wiki" />
+        <link rel="stylesheet" href="/trac/software/chrome/common/css/trac.css" type="text/css" /><link rel="stylesheet" href="/trac/software/chrome/common/css/ticket.css" type="text/css" />
+        <link rel="first" href="/trac/software/ticket/1" title="Ticket #1" />
+        <link rel="shortcut icon" href="/trac/software/chrome/common/trac.ico" type="image/x-icon" />
+        <link rel="icon" href="/trac/software/chrome/common/trac.ico" type="image/x-icon" />
+      <link type="application/opensearchdescription+xml" rel="search" href="/trac/software/search/opensearch" title="Search LOCI Software" />
+    <script type="text/javascript">
+      var auto_preview_timeout=2.0;
+      var form_token="86d6ae675b55daceff4a2191";
+    </script>
+    <script type="text/javascript" src="/trac/software/chrome/common/js/jquery.js"></script><script type="text/javascript" src="/trac/software/chrome/common/js/babel.js"></script><script type="text/javascript" src="/trac/software/chrome/common/js/trac.js"></script><script type="text/javascript" src="/trac/software/chrome/common/js/search.js"></script><script type="text/javascript" src="/trac/software/chrome/common/js/folding.js"></script><script type="text/javascript" src="/trac/software/chrome/common/js/wikitoolbar.js"></script><script type="text/javascript" src="/trac/software/chrome/common/js/resizer.js"></script><script type="text/javascript" src="/trac/software/chrome/common/js/auto_preview.js"></script>
+    <!--[if lt IE 7]>
+    <script type="text/javascript" src="/trac/software/chrome/common/js/ie_pre7_hacks.js"></script>
+    <![endif]-->
+    <script type="text/javascript">
+      jQuery(document).ready(function($) {
+        $("div.description").find("h1,h2,h3,h4,h5,h6").addAnchor(_("Link to this section"));
+        $(".foldable").enableFolding(false, true);
+        var args = {realm: "ticket", id: 88, escape_newlines: 0}
+        $("#comment").autoPreview("/trac/software/wiki_render", args, function(textarea, text, rendered) {
+            $("#ticketchange div.comment").html(rendered);
+            if (rendered)
+              $("#ticketchange").show();
+            else if ($("#ticketchange ul.changes").length == 0)
+              $("#ticketchange").hide();
+        });
+        $("#trac-comment-editor textarea").autoPreview("/trac/software/wiki_render", args,
+                                                       function(textarea, text, rendered) {
+          var comment = $("#trac-comment-editor").next("div.comment");
+          comment.html(rendered);
+          if (rendered)
+            comment.show();
+          else
+            comment.hide();
+        });
+        $("#modify").parent().toggleClass("collapsed");
+        $(".trac-topnav a").click(function() { $("#modify").parent().removeClass("collapsed"); });
+        /* only enable control elements for the currently selected action */
+        var actions = $("#action input[name='action']");
+        function updateActionFields() {
+          actions.each(function () {
+            $(this).siblings().find("*[id]").enable($(this).checked());
+            $(this).siblings().filter("*[id]").enable($(this).checked());
+          });
+        }
+        actions.click(updateActionFields);
+        updateActionFields();
+      });
+    </script>
+    <link rel="stylesheet" type="text/css" href="/trac/software/chrome/site/style.css" />
+  </head>
+  <body>
+    <div id="banner">
+      <div id="header">
+        <a id="logo" href="http://loci.wisc.edu/"><img src="http://loci.wisc.edu/loci-logo.png" alt="LOCI" height="98" width="300" /></a>
+      </div>
+      <form id="search" action="/trac/software/search" method="get">
+        <div>
+          <label for="proj-search">Search:</label>
+          <input type="text" id="proj-search" name="q" size="18" value="" />
+          <input type="submit" value="Search" />
+        </div>
+      </form>
+      <div id="metanav" class="nav">
+    <ul>
+      <li class="first"><a href="/trac/software/login">Login</a></li><li><a href="/trac/software/wiki/TracGuide">Help/Guide</a></li><li><a href="/trac/software/about">About Trac</a></li><li><a href="/trac/software/prefs">Preferences</a></li><li class="last"><a href="/trac/software/reset_password">Forgot your password?</a></li>
+    </ul>
+  </div>
+    </div>
+    <div id="mainnav" class="nav">
+    <ul>
+      <li class="first"><a href="/trac/software/wiki">Wiki</a></li><li><a href="/trac/software/timeline">Timeline</a></li><li><a href="/trac/software/roadmap">Roadmap</a></li><li><a href="/trac/software/browser">Browse Source</a></li><li class="active"><a href="/trac/software/report">View Tickets</a></li><li class="last"><a href="/trac/software/search">Search</a></li>
+    </ul>
+  </div>
+    <div id="main">
+      <div id="ctxtnav" class="nav">
+        <h2>Context Navigation</h2>
+          <ul>
+              <li class="first"><span>&larr; <a class="prev" href="/trac/software/ticket/87" title="Ticket #87">Previous Ticket</a></span></li><li class="last"><span><a class="next" href="/trac/software/ticket/89" title="Ticket #89">Next Ticket</a> &rarr;</span></li>
+          </ul>
+        <hr />
+      </div>
+    <div id="content" class="ticket">
+      <h1 id="trac-ticket-title">
+          <a href="/trac/software/ticket/88">Ticket #88</a>
+          <span class="status">(closed defect: fixed)</span>
+      </h1>
+      <div id="ticket">
+  <div class="date">
+    <p>Opened <a class="timeline" href="/trac/software/timeline?from=2007-03-27T13%3A45%3A08-05%3A00&amp;precision=second" title="2007-03-27T13:45:08-05:00 in Timeline">12 years</a> ago</p>
+    <p>Last modified <a class="timeline" href="/trac/software/timeline?from=2007-05-02T10%3A53%3A45-05%3A00&amp;precision=second" title="2007-05-02T10:53:45-05:00 in Timeline">12 years</a> ago</p>
+  </div>
+  <h2 class="summary searchable">Need system to scale selection areas to pixel coordinates</h2>
+  <table class="properties">
+    <tr>
+      <th id="h_reporter">Reported by:</th>
+      <td headers="h_reporter" class="searchable">
+        <a href="/trac/software/query?status=!closed&amp;reporter=sorber">sorber</a>
+      </td>
+      <th id="h_owner">Owned by:</th>
+      <td headers="h_owner">
+        <a href="/trac/software/query?status=!closed&amp;owner=sorber">sorber</a>
+      </td>
+    </tr>
+    <tr>
+        <th id="h_priority">
+          Priority:
+        </th>
+        <td headers="h_priority">
+              <a href="/trac/software/query?status=!closed&amp;priority=critical">critical</a>
+        </td>
+        <th id="h_milestone">
+          Milestone:
+        </th>
+        <td headers="h_milestone">
+              <a class="missing milestone"></a>
+        </td>
+    </tr><tr>
+        <th id="h_component">
+          Component:
+        </th>
+        <td headers="h_component">
+              <a href="/trac/software/query?status=!closed&amp;component=visbio">visbio</a>
+        </td>
+        <th id="h_severity">
+          Severity:
+        </th>
+        <td headers="h_severity">
+              <a href="/trac/software/query?status=!closed&amp;severity"></a>
+        </td>
+    </tr><tr>
+        <th id="h_keywords">
+          Keywords:
+        </th>
+        <td headers="h_keywords" class="searchable">
+        </td>
+        <th id="h_cc">
+          Cc:
+        </th>
+        <td headers="h_cc" class="searchable">
+        </td>
+    </tr><tr>
+        <th id="h_blockedby">
+          Blocked By:
+        </th>
+        <td headers="h_blockedby">
+        </td>
+        <th id="h_blocking">
+          Blocking:
+        </th>
+        <td headers="h_blocking">
+        </td>
+    </tr>
+  </table>
+  <div class="description">
+    <h3 id="comment:description">
+      Description
+    </h3>
+    <div class="searchable">
+      <p>
+The dimensions of the selection grid or highlighting band should be scaled according to the current zoom level, etc. of the display the user is working on (the 'active' display).  Currently, OverlayObjects are unaware of such display properties since they may appear simultaneously on multiple displays, but the getSelectionGrid() method is part of  OverlayObject. Here are some ideas for scaling the selection grid to the display:
+</p>
+<ul><li>Make OverlayObjects aware of the display by passing all objects the active display at each (relevant) mouse event in each OverlayTool
+</li></ul><p>
+ 
+</p>
+<ul><li>Let OverlayTool compute the selection grids of each object.  I like this idea--separating the selection of the object from the object itself.
+</li></ul>
+    </div>
+  </div>
+</div>
+          
+
+        <div>
+          <h2 class="foldable">Change History</h2>
+          <div id="changelog">
+              <div class="change" id="trac-change-1">
+                <h3 class="change">
+                  <span class="threading">
+                    <span id="comment:1" class="cnum">
+      <a href="#comment:1">comment:1</a>
+    </span>
+                  </span>
+                  Changed <a class="timeline" href="/trac/software/timeline?from=2007-03-27T13%3A49%3A09-05%3A00&amp;precision=second" title="2007-03-27T13:49:09-05:00 in Timeline">12 years</a> ago by sorber
+                </h3>
+                
+  <ul class="changes">
+    <li>
+      <strong>Owner</strong>
+        changed from <em>melissa</em> to <em>sorber</em>
+    </li>
+  </ul>
+    <div class="comment searchable">
+      
+      
+    </div>
+
+              </div>
+              <div class="change" id="trac-change-2">
+                <h3 class="change">
+                  <span class="threading">
+                    <span id="comment:2" class="cnum">
+      <a href="#comment:2">comment:2</a>
+    </span>
+                  </span>
+                  Changed <a class="timeline" href="/trac/software/timeline?from=2007-03-27T13%3A49%3A33-05%3A00&amp;precision=second" title="2007-03-27T13:49:33-05:00 in Timeline">12 years</a> ago by sorber
+                </h3>
+                
+  <ul class="changes">
+    <li>
+      <strong>Component</strong>
+        changed from <em>bio-formats</em> to <em>visbio</em>
+    </li>
+  </ul>
+    <div class="comment searchable">
+      
+      
+    </div>
+
+              </div>
+              <div class="change" id="trac-change-3">
+                <h3 class="change">
+                  <span class="threading">
+                    <span id="comment:3" class="cnum">
+      <a href="#comment:3">comment:3</a>
+    </span>
+                        in reply to:
+      <a href="#comment:description">↑ description</a>
+                  </span>
+                  Changed <a class="timeline" href="/trac/software/timeline?from=2007-04-06T12%3A58%3A38-05%3A00&amp;precision=second" title="2007-04-06T12:58:38-05:00 in Timeline">12 years</a> ago by sorber
+                </h3>
+                
+    <div class="comment searchable">
+      
+      <blockquote class="citation">
+<p>
+Let OverlayTool compute the selection grids of each object.  I like this idea--separating the selection of the object from the object itself.
+</p>
+</blockquote>
+<p>
+Better yet, let OverlayTransform call a utility class that computes selection layers.  The only problem with this idea is that OverlayTransform is not aware of any display.  Curtis suggested    <br />
+</p>
+<ul><li> changing getData() to accept a wrapper object including all current arguments and a display.
+</li></ul><p>
+This might also involve<br />
+</p>
+<ul><li> adding a static method to each transform type that returns whether the transform type cares about changes to the displays' projection matrices, and code in TransformLink (I presume) that would call getData again if a display changes and the new static method returns true.
+</li></ul>
+    </div>
+
+              </div>
+              <div class="change" id="trac-change-4">
+                <h3 class="change">
+                  <span class="threading">
+                    <span id="comment:4" class="cnum">
+      <a href="#comment:4">comment:4</a>
+    </span>
+                  </span>
+                  Changed <a class="timeline" href="/trac/software/timeline?from=2007-04-12T14%3A08%3A23-05%3A00&amp;precision=second" title="2007-04-12T14:08:23-05:00 in Timeline">12 years</a> ago by sorber
+                </h3>
+                
+    <div class="comment searchable">
+      
+      <p>
+Use the TransformLink object now provided to OverlayTransform.getData(...): 
+<tt>lnk.getHandler().getWindow().getDisplay();</tt>
+</p>
+
+    </div>
+
+              </div>
+              <div class="change" id="trac-change-5">
+                <h3 class="change">
+                  <span class="threading">
+                    <span id="comment:5" class="cnum">
+      <a href="#comment:5">comment:5</a>
+    </span>
+                          <span>follow-up:</span>
+      <a href="#comment:8">↓ 8</a>
+                  </span>
+                  Changed <a class="timeline" href="/trac/software/timeline?from=2007-04-24T13%3A41%3A42-05%3A00&amp;precision=second" title="2007-04-24T13:41:42-05:00 in Timeline">12 years</a> ago by sorber
+                </h3>
+                
+    <div class="comment searchable">
+      
+      <p>
+Will move getSelectionGrid methods out of OverlayObject and subclasses into a utility class.  OverlayTransform.getData will use this utility class to compute selection grids.
+</p>
+
+    </div>
+
+              </div>
+              <div class="change" id="trac-change-6">
+                <h3 class="change">
+                  <span class="threading">
+                    <span id="comment:6" class="cnum">
+      <a href="#comment:6">comment:6</a>
+    </span>
+                  </span>
+                  Changed <a class="timeline" href="/trac/software/timeline?from=2007-04-24T13%3A42%3A23-05%3A00&amp;precision=second" title="2007-04-24T13:42:23-05:00 in Timeline">12 years</a> ago by sorber
+                </h3>
+                
+  <ul class="changes">
+    <li>
+      <strong>Priority</strong>
+        changed from <em>major</em> to <em>critical</em>
+    </li>
+  </ul>
+    <div class="comment searchable">
+      
+      
+    </div>
+
+              </div>
+              <div class="change" id="trac-change-7">
+                <h3 class="change">
+                  <span class="threading">
+                    <span id="comment:7" class="cnum">
+      <a href="#comment:7">comment:7</a>
+    </span>
+                  </span>
+                  Changed <a class="timeline" href="/trac/software/timeline?from=2007-04-24T13%3A54%3A21-05%3A00&amp;precision=second" title="2007-04-24T13:54:21-05:00 in Timeline">12 years</a> ago by sorber
+                </h3>
+                
+    <div class="comment searchable">
+      
+      <p>
+Also need to scale the following attributes:
+</p>
+<ul><li>Arrow width
+</li><li>Polyline proximity circles
+</li><li>Proximity threshholds for editable overlays
+</li></ul>
+    </div>
+
+              </div>
+              <div class="change" id="trac-change-8">
+                <h3 class="change">
+                  <span class="threading">
+                    <span id="comment:8" class="cnum">
+      <a href="#comment:8">comment:8</a>
+    </span>
+                        in reply to:
+      <a href="#comment:5">↑ 5</a>
+                  </span>
+                  Changed <a class="timeline" href="/trac/software/timeline?from=2007-04-24T18%3A04%3A02-05%3A00&amp;precision=second" title="2007-04-24T18:04:02-05:00 in Timeline">12 years</a> ago by sorber
+                </h3>
+                
+    <div class="comment searchable">
+      
+      <p>
+Replying to <a href="/trac/software/ticket/88#comment:5" title="Comment 5 for Ticket #88">sorber</a>:
+</p>
+<blockquote class="citation">
+<p>
+Will move getSelectionGrid methods out of OverlayObject and subclasses into a utility class.  OverlayTransform.getData will use this utility class to compute selection grids.
+</p>
+</blockquote>
+<p>
+Moved these methods to <tt>loci.visbio.util.OverlayUtil</tt>.  Removed these and the <tt>computeGridParameters()</tt> (now computed during <tt>OverlayUtil.getSelectionLayer()</tt> if at all) methods from <tt>OverlayObject</tt>.  <tt>computeGridParameters()</tt> is no longer applicable since overlays use different selection layer types.
+</p>
+
+    </div>
+
+              </div>
+              <div class="change" id="trac-change-9">
+                <h3 class="change">
+                  <span class="threading">
+                    <span id="comment:9" class="cnum">
+      <a href="#comment:9">comment:9</a>
+    </span>
+                  </span>
+                  Changed <a class="timeline" href="/trac/software/timeline?from=2007-05-02T10%3A53%3A45-05%3A00&amp;precision=second" title="2007-05-02T10:53:45-05:00 in Timeline">12 years</a> ago by sorber
+                </h3>
+                
+  <ul class="changes">
+    <li>
+      <strong>Status</strong>
+        changed from <em>new</em> to <em>closed</em>
+    </li><li>
+      <strong>Resolution</strong>
+        set to <em>fixed</em>
+    </li>
+  </ul>
+    <div class="comment searchable">
+      
+      <p>
+Completed scaling of arrow width, polyine proximity circles.  Most proximity thresholds were based on pixel coordinates already, except the selection threshold in <tt>PointerTool</tt>, now scaled using <tt>OverlayUtil.getMultiplier()</tt>.  Will log further bugs relating to scaling as separate, new tickets.
+</p>
+
+    </div>
+
+              </div>
+          </div>
+        </div>
+      <div id="help"><strong>Note:</strong> See
+        <a href="/trac/software/wiki/TracTickets">TracTickets</a> for help on using
+        tickets.</div>
+    </div>
+    <div id="altlinks">
+      <h3>Download in other formats:</h3>
+      <ul>
+        <li class="first">
+          <a rel="nofollow" href="/trac/software/ticket/88?format=csv" class="csv">Comma-delimited Text</a>
+        </li><li>
+          <a rel="nofollow" href="/trac/software/ticket/88?format=tab" class="tab">Tab-delimited Text</a>
+        </li><li class="last">
+          <a rel="nofollow" href="/trac/software/ticket/88?format=rss" class="rss">RSS Feed</a>
+        </li>
+      </ul>
+    </div>
+    </div>
+    <div id="footer" lang="en" xml:lang="en"><hr />
+      <a id="tracpowered" href="http://trac.edgewall.org/"><img src="/trac/software/chrome/common/trac_logo_mini.png" height="30" width="107" alt="Trac Powered" /></a>
+      <p class="left">Powered by <a href="/trac/software/about"><strong>Trac 0.12.2</strong></a><br />
+        By <a href="http://www.edgewall.org/">Edgewall Software</a>.</p>
+      <p class="right">Visit the LOCI software web site at<br /><a href="http://loci.wisc.edu/software/">http://loci.wisc.edu/software/</a></p>
+    </div>
+  </body>
+</html>

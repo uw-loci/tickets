@@ -1,0 +1,323 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  
+  
+
+  
+  <!-- See: http://trac.edgewall.org/wiki/TracInterfaceCustomization -->
+
+
+  <head>
+    <title>
+      #150 (Assorted peculiar VisBio exceptions)
+     – LOCI Software
+    </title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <link rel="search" href="/trac/software/search" />
+        <link rel="prev" href="/trac/software/ticket/149" title="Ticket #149" />
+        <link rel="last" href="/trac/software/ticket/822" title="Ticket #822" />
+        <link rel="help" href="/trac/software/wiki/TracGuide" />
+        <link rel="alternate" href="/trac/software/ticket/150?format=csv" type="text/csv" class="csv" title="Comma-delimited Text" /><link rel="alternate" href="/trac/software/ticket/150?format=tab" type="text/tab-separated-values" class="tab" title="Tab-delimited Text" /><link rel="alternate" href="/trac/software/ticket/150?format=rss" type="application/rss+xml" class="rss" title="RSS Feed" />
+        <link rel="next" href="/trac/software/ticket/151" title="Ticket #151" />
+        <link rel="start" href="/trac/software/wiki" />
+        <link rel="stylesheet" href="/trac/software/chrome/common/css/trac.css" type="text/css" /><link rel="stylesheet" href="/trac/software/chrome/common/css/ticket.css" type="text/css" />
+        <link rel="first" href="/trac/software/ticket/1" title="Ticket #1" />
+        <link rel="shortcut icon" href="/trac/software/chrome/common/trac.ico" type="image/x-icon" />
+        <link rel="icon" href="/trac/software/chrome/common/trac.ico" type="image/x-icon" />
+      <link type="application/opensearchdescription+xml" rel="search" href="/trac/software/search/opensearch" title="Search LOCI Software" />
+    <script type="text/javascript">
+      var auto_preview_timeout=2.0;
+      var form_token="1b2c1742bca83b60a658a724";
+    </script>
+    <script type="text/javascript" src="/trac/software/chrome/common/js/jquery.js"></script><script type="text/javascript" src="/trac/software/chrome/common/js/babel.js"></script><script type="text/javascript" src="/trac/software/chrome/common/js/trac.js"></script><script type="text/javascript" src="/trac/software/chrome/common/js/search.js"></script><script type="text/javascript" src="/trac/software/chrome/common/js/folding.js"></script><script type="text/javascript" src="/trac/software/chrome/common/js/wikitoolbar.js"></script><script type="text/javascript" src="/trac/software/chrome/common/js/resizer.js"></script><script type="text/javascript" src="/trac/software/chrome/common/js/auto_preview.js"></script>
+    <!--[if lt IE 7]>
+    <script type="text/javascript" src="/trac/software/chrome/common/js/ie_pre7_hacks.js"></script>
+    <![endif]-->
+    <script type="text/javascript">
+      jQuery(document).ready(function($) {
+        $("div.description").find("h1,h2,h3,h4,h5,h6").addAnchor(_("Link to this section"));
+        $(".foldable").enableFolding(false, true);
+        var args = {realm: "ticket", id: 150, escape_newlines: 0}
+        $("#comment").autoPreview("/trac/software/wiki_render", args, function(textarea, text, rendered) {
+            $("#ticketchange div.comment").html(rendered);
+            if (rendered)
+              $("#ticketchange").show();
+            else if ($("#ticketchange ul.changes").length == 0)
+              $("#ticketchange").hide();
+        });
+        $("#trac-comment-editor textarea").autoPreview("/trac/software/wiki_render", args,
+                                                       function(textarea, text, rendered) {
+          var comment = $("#trac-comment-editor").next("div.comment");
+          comment.html(rendered);
+          if (rendered)
+            comment.show();
+          else
+            comment.hide();
+        });
+        $("#modify").parent().toggleClass("collapsed");
+        $(".trac-topnav a").click(function() { $("#modify").parent().removeClass("collapsed"); });
+        /* only enable control elements for the currently selected action */
+        var actions = $("#action input[name='action']");
+        function updateActionFields() {
+          actions.each(function () {
+            $(this).siblings().find("*[id]").enable($(this).checked());
+            $(this).siblings().filter("*[id]").enable($(this).checked());
+          });
+        }
+        actions.click(updateActionFields);
+        updateActionFields();
+      });
+    </script>
+    <link rel="stylesheet" type="text/css" href="/trac/software/chrome/site/style.css" />
+  </head>
+  <body>
+    <div id="banner">
+      <div id="header">
+        <a id="logo" href="http://loci.wisc.edu/"><img src="http://loci.wisc.edu/loci-logo.png" alt="LOCI" height="98" width="300" /></a>
+      </div>
+      <form id="search" action="/trac/software/search" method="get">
+        <div>
+          <label for="proj-search">Search:</label>
+          <input type="text" id="proj-search" name="q" size="18" value="" />
+          <input type="submit" value="Search" />
+        </div>
+      </form>
+      <div id="metanav" class="nav">
+    <ul>
+      <li class="first"><a href="/trac/software/login">Login</a></li><li><a href="/trac/software/wiki/TracGuide">Help/Guide</a></li><li><a href="/trac/software/about">About Trac</a></li><li><a href="/trac/software/prefs">Preferences</a></li><li class="last"><a href="/trac/software/reset_password">Forgot your password?</a></li>
+    </ul>
+  </div>
+    </div>
+    <div id="mainnav" class="nav">
+    <ul>
+      <li class="first"><a href="/trac/software/wiki">Wiki</a></li><li><a href="/trac/software/timeline">Timeline</a></li><li><a href="/trac/software/roadmap">Roadmap</a></li><li><a href="/trac/software/browser">Browse Source</a></li><li class="active"><a href="/trac/software/report">View Tickets</a></li><li class="last"><a href="/trac/software/search">Search</a></li>
+    </ul>
+  </div>
+    <div id="main">
+      <div id="ctxtnav" class="nav">
+        <h2>Context Navigation</h2>
+          <ul>
+              <li class="first"><span>&larr; <a class="prev" href="/trac/software/ticket/149" title="Ticket #149">Previous Ticket</a></span></li><li class="last"><span><a class="next" href="/trac/software/ticket/151" title="Ticket #151">Next Ticket</a> &rarr;</span></li>
+          </ul>
+        <hr />
+      </div>
+    <div id="content" class="ticket">
+      <h1 id="trac-ticket-title">
+          <a href="/trac/software/ticket/150">Ticket #150</a>
+          <span class="status">(closed defect: worksforme)</span>
+      </h1>
+      <div id="ticket">
+  <div class="date">
+    <p>Opened <a class="timeline" href="/trac/software/timeline?from=2007-06-26T20%3A10%3A20-05%3A00&amp;precision=second" title="2007-06-26T20:10:20-05:00 in Timeline">12 years</a> ago</p>
+    <p>Last modified <a class="timeline" href="/trac/software/timeline?from=2007-08-09T14%3A22%3A33-05%3A00&amp;precision=second" title="2007-08-09T14:22:33-05:00 in Timeline">12 years</a> ago</p>
+  </div>
+  <h2 class="summary searchable">Assorted peculiar VisBio exceptions</h2>
+  <table class="properties">
+    <tr>
+      <th id="h_reporter">Reported by:</th>
+      <td headers="h_reporter" class="searchable">
+        <a href="/trac/software/query?status=!closed&amp;reporter=sorber">sorber</a>
+      </td>
+      <th id="h_owner">Owned by:</th>
+      <td headers="h_owner">
+        <a href="/trac/software/query?status=!closed&amp;owner=curtis">curtis</a>
+      </td>
+    </tr>
+    <tr>
+        <th id="h_priority">
+          Priority:
+        </th>
+        <td headers="h_priority">
+              <a href="/trac/software/query?status=!closed&amp;priority=minor">minor</a>
+        </td>
+        <th id="h_milestone">
+          Milestone:
+        </th>
+        <td headers="h_milestone">
+              <a class="closed milestone" href="/trac/software/milestone/visbio3.40">visbio3.40</a>
+        </td>
+    </tr><tr>
+        <th id="h_component">
+          Component:
+        </th>
+        <td headers="h_component">
+              <a href="/trac/software/query?status=!closed&amp;component=visbio">visbio</a>
+        </td>
+        <th id="h_severity">
+          Severity:
+        </th>
+        <td headers="h_severity">
+              <a href="/trac/software/query?status=!closed&amp;severity"></a>
+        </td>
+    </tr><tr>
+        <th id="h_keywords">
+          Keywords:
+        </th>
+        <td headers="h_keywords" class="searchable">
+        </td>
+        <th id="h_cc">
+          Cc:
+        </th>
+        <td headers="h_cc" class="searchable">
+        </td>
+    </tr><tr>
+        <th id="h_blockedby">
+          Blocked By:
+        </th>
+        <td headers="h_blockedby">
+        </td>
+        <th id="h_blocking">
+          Blocking:
+        </th>
+        <td headers="h_blocking">
+        </td>
+    </tr>
+  </table>
+  <div class="description">
+    <h3 id="comment:description">
+      Description
+    </h3>
+    <div class="searchable">
+      <p>
+Curtis: here are three errors I found in a log file while cleaning up my home folder this evening.  The first one looks like an old 'restore state' problem.  The second one hasn't happened in a while.  The third still happens on occasion, but seems to have nothing to do with VisBio--in fact, I might have even asked you about it before.  Still, I thought I'd file a ticket rather than let anything go to chance. 
+</p>
+<p>
+<em> Got this error starting Visbio rapidly loading sdub; rapidly loading sdub again while first instance still loading
+</em></p>
+<pre class="wiki">java.lang.NullPointerException
+	at loci.visbio.view.TransformLink.initState(TransformLink.java:272)
+	at loci.visbio.state.StateManager.mergeStates(StateManager.java:443)
+	at loci.visbio.view.TransformHandler.initState(TransformHandler.java:324)
+	at loci.visbio.view.DisplayWindow.initState(DisplayWindow.java:332)
+	at loci.visbio.state.StateManager.mergeStates(StateManager.java:443)
+	at loci.visbio.view.DisplayManager.restoreState(DisplayManager.java:223)
+	at loci.visbio.state.StateManager.restoreState(StateManager.java:240)
+	at loci.visbio.state.StateManager.restoreState(StateManager.java:109)
+	at loci.visbio.state.StateManager.checkCrash(StateManager.java:130)
+	at loci.visbio.VisBioFrame.&lt;init&gt;(VisBioFrame.java:190)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:39)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:27)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:494)
+	at loci.visbio.VisBio.launch(VisBio.java:109)
+	at loci.visbio.VisBio.main(VisBio.java:129)
+</pre><p>
+<em> Got this error Starting visbio, importing sdub, adding sdub overlays, creating a 2D display.  Error occurs trying to add sdub overlays to display?v
+</em></p>
+<pre class="wiki">Invalid image number #0 for file "sdub1.pic" (9 found)
+Exception in thread "VisBio-BurnThread-sdub:sdub" java.lang.NullPointerException
+  at java.util.Hashtable.put(Hashtable.java:396)
+    at loci.visbio.data.DataCache.putCachedData(DataCache.java:130)
+    at loci.visbio.data.DataCache.getData(DataCache.java:63)
+    at loci.visbio.data.ImageTransform.getData(ImageTransform.java:203)
+    at loci.visbio.view.TransformLink.getImageData(TransformLink.java:476)
+    at loci.visbio.view.TransformLink.computeData(TransformLink.java:461)
+    at loci.visbio.view.TransformLink.run(TransformLink.java:328)
+    at java.lang.Thread.run(Thread.java:595)
+}}
+
+// This error or something like it occurs occasionally during startup of visbio.  It doesn't seem to affect the way the program works.
+{{{
+java.lang.NullPointerException
+        at javax.swing.JComponent._paintImmediately(JComponent.java:4845)
+        at javax.swing.JComponent.paintImmediately(JComponent.java:4666)
+        at javax.swing.RepaintManager.paintDirtyRegions(RepaintManager.java:451)        at javax.swing.SystemEventQueueUtilities$ComponentWorkRequest.run(SystemEventQueueUtilities.java:114)
+        at java.awt.event.InvocationEvent.dispatch(InvocationEvent.java:209)
+        at java.awt.EventQueue.dispatchEvent(EventQueue.java:461)
+        at java.awt.EventDispatchThread.pumpOneEventForHierarchy(EventDispatchThread.java:242)
+        at java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:163)
+        at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:157)        at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:149)        at java.awt.EventDispatchThread.run(EventDispatchThread.java:110)
+In paintImmediately null graphics
+}}}  
+</pre>
+    </div>
+  </div>
+</div>
+          
+
+        <div>
+          <h2 class="foldable">Change History</h2>
+          <div id="changelog">
+              <div class="change" id="trac-change-1">
+                <h3 class="change">
+                  <span class="threading">
+                    <span id="comment:1" class="cnum">
+      <a href="#comment:1">comment:1</a>
+    </span>
+                  </span>
+                  Changed <a class="timeline" href="/trac/software/timeline?from=2007-08-01T16%3A17%3A23-05%3A00&amp;precision=second" title="2007-08-01T16:17:23-05:00 in Timeline">12 years</a> ago by curtis
+                </h3>
+                
+  <ul class="changes">
+    <li>
+      <strong>Milestone</strong>
+        set to <em>visbio3.4</em>
+    </li>
+  </ul>
+    <div class="comment searchable">
+      
+      
+    </div>
+
+              </div>
+              <div class="change" id="trac-change-2">
+                <h3 class="change">
+                  <span class="threading">
+                    <span id="comment:2" class="cnum">
+      <a href="#comment:2">comment:2</a>
+    </span>
+                  </span>
+                  Changed <a class="timeline" href="/trac/software/timeline?from=2007-08-09T14%3A22%3A33-05%3A00&amp;precision=second" title="2007-08-09T14:22:33-05:00 in Timeline">12 years</a> ago by curtis
+                </h3>
+                
+  <ul class="changes">
+    <li>
+      <strong>Status</strong>
+        changed from <em>new</em> to <em>closed</em>
+    </li><li>
+      <strong>Resolution</strong>
+        set to <em>worksforme</em>
+    </li>
+  </ul>
+    <div class="comment searchable">
+      
+      <p>
+I could not duplicate the TransformLink NullPointerException. Even if a subtle problem does exist there, it will almost certainly go away once I gut the state logic to be more manageable.
+</p>
+<p>
+I have very rarely seen the "Invalid image number" error, and not for quite some time (and certainly haven't been able to duplicate it consistently), but if I see it again I will file a separate bug about it.
+</p>
+<p>
+Same thing for the paintImmediately problem -- I very occasionally see it. Seems like a weird Swing bug. As stated, it doesn't affect the program's performance, so can be safely ignored. And since no VisBio code is directly involved, tracking it down without being able to reproduce it consistently would be nigh impossible anyway.
+</p>
+
+    </div>
+
+              </div>
+          </div>
+        </div>
+      <div id="help"><strong>Note:</strong> See
+        <a href="/trac/software/wiki/TracTickets">TracTickets</a> for help on using
+        tickets.</div>
+    </div>
+    <div id="altlinks">
+      <h3>Download in other formats:</h3>
+      <ul>
+        <li class="first">
+          <a rel="nofollow" href="/trac/software/ticket/150?format=csv" class="csv">Comma-delimited Text</a>
+        </li><li>
+          <a rel="nofollow" href="/trac/software/ticket/150?format=tab" class="tab">Tab-delimited Text</a>
+        </li><li class="last">
+          <a rel="nofollow" href="/trac/software/ticket/150?format=rss" class="rss">RSS Feed</a>
+        </li>
+      </ul>
+    </div>
+    </div>
+    <div id="footer" lang="en" xml:lang="en"><hr />
+      <a id="tracpowered" href="http://trac.edgewall.org/"><img src="/trac/software/chrome/common/trac_logo_mini.png" height="30" width="107" alt="Trac Powered" /></a>
+      <p class="left">Powered by <a href="/trac/software/about"><strong>Trac 0.12.2</strong></a><br />
+        By <a href="http://www.edgewall.org/">Edgewall Software</a>.</p>
+      <p class="right">Visit the LOCI software web site at<br /><a href="http://loci.wisc.edu/software/">http://loci.wisc.edu/software/</a></p>
+    </div>
+  </body>
+</html>
