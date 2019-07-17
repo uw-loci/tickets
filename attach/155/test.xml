@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<OME xmlns="http://www.openmicroscopy.org/XMLschemas/OME/FC/ome.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.openmicroscopy.org/XMLschemas/OME/FC/ome.xsd http://www.openmicroscopy.org/XMLschemas/OME/FC/ome.xsd http://www.openmicroscopy.org/XMLschemas/STD/RC2/STD.xsd http://www.openmicroscopy.org/XMLschemas/STD/RC2/STD.xsd">
+  <Image DefaultPixels="Pixels:0" ID="Image:0" Name="" PixelSizeX="1.5" PixelSizeY="1.5" TimeIncrement="2.0">
+    <CreationDate>
+      2007-07-07T13:59:52
+    </CreationDate>
+    <ChannelInfo ID="LogicalChannel:0">
+      <ChannelComponent ColorDomain="R" Index="0" Pixels="Pixels:0"/>
+      <ChannelComponent ColorDomain="G" Index="1" Pixels="Pixels:0"/>
+      <ChannelComponent ColorDomain="B" Index="2" Pixels="Pixels:0"/>
+    </ChannelInfo>
+    <Pixels BigEndian="false" DimensionOrder="XYCTZ" ID="Pixels:0" PixelType="Uint8" SizeC="3" SizeT="1" SizeX="633" SizeY="450" SizeZ="1"/>
+    <CustomAttributes/>
+  </Image>
+</OME>

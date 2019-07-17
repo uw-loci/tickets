@@ -1,0 +1,6 @@
+diff -r image5d-working/i5d/gui/Image5DWindow.java image5d/i5d/gui/Image5DWindow.java
+72c72,73
+< 	  removeAll();
+---
+> 		remove(sliceSelector);
+> 		remove(ic);
