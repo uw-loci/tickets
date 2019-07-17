@@ -114,7 +114,7 @@
     </h3>
     <div class="searchable">
       <p>
-In <a class="changeset" href="/trac/software/changeset/6976" title="Several fixes for writing BigTIFFs and multi-series OME-TIFFs.  Closes ...">r6976</a>, TiffWriter was given a new method: 'void setWriteSequentially(boolean)'.  The purpose of the method is to allow the calling code (e.g. ImageConverter) to specify that it absolutely will write planes in sequential order - if setWriteSequentially(true) was called, then TiffWriter and TiffSaver can make certain assumptions about the planes which can speed up the export process.
+In <a class="changeset" href="https://github.com/openmicroscopy/bioformats/commit/7f2f0c4728" title="Several fixes for writing BigTIFFs and multi-series OME-TIFFs.  Closes ...">r6976</a>, TiffWriter was given a new method: 'void setWriteSequentially(boolean)'.  The purpose of the method is to allow the calling code (e.g. ImageConverter) to specify that it absolutely will write planes in sequential order - if setWriteSequentially(true) was called, then TiffWriter and TiffSaver can make certain assumptions about the planes which can speed up the export process.
 </p>
 <p>
 In the next release, I think it would be a good idea to:
@@ -144,7 +144,7 @@ In the next release, I think it would be a good idea to:
     <div class="comment searchable">
       
       <p>
-(In <a class="changeset" href="/trac/software/changeset/7482" title="Moved 'void setWriteSequentially(boolean)' from TiffWriter to ...">[7482]</a>) Moved 'void setWriteSequentially(boolean)' from TiffWriter to IFormatWriter.  See <a class="closed ticket" href="565.html" title="enhancement: Expand (and clean up) use of new 'setWriteSequentially' method (closed: fixed)">#565</a>.
+(In <a class="changeset" href="https://github.com/openmicroscopy/bioformats/commit/71ec96509b" title="Moved 'void setWriteSequentially(boolean)' from TiffWriter to ...">[7482]</a>) Moved 'void setWriteSequentially(boolean)' from TiffWriter to IFormatWriter.  See <a class="closed ticket" href="565.html" title="enhancement: Expand (and clean up) use of new 'setWriteSequentially' method (closed: fixed)">#565</a>.
 </p>
 
     </div>

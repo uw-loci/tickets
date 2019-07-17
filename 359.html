@@ -115,7 +115,7 @@
     </h3>
     <div class="searchable">
       <p>
-As of <a class="changeset" href="/trac/software/changeset/4804" title="Fix up DataTools and AWTImageTools data manipulation and image ...">r4804</a>, attempting to read a signed 16-bit image throws the following exception:
+As of <a class="changeset" href="https://github.com/openmicroscopy/bioformats/commit/9148c9885d" title="Fix up DataTools and AWTImageTools data manipulation and image ...">r4804</a>, attempting to read a signed 16-bit image throws the following exception:
 </p>
 <pre class="wiki">Exception in thread "main" java.lang.IllegalArgumentException: Raster ShortInterleavedRaster: width = 384 height = 384 #numDataElements 1 is incompatible with ColorModel ColorModel: #pixelBits = 16 numComponents = 4 color space = java.awt.color.ICC_ColorSpace@347124 transparency = 3 has alpha = true isAlphaPre = false
 	at java.awt.image.BufferedImage.&lt;init&gt;(BufferedImage.java:616)
@@ -181,8 +181,8 @@ This can be reproduced with deltavision/ome/Antarctic_Diatom_D3D_01.dv (among ot
     <div class="comment searchable">
       
       <p>
-(In <a class="changeset" href="/trac/software/changeset/4874" title="Use USHORT instead of SHORT for 16-bit integer SignedColorModel. Fixes ...">[4874]</a>) Use USHORT instead of SHORT for 16-bit integer SignedColorModel. Fixes <a class="closed ticket" href="359.html" title="defect: Exception when reading signed 16 bit images (closed: fixed)">#359</a>.
-This is consistent with the code from before <a class="changeset" href="/trac/software/changeset/4804" title="Fix up DataTools and AWTImageTools data manipulation and image ...">r4804</a>, but does not seem logical.
+(In <a class="changeset" href="https://github.com/openmicroscopy/bioformats/commit/0d69915df2" title="Use USHORT instead of SHORT for 16-bit integer SignedColorModel. Fixes ...">[4874]</a>) Use USHORT instead of SHORT for 16-bit integer SignedColorModel. Fixes <a class="closed ticket" href="359.html" title="defect: Exception when reading signed 16 bit images (closed: fixed)">#359</a>.
+This is consistent with the code from before <a class="changeset" href="https://github.com/openmicroscopy/bioformats/commit/9148c9885d" title="Fix up DataTools and AWTImageTools data manipulation and image ...">r4804</a>, but does not seem logical.
 Further investigation is warranted into the ramifications of this approach.
 </p>
 

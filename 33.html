@@ -225,7 +225,7 @@ More substantial improvements to VisBio's core logic would probably make this bu
     <div class="comment searchable">
       
       <p>
-Fixed in <a class="changeset" href="/trac/software/changeset/2654" title="Fix problem with ImageFlatField and 16-bit image data.
+Fixed in <a class="changeset" href="https://github.com/openmicroscopy/bioformats/commit/3d46002932" title="Fix problem with ImageFlatField and 16-bit image data.
 ">r2654</a>. The problem was that <tt>grabBytes</tt> really is inappropriate to use with non-8-bit data. Using the default case, 16-bit images display properly now, but may still be inefficient, due to calls to <tt>unpackFloats</tt>. Adding explicit support for shorts to <tt>ImageFlatField</tt> and <tt>visad.bom.ShadowImageFunctionTypeJ3D</tt> in the future should address this issue.
 </p>
 

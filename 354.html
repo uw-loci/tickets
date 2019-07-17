@@ -233,7 +233,7 @@ One other change would be useful to facilitate this support. Currently, <tt>loci
     <div class="comment searchable">
       
       <p>
-See <a class="changeset" href="/trac/software/changeset/4900" title="Added getHandle(String) method to Location, which returns an ...">r4900</a>; Location.getHandle(String) was added, and most format writers were modified to use an IRandomAccess instead of a RandomAccessFile.
+See <a class="changeset" href="https://github.com/openmicroscopy/bioformats/commit/8e1c58f124" title="Added getHandle(String) method to Location, which returns an ...">r4900</a>; Location.getHandle(String) was added, and most format writers were modified to use an IRandomAccess instead of a RandomAccessFile.
 </p>
 
     </div>
@@ -252,7 +252,7 @@ See <a class="changeset" href="/trac/software/changeset/4900" title="Added getHa
     <div class="comment searchable">
       
       <p>
-As of <a class="changeset" href="/trac/software/changeset/4913" title="Added loci.common.RandomAccessOutputStream (analogous to ...">r4913</a>, all writers except for loci.formats.out.LegacyQTWriter use loci.common.RandomAccessOutputStream to write files.  As far as I know, QT Java only allows movies to be written to a file on disk, so it's probably not feasible to have LegacyQTWriter use RandomAccessOutputStream.
+As of <a class="changeset" href="https://github.com/openmicroscopy/bioformats/commit/dcc004e306" title="Added loci.common.RandomAccessOutputStream (analogous to ...">r4913</a>, all writers except for loci.formats.out.LegacyQTWriter use loci.common.RandomAccessOutputStream to write files.  As far as I know, QT Java only allows movies to be written to a file on disk, so it's probably not feasible to have LegacyQTWriter use RandomAccessOutputStream.
 </p>
 
     </div>
@@ -299,10 +299,10 @@ In my opinion, this ticket will be solved once the commented out code at the bot
     <div class="comment searchable">
       
       <p>
-(In <a class="changeset" href="/trac/software/changeset/4919" title="* Changed TiffTools.overwriteIFDValue to accept a String filename instead ...">[4919]</a>) * Changed TiffTools.overwriteIFDValue to accept a String filename instead of a RandomAccessFile.
+(In <a class="changeset" href="https://github.com/openmicroscopy/bioformats/commit/0a85994812" title="* Changed TiffTools.overwriteIFDValue to accept a String filename instead ...">[4919]</a>) * Changed TiffTools.overwriteIFDValue to accept a String filename instead of a RandomAccessFile.
 </p>
 <ul><li>Updated loci.ome.editor.MetadataPane to use TiffTools.overwriteComment(String, String) instead of TiffTools.overwriteIFDValue.
-</li><li>Updated ReadWriteInMemory utility to take advantage of the loci.common.RABytes fixes in <a class="changeset" href="/trac/software/changeset/4917" title="Fixed several problems with writing to an RABytes.
+</li><li>Updated ReadWriteInMemory utility to take advantage of the loci.common.RABytes fixes in <a class="changeset" href="https://github.com/openmicroscopy/bioformats/commit/a39de12e0c" title="Fixed several problems with writing to an RABytes.
 ">r4917</a>.
 </li></ul><p>
 Reading from/writing to files in memory should work now.  Closes <a class="closed ticket" href="354.html" title="enhancement: Bio-Formats writers should use the loci.common I/O classes (closed: fixed)">#354</a>.

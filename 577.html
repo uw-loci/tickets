@@ -117,8 +117,8 @@
 The structure of Leica LIF XML is rather complicated, and in many places we rely upon the order in which elements appear within the file.  This has caused a number of bugs, most recently <a class="ext-link" href="http://trac.openmicroscopy.org.uk/omero/intertrac/%232939" title="#2939 in OMERO Server Trac"><span class="icon"> </span>omero:#2939</a>.
 </p>
 <p>
-We should at least consider switching to DOM parsing, so that we can access the XML elements in any order and avoid hacks like the ones introduced in <a class="changeset" href="/trac/software/changeset/6822" title="Prevent extra (Logical)Channel objects from being populated.
-">r6822</a> and <a class="changeset" href="/trac/software/changeset/7037" title="One more very temporary fix that prevents too many Channels from being ...">r7037</a>.
+We should at least consider switching to DOM parsing, so that we can access the XML elements in any order and avoid hacks like the ones introduced in <a class="changeset" href="https://github.com/openmicroscopy/bioformats/commit/d7b5a3a337" title="Prevent extra (Logical)Channel objects from being populated.
+">r6822</a> and <a class="changeset" href="https://github.com/openmicroscopy/bioformats/commit/6888dd8163" title="One more very temporary fix that prevents too many Channels from being ...">r7037</a>.
 </p>
 
     </div>

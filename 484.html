@@ -114,7 +114,7 @@
     </h3>
     <div class="searchable">
       <p>
-Prior to <a class="changeset" href="/trac/software/changeset/6060" title="* Fixed TIFF offset reading, so that zero offsets are not adjusted.
+Prior to <a class="changeset" href="https://github.com/openmicroscopy/bioformats/commit/dfa74ad53a" title="* Fixed TIFF offset reading, so that zero offsets are not adjusted.
 * ...">r6060</a>, NIOFileHandle used the 'map' method in FileChannel to read bytes from a file.  However, this was replaced with calls to the 'read' method because of the following Java bugs:
 </p>
 <p>
@@ -155,7 +155,7 @@ Unfortunately, this means that NIOFileHandle is considerably slower.  We should 
     <div class="comment searchable">
       
       <p>
-See <a class="changeset" href="/trac/software/changeset/6093" title="Added byte buffer provider to compartmentalize the usage of map() vs. ...">r6093</a> and <a class="changeset" href="/trac/software/changeset/6100" title="Moved byte buffer map() vs. allocate() to a static block and the state ...">r6100</a>.
+See <a class="changeset" href="/trac/software/changeset/6093" title="Added byte buffer provider to compartmentalize the usage of map() vs. ...">r6093</a> and <a class="changeset" href="https://github.com/openmicroscopy/bioformats/commit/9d59adbe8b" title="Moved byte buffer map() vs. allocate() to a static block and the state ...">r6100</a>.
 </p>
 
     </div>

@@ -123,7 +123,7 @@ Currently, when working with an ImageJ virtual stack, performing any command tha
 One solution to this issue is to take advantage of ImageJ's comprehensive macro language functionality, recording each command into a "preprocessing macro" that is dynamically applied to planes as the commands occur, and as new planes are cached. To the user, the behavior would seem nearly identical to a normal image window, except for potential delays from CPU-intensive image processing operations.
 </p>
 <p>
-At one point the codebase contained an initial implementation of this idea, but it was not yet robust. The macro recorder window sometimes popped up unexpectedly, so the preprocessing macro logic has been commented out for now (<a class="changeset" href="/trac/software/changeset/2463" title="Insert Thread.sleep call in MacroManager thread to avoid 100% CPU usage. ...">r2463</a>).
+At one point the codebase contained an initial implementation of this idea, but it was not yet robust. The macro recorder window sometimes popped up unexpectedly, so the preprocessing macro logic has been commented out for now (<a class="changeset" href="https://github.com/openmicroscopy/bioformats/commit/430eb0ec0c" title="Insert Thread.sleep call in MacroManager thread to avoid 100% CPU usage. ...">r2463</a>).
 </p>
 <p>
 This type of functionality would be useful for ImageJ in general, not just as part of the LOCI plugins, and as such a comprehensive implementation would make the most sense, rather than merely within the context of the LOCI plugins.
@@ -212,7 +212,7 @@ This type of functionality would be useful for ImageJ in general, not just as pa
     <div class="comment searchable">
       
       <p>
-This feature is mostly functional in <a class="changeset" href="/trac/software/changeset/4311" title="First cut at applying macros to virtual stacks.  Has not been thoroughly ...">r4311</a>.  Needs a bit more work to get it working with the data browser, and will need to be tested more with more complex macros.
+This feature is mostly functional in <a class="changeset" href="https://github.com/openmicroscopy/bioformats/commit/95a19eced6" title="First cut at applying macros to virtual stacks.  Has not been thoroughly ...">r4311</a>.  Needs a bit more work to get it working with the data browser, and will need to be tested more with more complex macros.
 </p>
 <p>
 Rather than working with the macro recorder, there is a new class called "RecordedImageProcessor".  As the name implies, this is used to record each ImageProcessor method that gets called - this method list is saved in BFVirtualStack, and re-executed the next time the slice is retrieved from the cache (or from disk).

@@ -160,7 +160,7 @@ Exception in thread "main" java.lang.ArrayIndexOutOfBoundsException: 2
     <div class="comment searchable">
       
       <p>
-This is actually a bug in how WiscScan writes OME-TIFF files - it produces files with one OME-XML block per IFD, where each block has SizeZ = SizeT = 1.  I added a hack to the OME-TIFF handler (<a class="changeset" href="/trac/software/changeset/2504" title="Added hack to deal with incorrect OME-TIFF files produced by WiscScan.
+This is actually a bug in how WiscScan writes OME-TIFF files - it produces files with one OME-XML block per IFD, where each block has SizeZ = SizeT = 1.  I added a hack to the OME-TIFF handler (<a class="changeset" href="https://github.com/openmicroscopy/bioformats/commit/cb239590c2" title="Added hack to deal with incorrect OME-TIFF files produced by WiscScan.
 ">r2504</a>) which sets SizeT to the number of images if more than one OME-XML block is present.
 </p>
 

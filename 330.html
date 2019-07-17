@@ -162,10 +162,10 @@ To reproduce:
     <div class="comment searchable">
       
       <p>
-Nominally fixed in <a class="changeset" href="/trac/software/changeset/4652" title="Workaround for known bug in exporting from an Image5D window.  Closes ...">r4652</a>.  The problem was that when exporting from an Image5D window, you can only export the Z slices from the first channel and timepoint (1 slice in this case).  This was not reflected in the metadata that was written to the OME-TIFF file - so the resulting OME-TIFF file had only one plane, but the metadata indicated that there should be three planes.
+Nominally fixed in <a class="changeset" href="https://github.com/openmicroscopy/bioformats/commit/ece07efbbf" title="Workaround for known bug in exporting from an Image5D window.  Closes ...">r4652</a>.  The problem was that when exporting from an Image5D window, you can only export the Z slices from the first channel and timepoint (1 slice in this case).  This was not reflected in the metadata that was written to the OME-TIFF file - so the resulting OME-TIFF file had only one plane, but the metadata indicated that there should be three planes.
 </p>
 <p>
-As of <a class="changeset" href="/trac/software/changeset/4652" title="Workaround for known bug in exporting from an Image5D window.  Closes ...">r4652</a>, the metadata is updated to reflect the number of planes actually written, so any files exported from an Image5D window will now be valid.  However, it is still advised that you do not export from an Image5D window.
+As of <a class="changeset" href="https://github.com/openmicroscopy/bioformats/commit/ece07efbbf" title="Workaround for known bug in exporting from an Image5D window.  Closes ...">r4652</a>, the metadata is updated to reflect the number of planes actually written, so any files exported from an Image5D window will now be valid.  However, it is still advised that you do not export from an Image5D window.
 </p>
 
     </div>
@@ -184,7 +184,7 @@ As of <a class="changeset" href="/trac/software/changeset/4652" title="Workaroun
     <div class="comment searchable">
       
       <p>
-Better fix in <a class="changeset" href="/trac/software/changeset/4658" title="Use ImagePlus.getImageStack() to retrieve the stack to be exported.  This ...">r4658</a>.  You should now be able to export all of the planes from an Image5D window.
+Better fix in <a class="changeset" href="https://github.com/openmicroscopy/bioformats/commit/c13aa4d242" title="Use ImagePlus.getImageStack() to retrieve the stack to be exported.  This ...">r4658</a>.  You should now be able to export all of the planes from an Image5D window.
 </p>
 
     </div>

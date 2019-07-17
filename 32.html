@@ -221,7 +221,7 @@ The easiest way to see this problem is to change the <tt>ALLOW_JAVA3D</tt> const
     <div class="comment searchable">
       
       <p>
-Fixed a bug setting the transparency mode for Java2D in <a class="changeset" href="/trac/software/changeset/2614" title="Avoid exception when setting transparency type for Java2D displays.
+Fixed a bug setting the transparency mode for Java2D in <a class="changeset" href="https://github.com/openmicroscopy/bioformats/commit/dafce3aa29" title="Avoid exception when setting transparency type for Java2D displays.
 ">r2614</a>. But there is a more major problem, in that VisBio now makes use of transparency for certain data transforms, most notably overlays. To fix this problem, checks would need to be added in multiple places to behave differently if the display can support transparency vs not. It is probably too much hassle, since no one uses VisBio with Java2D anyway.
 </p>
 
