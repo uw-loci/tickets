@@ -238,7 +238,7 @@ Seems to me like this is a bug in Totem, but feel free to reopen if I'm missing 
 I tested with ImageJ's <a class="ext-link" href="http://rsb.info.nih.gov/ij/plugins/avi.html"><span class="icon"> </span>AVI Writer</a> plugin, and it produces a different file than Bio-Formats does with the same input data. In particular, the ImageJ-produced video plays properly in Windows Media Player, while the Bio-Formats-produced video does not.
 </p>
 <p>
-I have placed the two files in <tt>data/curtis/avi</tt> for comparison. I also added a (crappy) binary diff utility at <a class="source" href="/trac/software/browser/trunk/loci/utils/BinaryDiff.java">source:trunk/loci/utils/BinaryDiff.java</a> that does dumb byte comparison and outputs the differences. Running it on the two AVI files produces a long list of mostly off-by-1s -- maybe there is a difference in rounding somewhere? Probably the first few lines of output are the most interesting and useful.
+I have placed the two files in <tt>data/curtis/avi</tt> for comparison. I also added a (crappy) binary diff utility at <a class="source" href="https://github.com/uw-loci/loci-utils/blob/d9fd15f2098170dbdbe1c04cff4f1bb9c93e323c/BinaryDiff.java">source:trunk/loci/utils/BinaryDiff.java</a> that does dumb byte comparison and outputs the differences. Running it on the two AVI files produces a long list of mostly off-by-1s -- maybe there is a difference in rounding somewhere? Probably the first few lines of output are the most interesting and useful.
 </p>
 <p>
 Still, both videos look scrambled with totem (including the GNOME preview, which by default uses totem to generate the thumbnails). So there seem to be two separate problems here:

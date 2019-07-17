@@ -226,7 +226,7 @@ Chris Allan has pointed out <a class="ext-link" href="http://www.ikvm.net"><span
 Yang and Ansari have investigated IKVM.NET, and while it seems to work well in some ways, we are uncertain about performance. In addition, while Swing seemed to work, albeit with a high CPU usage, AWT and Swing are not officially supported (from the web site: "AWT and Swing are not presently functional. This is a low priority item for the project developers.").
 </p>
 <p>
-As such, we are investigating an alternative solution wherein the native code can execute Java commands via a local loopback over a TCP/IP socket. This functionality is made much easier by the <a class="source" href="/trac/software/browser/trunk/loci/formats/ReflectedUniverse.java">source:trunk/loci/formats/ReflectedUniverse.java</a> code -- all that remains is to implement a simple network protocol for passing primitive objects, Strings and arrays back and forth, and we should have a powerful general-purpose system for native/Java interoperability.
+As such, we are investigating an alternative solution wherein the native code can execute Java commands via a local loopback over a TCP/IP socket. This functionality is made much easier by the <a class="source" href="https://github.com/openmicroscopy/bioformats/blob/9c1021774f0e57faa499f24841e9d52141fb9361/loci/formats/ReflectedUniverse.java">source:trunk/loci/formats/ReflectedUniverse.java</a> code -- all that remains is to implement a simple network protocol for passing primitive objects, Strings and arrays back and forth, and we should have a powerful general-purpose system for native/Java interoperability.
 </p>
 
     </div>
@@ -254,7 +254,7 @@ As such, we are investigating an alternative solution wherein the native code ca
     <div class="comment searchable">
       
       <p>
-Ansari and I have created a library called <a class="ext-link" href="http://www.loci.wisc.edu/ome/jvmlink.html"><span class="icon"> </span>JVMLink</a> for communication between Java and non-Java code via sockets. Currently the library consists of a Java server in <a class="source" href="/trac/software/browser/trunk/loci/jvmlink">source:trunk/loci/jvmlink</a> and a Microsoft Visual C++ client in <a class="source" href="/trac/software/browser/trunk/loci/jvmlink/cpp">source:trunk/loci/jvmlink/cpp</a>. It should be very straightforward to implement the client side of the protocol in cross-platform C, Python or other language, and we plan to do so on an "as needed" basis.
+Ansari and I have created a library called <a class="ext-link" href="http://www.loci.wisc.edu/ome/jvmlink.html"><span class="icon"> </span>JVMLink</a> for communication between Java and non-Java code via sockets. Currently the library consists of a Java server in <a class="source" href="https://github.com/openmicroscopy/bioformats/tree/231f3b155b6f800741506bf02d2183af35970d40/loci/jvmlink">source:trunk/loci/jvmlink</a> and a Microsoft Visual C++ client in <a class="source" href="https://github.com/openmicroscopy/bioformats/tree/231f3b155b6f800741506bf02d2183af35970d40/loci/jvmlink/cpp">source:trunk/loci/jvmlink/cpp</a>. It should be very straightforward to implement the client side of the protocol in cross-platform C, Python or other language, and we plan to do so on an "as needed" basis.
 </p>
 
     </div>
